@@ -60,7 +60,7 @@ public abstract class User
 			break;
 			case 12: y = Year.Senior;
 			break;
-			default: y = Year.Freshman; //TODO maybe make unknown for year?
+			default: y = Year.Unknown; //TODO maybe make unknown for year?
 		}
 			
 		this.schedule = new Schedule();

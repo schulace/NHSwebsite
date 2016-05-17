@@ -22,20 +22,6 @@ public class Tutor extends User
 				return false;
 			}
 		}
-		
-		//TODO george come grab this
-		
-//		for(SchoolClass c:this.schedule.getClasses())
-//		{
-//			if(newClass.equals(c))
-//			{
-//				return true;
-//			}
-//		}
-		return false;
-		
+		return false;		
 	}
-	
-	
-	
 }
