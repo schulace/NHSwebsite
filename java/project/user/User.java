@@ -9,15 +9,70 @@ import project.schedule.classes.Year;
 
 public abstract class User
 {
-	private Schedule schedule;
-	private String name;
-	private Date dob;
-	private String school;
-	private Year grade;
-	private Gender gender;
-	private ScheduleHistory history;
+	protected Schedule schedule;
+	protected String name;
+	protected Date dob;
+	protected String school;
+	protected Year grade;
+	protected Gender gender;
+	protected ScheduleHistory history;
 	
-	//need to do google acct creds
+	public User(Schedule Schedule, String name, Date dob, String school, Year year, Gender gender)
+	{
+		this.schedule = Schedule;
+		this.name = name;
+		this.dob = dob;
+		this.grade = year;
+		this.gender = gender;
+	}
+	
+	public User(String name)
+	{
+		this(new Schedule(), name, null, "Greenwich High School", null, null);
+	}
+	
+	public User(String name, int year, int month, int date, int grade, String gender)
+	{
+		Date d = new Date(year, month, date); //TODO error handling in case of invalid date entered
+		Gender g;
+		if(gender.equalsIgnoreCase("male"))
+		{
+			g = Gender.MALE;
+		}
+		else if(gender.equalsIgnoreCase("female"))
+		{
+			g = Gender.FEMALE;
+		}
+		else
+		{
+			g = Gender.OTHER;
+		}
+		
+		Year y;
+		
+		switch(grade)
+		{
+			case 9: y = Year.Freshman;
+			break;
+			case 10: y = Year.Sophomore;
+			break;
+			case 11: y = Year.Junior;
+			break;
+			case 12: y = Year.Senior;
+			break;
+			default: y = Year.Freshman; //TODO maybe make unknown for year?
+		}
+			
+		this.schedule = new Schedule();
+		this.name = name;
+		this.school = "Greenwich High School";
+		this.gender = g;
+		this.dob = d;
+		this.grade = y;
+	}
+	
+	//TODO Google acct linkage
+	
 	public Schedule getSchedule()
 	{
 		return schedule;
