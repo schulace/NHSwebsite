@@ -1,8 +1,13 @@
 package project.user;
 import java.util.ArrayList;
 import project.schedule.classes.SchoolClass;
-public class Student 
+public class Student extends User
 {
+	
+	public Student(String name, int year, int month, int date, int grade, String gender) {
+		super(name, year, month, date, grade, gender);
+	}
+
 	public ArrayList<SchoolClass> StrugglingClasses;
 
 	public void requestHelp(SchoolClass thing)
@@ -21,6 +26,16 @@ public class Student
 				
 			}
 		}
+
+		for(SchoolClass c:this.schedule.getClasses())
+		{
+			if(thing.equals(c))
+			{
+				StrugglingClasses.add(thing);
+				return true;
+			}
+		}
+		
 		if(found == false)
 		{
 			StrugglingClasses.add(thing);
@@ -44,6 +59,7 @@ public class Student
 			System.out.println("This student is currently Struggling");
 			return StrugglingClasses;
 		}
+		
 	}
 	
 	public void rateGuide()
