@@ -1,7 +1,5 @@
 package project.schedule.classes;
 
-import project.schedule.LetterDay;
-
 public class SchoolClass
 {
 	private String name;

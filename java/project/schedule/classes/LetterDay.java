@@ -1,4 +1,4 @@
-package project.schedule;
+package project.schedule.classes;
 
 public enum LetterDay
 {

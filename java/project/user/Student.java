@@ -1,5 +1,6 @@
 package project.user;
 import java.util.ArrayList;
+
 import project.schedule.classes.SchoolClass;
 public class Student extends User
 {

@@ -3,13 +3,13 @@ package project.user;
 
 import java.util.Date;
 
-import project.schedule.Schedule;
-import project.schedule.ScheduleHistory;
+import project.schedule.calendar.ScheduleHistory;
+import project.schedule.classes.StudentSchedule;
 import project.schedule.classes.Year;
 
 public abstract class User
 {
-	protected Schedule schedule;
+	protected StudentSchedule schedule;
 	protected String name;
 	protected Date dob;
 	protected String school;
@@ -17,7 +17,7 @@ public abstract class User
 	protected Gender gender;
 	protected ScheduleHistory history;
 	
-	public User(Schedule Schedule, String name, Date dob, String school, Year year, Gender gender)
+	public User(StudentSchedule Schedule, String name, Date dob, String school, Year year, Gender gender)
 	{
 		this.schedule = Schedule;
 		this.name = name;
@@ -28,7 +28,7 @@ public abstract class User
 	
 	public User(String name)
 	{
-		this(new Schedule(), name, null, "Greenwich High School", null, null);
+		this(new StudentSchedule(), name, null, "Greenwich High School", null, null);
 	}
 	
 	public User(String name, int year, int month, int date, int grade, String gender)
@@ -63,7 +63,7 @@ public abstract class User
 			default: y = Year.Unknown; //TODO maybe make unknown for year?
 		}
 			
-		this.schedule = new Schedule();
+		this.schedule = new StudentSchedule();
 		this.name = name;
 		this.school = "Greenwich High School";
 		this.gender = g;
@@ -73,11 +73,11 @@ public abstract class User
 	
 	//TODO Google acct linkage
 	
-	public Schedule getSchedule()
+	public StudentSchedule getSchedule()
 	{
 		return schedule;
 	}
-	protected void setSchedule(Schedule schedule)
+	protected void setSchedule(StudentSchedule schedule)
 	{
 		this.schedule = schedule;
 	}
