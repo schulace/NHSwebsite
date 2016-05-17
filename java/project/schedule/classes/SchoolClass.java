@@ -17,35 +17,43 @@ public class SchoolClass
 		this.setBlock(block);
 	}
 
-	public String getName() {
+	public String getName()
+	{
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name)
+	{
 		this.name = name;
 	}
 
-	public Subject getSubject() {
+	public Subject getSubject()
+	{
 		return subject;
 	}
 
-	public void setSubject(Subject subject) {
+	public void setSubject(Subject subject)
+	{
 		this.subject = subject;
 	}
 
-	public LetterDay[] getDays() {
+	public LetterDay[] getDays()
+	{
 		return days;
 	}
 
-	public void setDays(LetterDay[] days) {
+	public void setDays(LetterDay[] days)
+	{
 		this.days = days;
 	}
 
-	public int getBlock() {
+	public int getBlock()
+	{
 		return block;
 	}
 
-	public void setBlock(int block) {
+	public void setBlock(int block)
+	{
 		this.block = block;
 	}
 }
