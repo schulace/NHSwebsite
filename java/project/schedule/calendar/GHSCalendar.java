@@ -2,10 +2,10 @@ package project.schedule.calendar;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 import project.schedule.classes.LetterDay;
+import project.schedule.classes.SchoolClass;
 import project.schedule.classes.StudentSchedule;
 
 public class GHSCalendar
@@ -33,8 +33,8 @@ public class GHSCalendar
 		{
 			if(!(CurrentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) && !(CurrentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) && !this.daysOff.contains(CurrentDate.get(Calendar.DAY_OF_YEAR)))
 			{
-				
-				this.cal.add(new GHSCalendarDay(CurrentDate, day));
+				SchoolClass[] SchoolClasses = studentSchedule.getBlockSchedule()[day.getIntDay()];
+				this.cal.add(new GHSCalendarDay(CurrentDate, day, SchoolClasses));
 				day = day.getNextLetterDay();
 			}
 			Calendar nextDate = (Calendar) CurrentDate.clone();

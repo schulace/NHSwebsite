@@ -80,7 +80,25 @@ public class StudentSchedule
 	@Override
 	public String toString()
 	{
-		return Arrays.deepToString(blockSchedule);
+//		return Arrays.deepToString(blockSchedule);
+		String s = "";
+		for(int x = 0; x < 8; x ++)
+		{
+			for(int y = 0; y < 6; y ++)
+			{
+				if(blockSchedule[x][y] == null)
+				{
+					s += "\t\t,";
+				}
+				else
+				{
+					s += blockSchedule[x][y].getSubject() + "\t,";
+				}
+				
+			}
+			s += "\n";
+		}
+		return s;
 		
 		
 	}

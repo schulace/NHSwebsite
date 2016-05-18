@@ -1,7 +1,6 @@
 package project.user;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import project.schedule.classes.SchoolClass;
 
