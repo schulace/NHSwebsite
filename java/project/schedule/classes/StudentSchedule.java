@@ -31,8 +31,13 @@ public class StudentSchedule
 		}
 	}
 	
+	public SchoolClass[][] getBlockSchedule()
+	{
+		return this.blockSchedule;
+	}
 	
-	public StudentSchedule()
+	
+	public StudentSchedule() //TODO delete this once we're done testing
 	{
 		
 	}
@@ -50,27 +55,7 @@ public class StudentSchedule
 		LetterDay[] letterDays = singleClass.getDays();
 		for(int x = 0; x < letterDays.length; x++)
 		{
-			switch(letterDays[x])
-			{
-				case A: numDays[x] = 0;
-					break;
-				case B: numDays[x] = 1;
-					break;
-				case C: numDays[x] = 2;
-					break;
-				case D: numDays[x] = 3;
-					break;
-				case E: numDays[x] = 4;
-					break;
-				case F: numDays[x] = 5;
-					break;
-				case G: numDays[x] = 6;
-					break;
-				case H: numDays[x] = 7;
-					break;
-				default: numDays[x] = 0;
-					break;
-			}
+			numDays[x] = letterDays[x].getIntDay();
 		}
 		
 		for(int y:numDays)
@@ -95,7 +80,9 @@ public class StudentSchedule
 	@Override
 	public String toString()
 	{
-		return Arrays.deepToString(this.blockSchedule);
+		return Arrays.deepToString(blockSchedule);
+		
+		
 	}
 	
 	public boolean equals(StudentSchedule obj) 

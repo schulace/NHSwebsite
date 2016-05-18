@@ -1,5 +1,6 @@
 package project.schedule.calendar;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -10,7 +11,7 @@ public class GHSCalendarDay
 {
 	public Calendar cal;
 	public LetterDay letterDay;
-	public SchoolClass schoolClass;
+	public ArrayList<SchoolClass> classes;
 	
 	public GHSCalendarDay(Calendar cal, LetterDay day)
 	{

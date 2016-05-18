@@ -14,11 +14,13 @@ public class GHSCalendar
 	public Calendar endDate;
 	public ArrayList<GHSCalendarDay> cal = new ArrayList<GHSCalendarDay>();
 	public ArrayList<Integer> daysOff = new ArrayList<Integer>();
+	public StudentSchedule studentSchedule;
 	
 	public GHSCalendar(int monthStart, int dayStart, int yearStart, int monthEnd, int dayEnd, int yearEnd, StudentSchedule studentSched)
 	{
 		this.startDate = new GregorianCalendar(yearStart, monthStart -1, dayStart); //TODO fuck you java. why does the week start at 1, and months start at 0;
 		this.endDate = new GregorianCalendar(yearEnd, monthEnd -1, dayEnd);
+		this.studentSchedule = studentSched;
 		this.refreshCalendar();
 	}
 	
@@ -29,8 +31,9 @@ public class GHSCalendar
 		
 		while(CurrentDate.before(endDate))
 		{
-			if(!(CurrentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) && !(CurrentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) && !this.daysOff.contains(CurrentDate.get(Calendar.DAY_OF_YEAR))) //TODO why the fuck is saturday 3 and Sunday 4
+			if(!(CurrentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) && !(CurrentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) && !this.daysOff.contains(CurrentDate.get(Calendar.DAY_OF_YEAR)))
 			{
+				
 				this.cal.add(new GHSCalendarDay(CurrentDate, day));
 				day = day.getNextLetterDay();
 			}
