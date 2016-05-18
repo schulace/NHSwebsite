@@ -3,6 +3,7 @@ package project.schedule;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import project.schedule.classes.LetterDay;
 import project.schedule.classes.SchoolClass;
 
 public class Schedule
