@@ -1,4 +1,4 @@
-package serverLogic;
+package project.serverLogic;
 
 import java.util.ArrayList;
 

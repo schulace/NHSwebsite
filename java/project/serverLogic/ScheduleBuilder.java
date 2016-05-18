@@ -1,4 +1,4 @@
-package serverLogic;
+package project.serverLogic;
 
 public class ScheduleBuilder {
 

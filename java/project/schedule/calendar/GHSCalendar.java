@@ -3,46 +3,59 @@ package project.schedule.calendar;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import project.schedule.classes.LetterDay;
 
 public class GHSCalendar
 {
-	public Calendar startDate = Calendar.getInstance();
-	public Calendar endDate = Calendar.getInstance();
+	public Calendar startDate;
+	public Calendar endDate;
 	public ArrayList<GHSCalendarDay> cal = new ArrayList<GHSCalendarDay>();
 	public ArrayList<Integer> daysOff = new ArrayList<Integer>();
 	
 	public GHSCalendar(int monthStart, int dayStart, int yearStart, int monthEnd, int dayEnd, int yearEnd)
 	{
-		startDate.clear();
-		startDate.set(yearStart, monthStart, dayStart);
-		endDate.clear();
-		endDate.set(yearEnd, monthEnd, dayEnd);
-		Calendar CurrentDate = (Calendar)startDate.clone();
+		this.startDate = new GregorianCalendar(yearStart, monthStart -1, dayStart); //TODO fuck you java. why does the week start at 1, and months start at 0;
+		this.endDate = new GregorianCalendar(yearEnd, monthEnd -1, dayEnd);
+		this.refreshCalendar();
+	}
+	
+	public void refreshCalendar()
+	{
+		Calendar CurrentDate = (Calendar)this.startDate.clone();
 		LetterDay day = LetterDay.A;
 		
 		while(CurrentDate.before(endDate))
 		{
-			if(!(CurrentDate.get(Calendar.DAY_OF_WEEK) == 3) && !(CurrentDate.get(Calendar.DAY_OF_WEEK) == 4) && !daysOff.contains(CurrentDate.get(Calendar.DAY_OF_YEAR))) //TODO why the fuck is saturday 3 and Sunday 4
+			if(!(CurrentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) && !(CurrentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) && !this.daysOff.contains(CurrentDate.get(Calendar.DAY_OF_YEAR))) //TODO why the fuck is saturday 3 and Sunday 4
 			{
-				cal.add(new GHSCalendarDay(CurrentDate, day));
+				this.cal.add(new GHSCalendarDay(CurrentDate, day));
 				day = day.getNextLetterDay();
 			}
 			Calendar nextDate = (Calendar) CurrentDate.clone();
 			CurrentDate = nextDate;
 			CurrentDate.add(Calendar.DAY_OF_YEAR, 1);
-			
 		}
 	}
 	
-	public void setDaysOff(Date[] dates)
+	public void setDaysOff(ArrayList<Calendar> calArray)
 	{
-		for(Date d: dates)
+		this.daysOff = new ArrayList<Integer>();
+		for(Calendar cal : calArray)
 		{
-			Calendar cal = Calendar.getInstance();
-			cal.setTime(d);
-			daysOff.add(cal.get(Calendar.DAY_OF_YEAR));
+			addDayOff(cal);
+		}
+	}
+	
+	public void addDayOff(Calendar day)
+	{
+		int intDay = day.get(Calendar.DAY_OF_YEAR);
+		System.err.println(intDay);
+		if(!this.daysOff.contains(intDay))
+		{
+			this.daysOff.add(intDay);
+			refreshCalendar();
 		}
 		
 	}
@@ -51,7 +64,7 @@ public class GHSCalendar
 	public String toString()
 	{
 		String s = "";
-		for(GHSCalendarDay day:cal)
+		for(GHSCalendarDay day:this.cal)
 		{
 			s += day.toString() + "\n";
 		}

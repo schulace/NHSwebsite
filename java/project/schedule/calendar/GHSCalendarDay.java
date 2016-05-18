@@ -18,7 +18,7 @@ public class GHSCalendarDay
 
 	@Override
 	public String toString() {
-		return "GHSCalendarDay [date=" + cal.get(Calendar.MONTH)+ "/" + cal.get(Calendar.DAY_OF_MONTH)+ "/" + cal.get(Calendar.YEAR) +  ", letterDay=" + letterDay  +" " + "weekday =" + " " +this.cal.get(Calendar.DAY_OF_WEEK) + "]";
+		return "GHSCalendarDay [date=" + (cal.get(Calendar.MONTH) +1)+ "/" + cal.get(Calendar.DAY_OF_MONTH)+ "/" + cal.get(Calendar.YEAR) +  ", letterDay=" + letterDay  +" " + "weekday =" + " " +this.cal.get(Calendar.DAY_OF_WEEK) + "]";
 	}
 	
 	
