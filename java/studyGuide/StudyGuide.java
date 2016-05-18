@@ -1,5 +1,5 @@
 package studyGuide;
-
+//TODO Alex take a look at this/see if I need to add anything more to it
 import project.schedule.classes.SchoolClass;
 import project.user.User;
 
@@ -12,7 +12,6 @@ public class StudyGuide
 	
 	public StudyGuide(User author, SchoolClass subject, String content, int rating) 
 	{
-		super();
 		this.author = author;
 		this.subject = subject;
 		this.content = content;
