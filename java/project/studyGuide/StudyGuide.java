@@ -1,4 +1,4 @@
-package studyGuide;
+package project.studyGuide;
 //TODO Alex take a look at this/see if I need to add anything more to it
 import project.schedule.classes.SchoolClass;
 import project.user.User;

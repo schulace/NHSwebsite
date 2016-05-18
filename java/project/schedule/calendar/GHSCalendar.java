@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import project.schedule.classes.LetterDay;
+import project.schedule.classes.StudentSchedule;
 
 public class GHSCalendar
 {
@@ -14,7 +15,7 @@ public class GHSCalendar
 	public ArrayList<GHSCalendarDay> cal = new ArrayList<GHSCalendarDay>();
 	public ArrayList<Integer> daysOff = new ArrayList<Integer>();
 	
-	public GHSCalendar(int monthStart, int dayStart, int yearStart, int monthEnd, int dayEnd, int yearEnd)
+	public GHSCalendar(int monthStart, int dayStart, int yearStart, int monthEnd, int dayEnd, int yearEnd, StudentSchedule studentSched)
 	{
 		this.startDate = new GregorianCalendar(yearStart, monthStart -1, dayStart); //TODO fuck you java. why does the week start at 1, and months start at 0;
 		this.endDate = new GregorianCalendar(yearEnd, monthEnd -1, dayEnd);

@@ -4,11 +4,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 import project.schedule.classes.LetterDay;
+import project.schedule.classes.SchoolClass;
 
 public class GHSCalendarDay
 {
 	public Calendar cal;
 	public LetterDay letterDay;
+	public SchoolClass schoolClass;
 	
 	public GHSCalendarDay(Calendar cal, LetterDay day)
 	{
