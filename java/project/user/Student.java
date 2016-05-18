@@ -1,6 +1,7 @@
 package project.user;
 import java.util.ArrayList;
 
+import project.schedule.classes.Request;
 import project.schedule.classes.SchoolClass;
 public class Student extends User
 {
@@ -13,7 +14,7 @@ public class Student extends User
 
 	public void requestHelp(SchoolClass thing)
 	{
-		//TODO finish requestHelp when SchoolClass works 
+		Request request1 = new Request(this,thing,true); //TODO Alex look at this
 	}
 	
 	public boolean setStruggle (SchoolClass thing)
