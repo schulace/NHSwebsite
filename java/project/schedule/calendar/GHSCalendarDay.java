@@ -1,18 +1,25 @@
 package project.schedule.calendar;
 
+import java.util.Calendar;
 import java.util.Date;
 
 import project.schedule.classes.LetterDay;
 
 public class GHSCalendarDay
 {
-	public Date date;
+	public Calendar cal;
 	public LetterDay letterDay;
-	public boolean isWeekDay;
 	
-	public GHSCalendarDay(Date date, LetterDay day)
+	public GHSCalendarDay(Calendar cal, LetterDay day)
 	{
-		this.date = date;
+		this.cal = cal;
 		this.letterDay = day;
 	}
+
+	@Override
+	public String toString() {
+		return "GHSCalendarDay [date=" + cal.get(Calendar.MONTH)+ "/" + cal.get(Calendar.DAY_OF_MONTH)+ "/" + cal.get(Calendar.YEAR) +  ", letterDay=" + letterDay  +" " + "weekday =" + " " +this.cal.get(Calendar.DAY_OF_WEEK) + "]";
+	}
+	
+	
 }
