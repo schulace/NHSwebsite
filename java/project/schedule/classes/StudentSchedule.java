@@ -95,7 +95,18 @@ public class StudentSchedule
 	@Override
 	public String toString()
 	{
-		return Arrays.deepToString(blockSchedule);
+		return Arrays.deepToString(this.blockSchedule);
 	}
-
+	
+	public boolean equals(StudentSchedule obj) 
+	{
+		if (Arrays.deepEquals(this.blockSchedule, obj.blockSchedule) == true)
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
 }
