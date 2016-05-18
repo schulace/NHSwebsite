@@ -1,6 +1,7 @@
 package project.user;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import project.schedule.classes.SchoolClass;
 
@@ -11,7 +12,7 @@ public class Tutor extends User
 		super(name, year, month, date, grade, gender);
 	}
 
-	private ArrayList<SchoolClass> strongClasses;
+	public ArrayList<SchoolClass> strongClasses;
 
 	public boolean addStrongClass(SchoolClass newClass)
 	{

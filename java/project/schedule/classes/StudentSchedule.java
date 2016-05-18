@@ -5,7 +5,6 @@ import java.util.Arrays;
 
 public class StudentSchedule
 {
-	//TODO GEORGE make sure I did this right and that I'm not insane
 	
 	private ArrayList<SchoolClass> classes;
 	private SchoolClass[][] blockSchedule = new SchoolClass[8][6]; //goes [day] [time] 
@@ -89,7 +88,7 @@ public class StudentSchedule
 	
 	public StudentSchedule()
 	{
-		
+		//need this so things dont break
 	}
 	
 	@Override

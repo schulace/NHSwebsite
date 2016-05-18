@@ -130,4 +130,19 @@ public abstract class User
 		this.history = history;
 	}
 	
+	@Override
+	public String toString() {
+		return "User [schedule=" + schedule + ", name=" + name + ", dob=" + dob + ", school=" + school + ", grade="
+				+ grade + ", gender=" + gender + ", history=" + history + "]";
+	}
+	
+	public boolean equals(User c){ 
+		boolean equals = false;
+		if(c.name.equals(this.name) && c.dob.equals(this.dob))
+		{
+			equals = true;
+		}
+		return equals;
+	}
+	
 }

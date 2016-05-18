@@ -9,7 +9,7 @@ public class Student extends User
 		super(name, year, month, date, grade, gender);
 	}
 
-	public ArrayList<SchoolClass> StrugglingClasses;
+	private ArrayList<SchoolClass> StrugglingClasses;
 
 	public void requestHelp(SchoolClass thing)
 	{
