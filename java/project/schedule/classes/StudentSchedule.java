@@ -91,15 +91,6 @@ public class StudentSchedule
 		}
 		
 	}
-<<<<<<< Updated upstream
-	
-	public StudentSchedule()
-	{
-		//need this so things dont break
-	}
-=======
-
->>>>>>> Stashed changes
 	
 	@Override
 	public String toString()
