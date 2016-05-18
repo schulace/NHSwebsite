@@ -31,6 +31,12 @@ public class StudentSchedule
 		}
 	}
 	
+	
+	public StudentSchedule()
+	{
+		
+	}
+	
 	public ArrayList<SchoolClass> getClasses()
 	{
 		return this.classes;
@@ -85,11 +91,15 @@ public class StudentSchedule
 		}
 		
 	}
+<<<<<<< Updated upstream
 	
 	public StudentSchedule()
 	{
 		//need this so things dont break
 	}
+=======
+
+>>>>>>> Stashed changes
 	
 	@Override
 	public String toString()

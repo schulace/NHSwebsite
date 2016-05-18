@@ -6,6 +6,7 @@ public class SchoolClass
 	private Subject subject;
 	private LetterDay[] days;
 	private int block;
+	//TODO add a teacher object / string to this
 	
 	public SchoolClass(String name, Subject subject, LetterDay[] days, int block)
 	{
