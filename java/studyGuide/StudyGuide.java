@@ -9,13 +9,23 @@ public class StudyGuide
 	private SchoolClass subject;
 	private String content;
 	private int rating;
-	
+	private float stars; 
+	private boolean isPlagiarism; 
 	public StudyGuide(User author, SchoolClass subject, String content, int rating) 
 	{
 		this.author = author;
 		this.subject = subject;
 		this.content = content;
-		this.rating = rating;
+		if (rating <= 10 && rating >=0 )
+		{
+			this.rating = rating;
+			stars = (float)rating/2;
+		}
+	}
+	
+	public float getStars()
+	{
+		return stars;
 	}
 	
 	public User getAuthor()
@@ -55,7 +65,11 @@ public class StudyGuide
 
 	public void setRating(int rating)
 	{
-		this.rating = rating;
+		if (rating <= 10 && rating >=0 )
+		{
+			this.rating = rating;
+			stars = (float)rating/2;
+		}	
 	}
 
 	@Override
@@ -71,6 +85,7 @@ public class StudyGuide
 		if (this.content.equals(c.content))
 		{
 			equals = true;
+			isPlagiarism = true;
 		}
 		return equals;
 	}
