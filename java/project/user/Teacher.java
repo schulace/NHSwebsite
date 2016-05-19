@@ -6,22 +6,24 @@ import java.util.ArrayList;
 import project.schedule.classes.SchoolClass;
 
 
-public class Teacher
+public class Teacher extends User 
 { //we may not even need this, but its nice to have (just in case)
-	public String name;
-	public String school;
-	public Gender gender;
+	private ArrayList<SchoolClass> teachClasses;
 	
-	public Teacher(String n, String school, Gender g)
+	public Teacher(String n, Date d, String school, Gender g, ArrayList<SchoolClass> t)
 	{
-		this.name = n;
-		this.school = school;
-		this.gender = g;
+		super(n, d, school, g);
+		this.teachClasses = t;
 	}
 
-	public Teacher()
+	public ArrayList<SchoolClass> getTeachClasses() 
 	{
-		this("testProf", "GHS", Gender.MALE);
+		return teachClasses;
+	}
+
+	public void setTeachClasses(ArrayList<SchoolClass> teachClasses) 
+	{
+		this.teachClasses = teachClasses;
 	}
 	
 	public void rateTutor(Tutor placeholder)

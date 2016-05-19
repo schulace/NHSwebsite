@@ -17,7 +17,7 @@ public class Student extends User
 
 	public void requestHelp(SchoolClass sClass)
 	{
-		Request request1 = new Request(this,sClass.getSubject(),true);
+		Request request1 = new Request(this,sClass.getSubject(),true); //TODO Alex look at this
 		requestManager.addRequest(request1);
 	}
 	
@@ -33,7 +33,7 @@ public class Student extends User
 			}
 		}
 
-		for(SchoolClass c:this.cal.getStudentSchedule().getClasses())
+		for(SchoolClass c:this.schedule.getClasses())
 		{
 			if(sClass.equals(c))
 			{
