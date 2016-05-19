@@ -8,19 +8,16 @@ public class StudyGuide
 	private User author;
 	private SchoolClass subject;
 	private String content;
-	private int rating;
+	private float rating = -1;
 	private float stars; 
 	private boolean isPlagiarism; 
+	
 	public StudyGuide(User author, SchoolClass subject, String content, int rating) 
 	{
 		this.author = author;
 		this.subject = subject;
 		this.content = content;
-		if (rating <= 10 && rating >=0 )
-		{
-			this.rating = rating;
-			stars = (float)rating/2;
-		}
+		this.rating = setRating(rating);
 	}
 	
 	public float getStars()
@@ -58,18 +55,37 @@ public class StudyGuide
 		this.content = content;
 	}
 
-	public int getRating()
+	public float getRating()
 	{
 		return rating;
 	}
 
-	public void setRating(int rating)
+	public float setRating(int score)
 	{
-		if (rating <= 10 && rating >=0 )
+		if (score <= 10 && score >=0 )
 		{
-			this.rating = rating;
-			stars = (float)rating/2;
-		}	
+			if(this.rating != -1)
+			{
+				setAvg(score);
+			}
+			else 
+			{
+				this.rating = score;
+			}
+			setStar(score);
+			return this.rating;	
+		}
+		return -1;
+	}
+	
+	public void setAvg(int score)
+	{
+		this.rating = (float)(this.rating + score) / 2; 
+	}
+	
+	public void setStar(int score)
+	{
+		this.stars = (float)score/2;
 	}
 
 	@Override

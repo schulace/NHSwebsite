@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import project.schedule.classes.Request;
 import project.schedule.classes.SchoolClass;
 import project.serverLogic.requestManager;
+import project.studyGuide.StudyGuide;
 public class Student extends User
 {
 	
@@ -67,13 +68,14 @@ public class Student extends User
 		
 	}
 	
-	public void rateGuide()
+	public void rateGuide(StudyGuide guide, int rating)
 	{
-		//TODO finish rateGuide() when ReviewGuides works/is set up
+		guide.setRating(rating);
 	}
 	
-	public void rateGuide(Tutor placeholder, String review)
+	public void rateTutor(Tutor placeholder, String review, int score)
 	{
-		//TODO finish rateGuide(tutor, review) when tutor is set up
+		placeholder.studentReview(score, review);	
 	}
+	
 }
