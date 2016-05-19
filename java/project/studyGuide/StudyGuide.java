@@ -9,6 +9,7 @@ public class StudyGuide
 	private String content;
 	private float rating = -1;
 	private float stars; 
+	private boolean isShady = false;
 	private boolean isPlagiarism; 
 	
 	public StudyGuide(User author, SchoolClass subject, String content, int rating) 
@@ -19,6 +20,16 @@ public class StudyGuide
 		this.rating = setRating(rating);
 	}
 	
+	public boolean isShady() //so the guide can be flagged as inappropriate
+	{
+		return isShady;
+	}
+
+	public void setShady(boolean isShady)
+	{
+		this.isShady = isShady;
+	}
+
 	public float getStars()
 	{
 		return stars;

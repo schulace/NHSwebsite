@@ -32,9 +32,14 @@ public class Tutor extends User
 		return true;	
 	}
 	
-	public void setShady() //if the review is flagged as not being relevant to the tutor
+	public boolean isShady() //so the tutor review can be flagged as inappropriate
 	{
-		isShady = true;
+		return isShady;
+	}
+
+	public void setShady(boolean isShady) 
+	{
+		this.isShady = isShady;
 	}
 	
 	public void studentReview(int score, String comment)
