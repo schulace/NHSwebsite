@@ -16,6 +16,16 @@ public class GHSCalendar
 	public ArrayList<GregorianCalendar> daysOff = new ArrayList<GregorianCalendar>();
 	public StudentSchedule studentSchedule;
 	
+	public StudentSchedule getStudentSchedule()
+	{
+		return studentSchedule;
+	}
+
+	public void setStudentSchedule(StudentSchedule studentSchedule)
+	{
+		this.studentSchedule = studentSchedule;
+	}
+
 	public GHSCalendar(int monthStart, int dayStart, int yearStart, int monthEnd, int dayEnd, int yearEnd, StudentSchedule studentSched)
 	{
 		this.startDate = new GregorianCalendar(yearStart, monthStart -1, dayStart,0,0,0);

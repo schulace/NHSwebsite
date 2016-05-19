@@ -7,6 +7,7 @@ import project.schedule.calendar.GHSCalendar;
 import project.schedule.calendar.ScheduleHistory;
 import project.schedule.classes.StudentSchedule;
 import project.schedule.classes.Year;
+import project.serverLogic.Reference;
 
 public abstract class User
 {
@@ -20,7 +21,7 @@ public abstract class User
 	
 	public User(StudentSchedule Schedule, String name, Date dob, String school, Year year, Gender gender)
 	{
-		this.cal = new GHSCalendar(Schedule);
+		this.cal = new GHSCalendar(Reference.startDate, Reference.endDate, Schedule, Reference.breakDays);
 		this.name = name;
 		this.dob = dob;
 		this.grade = year;
@@ -71,7 +72,7 @@ public abstract class User
 			default: y = Year.Unknown;
 		}
 			
-		this.cal = new StudentSchedule();
+		this.cal = new GHSCalendar(Reference.startDate, Reference.endDate, null, Reference.breakDays);;
 		this.name = name;
 		this.school = "Greenwich High School";
 		this.gender = g;
@@ -83,11 +84,11 @@ public abstract class User
 	
 	public StudentSchedule getSchedule()
 	{
-		return cal;
+		return cal.getStudentSchedule();
 	}
 	protected void setSchedule(StudentSchedule schedule)
 	{
-		this.cal = schedule;
+		this.cal.setStudentSchedule(schedule);
 	}
 	public String getName()
 	{

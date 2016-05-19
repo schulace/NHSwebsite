@@ -32,7 +32,7 @@ public class Student extends User
 			}
 		}
 
-		for(SchoolClass c:this.cal.getClasses())
+		for(SchoolClass c:this.cal.getStudentSchedule().getClasses())
 		{
 			if(sClass.equals(c))
 			{
