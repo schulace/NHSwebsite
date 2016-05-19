@@ -2,20 +2,31 @@ package project.schedule.classes;
 
 import java.util.Arrays;
 
+import project.user.Teacher;
+
 public class SchoolClass
 {
 	private String name;
 	private Subject subject;
 	private LetterDay[] days;
 	private int block;
-	//TODO add a teacher object / string to this
+	private Teacher prof;
 	
-	public SchoolClass(String name, Subject subject, LetterDay[] days, int block)
+	public SchoolClass(String name, Subject subject, LetterDay[] days, int block, Teacher teacher)
 	{
 		this.setName(name);
 		this.setSubject(subject);
 		this.setDays(days);
 		this.setBlock(block);
+		this.setProf(teacher);
+	}
+
+	public Teacher getProf() {
+		return prof;
+	}
+
+	public void setProf(Teacher prof) {
+		this.prof = prof;
 	}
 
 	public String getName()
