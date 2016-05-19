@@ -7,25 +7,24 @@ import project.user.Student;
 public class Request 
 {
 	private Student StudentName;
-	private SchoolClass Subject;
+	private Subject schoolSubject;
 	private boolean isFilled;
-	private ArrayList<Integer> availableBlocksx;
-	private ArrayList<Integer> availableBlocksy;
+	private ArrayList<int[]> availableBlocks;
 
-	public Request(Student studentName, SchoolClass subject, boolean isFilled) 
+	public Request(Student studentName, Subject subject, boolean isFilled) 
 	{
 		StudentName = studentName;
-		Subject = subject;
+		schoolSubject = subject;
 		this.isFilled = isFilled;
 		SchoolClass[][] sched = studentName.getSchedule().getBlockSchedule();
-		for(int i = 0; i< 6; i++)
+		for(int i = 0; i< 8; i++)
 		{
-			for (int z = 0; z < 8; z++)
+			for (int z = 0; z < 6; z++)
 			{
 				if(sched[i][z] == null)
 				{
-					availableBlocksx.add(i); //TODO Find a way to store the position of 'null' in a students schedule
-					availableBlocksy.add(z);
+					int[] temp = {i,z};
+					availableBlocks.add(temp);
 				}
 			}
 		}
@@ -37,14 +36,14 @@ public class Request
 		return StudentName;
 	}
 
-	public SchoolClass getSubject() 
+	public Subject getSubject() 
 	{
-		return Subject;
+		return schoolSubject;
 	}
 
-	public void setSubject(SchoolClass subject) 
+	public void setSubject(SchoolClass classIn) 
 	{
-		Subject = subject;
+		schoolSubject = classIn.getSubject();
 	}
 
 	public boolean isFilled()

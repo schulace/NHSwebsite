@@ -64,7 +64,8 @@ public class SchoolClass
 				+ block + "]";
 	}
 
-	public boolean equals(SchoolClass obj) {
+	public boolean equals(SchoolClass obj)
+	{
 		if (this == obj)
 			return true;
 		if (obj == null)

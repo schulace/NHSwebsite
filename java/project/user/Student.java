@@ -3,26 +3,29 @@ import java.util.ArrayList;
 
 import project.schedule.classes.Request;
 import project.schedule.classes.SchoolClass;
+import project.serverLogic.requestManager;
 public class Student extends User
 {
 	
-	public Student(String name, int year, int month, int date, int grade, String gender) {
+	public Student(String name, int year, int month, int date, int grade, String gender)
+	{
 		super(name, year, month, date, grade, gender);
 	}
 
 	private ArrayList<SchoolClass> StrugglingClasses;
 
-	public void requestHelp(SchoolClass thing)
+	public void requestHelp(SchoolClass sClass)
 	{
-		Request request1 = new Request(this,thing,true); //TODO Alex look at this
+		Request request1 = new Request(this,sClass.getSubject(),true); //TODO Alex look at this
+		requestManager.addRequest(request1);
 	}
 	
-	public boolean setStruggle (SchoolClass thing)
+	public boolean setStruggle (SchoolClass sClass)
 	{
 		boolean found = false;
 		for(int i = 0; i < this.StrugglingClasses.size(); i++)
 		{
-			if(thing.equals(this.StrugglingClasses.get(i)))
+			if(sClass.equals(this.StrugglingClasses.get(i)))
 			{
 				found = true;
 				
@@ -31,16 +34,16 @@ public class Student extends User
 
 		for(SchoolClass c:this.schedule.getClasses())
 		{
-			if(thing.equals(c))
+			if(sClass.equals(c))
 			{
-				StrugglingClasses.add(thing);
+				StrugglingClasses.add(sClass);
 				return true;
 			}
 		}
 		
 		if(found == false)
 		{
-			StrugglingClasses.add(thing);
+			StrugglingClasses.add(sClass);
 			return found;
 		}
 		else
