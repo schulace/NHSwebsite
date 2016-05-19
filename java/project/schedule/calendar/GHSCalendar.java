@@ -46,7 +46,15 @@ public class GHSCalendar
 	
 	public GHSCalendar(GregorianCalendar startDate, GregorianCalendar endDate, StudentSchedule studentSched, ArrayList<GregorianCalendar> breakDays)
 	{
-		this(startDate, endDate, studentSched);
+		
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.startDate.set(this.startDate.get(Calendar.YEAR), this.startDate.get(Calendar.MONTH), this.startDate.get(Calendar.DATE),0,0,0);
+		this.endDate.set(this.endDate.get(Calendar.YEAR), this.endDate.get(Calendar.MONTH), this.endDate.get(Calendar.DATE),0,0,0);
+		this.studentSchedule = studentSched;
+		this.daysOff = breakDays;
+		this.refreshCalendar();
+		
 		
 	}
 	
@@ -76,7 +84,7 @@ public class GHSCalendar
 		GregorianCalendar CurrentDate = (GregorianCalendar)this.startDate.clone();
 		LetterDay day = LetterDay.A;
 		this.cal = new ArrayList<GHSCalendarDay>();
-		
+		System.err.println(daysOff);
 		while(CurrentDate.before(endDate))
 		{
 			if(!(CurrentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) && !(CurrentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) && !isDateInDaysOff(CurrentDate))
@@ -91,14 +99,10 @@ public class GHSCalendar
 		}
 	}
 	
-	public void setDaysOff(ArrayList<Calendar> calArray)
+	public void setDaysOff(ArrayList<GregorianCalendar> calArray)
 	{
-		this.daysOff = new ArrayList<GregorianCalendar>();
-		for(Calendar cal : calArray)
-		{
-			addDayOff((GregorianCalendar)cal);
-			refreshCalendar();
-		}
+		this.daysOff = calArray;
+		refreshCalendar();
 	}
 	
 	public void addDayOff(GregorianCalendar day)

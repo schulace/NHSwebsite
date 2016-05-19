@@ -70,9 +70,9 @@ public class SchoolClass
 	}
 	
 	@Override
-	public String toString() {
-		return "SchoolClass [name=" + name + ", subject=" + subject + ", days=" + Arrays.toString(days) + ", block="
-				+ block + "]";
+	public String toString()
+	{
+		return "[name=" + name + ", subject=" + subject + "]";
 	}
 
 	public boolean equals(SchoolClass obj)

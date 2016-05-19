@@ -1,5 +1,7 @@
 package project.serverLogic;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
@@ -12,10 +14,9 @@ public class ServerStart
 	
 	public static void main(String[] args)
 	{
-		GHSCalendar cal = new GHSCalendar(4, 21, 2016, 5, 20, 2016, test_schedules.getStudent1Schedule() /*student test schedule*/);
-		GregorianCalendar dayOff = new GregorianCalendar(2016, 3, 26);
-		System.out.println("========================================\n\n\n");
-		cal.addDayOff(dayOff);
+		ArrayList<GregorianCalendar> daysOff = Reference.setAndGetBreakDays();
+		System.err.println(daysOff);
+		GHSCalendar cal = new GHSCalendar(Reference.startDate, Reference.endDate, test_schedules.getStudent1Schedule(), daysOff);
 		System.out.println(cal);
 		
 		
