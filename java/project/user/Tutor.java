@@ -12,9 +12,7 @@ public class Tutor extends User
 	{
 		super(name, year, month, date, grade, gender);
 	}
-
 	
-
 	public boolean addStrongClass(SchoolClass newClass)
 	{
 		for(SchoolClass c:this.strongClasses)

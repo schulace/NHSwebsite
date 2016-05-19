@@ -27,6 +27,13 @@ public abstract class User
 		this.gender = gender;
 	}
 	
+	public User(String name, Date dob, String school, Gender gender) { //this is just so the teacher obj works
+		this.name = name;
+		this.dob = dob;
+		this.school = school;
+		this.gender = gender;
+	}
+
 	public User(String name)
 	{
 		this(new StudentSchedule(), name, null, "Greenwich High School", null, null);
