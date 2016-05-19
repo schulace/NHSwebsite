@@ -6,22 +6,28 @@ import project.schedule.classes.SchoolClass;
 
 public class Tutor extends User
 {
+	public ArrayList<SchoolClass> strongClasses;
+	
 	public Tutor(String name, int year, int month, int date, int grade, String gender)
 	{
 		super(name, year, month, date, grade, gender);
 	}
 
-	public ArrayList<SchoolClass> strongClasses;
+	
 
 	public boolean addStrongClass(SchoolClass newClass)
 	{
 		for(SchoolClass c:this.strongClasses)
 		{
-			if(c.equals(newClass)) //TODO implement .equals() method for schoolClass
+			if(c.equals(newClass)) //TODO George fix ur shit.
 			{
 				return false;
 			}
+			else
+			{
+				strongClasses.add(newClass);
+			}
 		}
-		return false;		
+		return true;	
 	}
 }
