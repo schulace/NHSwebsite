@@ -1,23 +1,28 @@
 package project.studyGuide;
+import java.util.ArrayList;
+
 import project.schedule.classes.SchoolClass;
+import project.schedule.classes.Subject;
+import project.user.Student;
 import project.user.User;
 
 public class StudyGuide 
 {
 	private User author;
-	private SchoolClass subject;
+	private Subject subject;
 	private String content;
 	private float rating = -1;
 	private float stars; 
 	private boolean isShady = false;
-	private boolean isPlagiarism; 
+	private boolean isPlagiarism;
+	private ArrayList<Review> reviews;
 	
-	public StudyGuide(User author, SchoolClass subject, String content, int rating) 
+	public StudyGuide(User author, Subject subject, String content) 
 	{
 		this.author = author;
 		this.subject = subject;
 		this.content = content;
-		this.rating = setRating(rating);
+		reviews = new ArrayList<Review>();
 	}
 	
 	public boolean isShady() //so the guide can be flagged as inappropriate
@@ -29,10 +34,24 @@ public class StudyGuide
 	{
 		this.isShady = isShady;
 	}
-
-	public float getStars()
+	
+	public void addReview(Review re)
 	{
-		return stars;
+		for(Review r: this.reviews)
+		{
+			if(re.getStudent().equals(r.getStudent()));
+			{
+				return;
+			}
+		}
+		reviews.add(re);
+	}
+
+	public float getAndCalcStars()
+	{
+		calcAndSetRating();
+		this.stars =  (float)this.rating/(float)2;
+		return this.stars;
 	}
 	
 	public User getAuthor()
@@ -45,12 +64,12 @@ public class StudyGuide
 		this.author = author;
 	}
 
-	public SchoolClass getSubject()
+	public Subject getSubject()
 	{
 		return subject;
 	}
 
-	public void setSubject(SchoolClass subject) 
+	public void setSubject(Subject subject) 
 	{
 		this.subject = subject;
 	}
@@ -65,37 +84,16 @@ public class StudyGuide
 		this.content = content;
 	}
 
-	public float getRating()
-	{
-		return rating;
-	}
 
-	public float setRating(int score)
+	public float calcAndSetRating()
 	{
-		if (score <= 10 && score >=0 )
+		float ratingSum = 0;
+		for(Review r :this.reviews)
 		{
-			if(this.rating != -1)
-			{
-				setAvg(score);
-			}
-			else 
-			{
-				this.rating = score;
-			}
-			setStar(score);
-			return this.rating;	
+			ratingSum += r.getScore();
 		}
-		return -1;
-	}
-	
-	public void setAvg(int score)
-	{
-		this.rating = (float)(this.rating + score) / 2; 
-	}
-	
-	public void setStar(int score)
-	{
-		this.stars = (float)score/2;
+		this.rating = ratingSum / (float)this.reviews.size(); 
+		return this.rating;
 	}
 
 	@Override
