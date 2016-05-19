@@ -84,7 +84,6 @@ public class GHSCalendar
 		GregorianCalendar CurrentDate = (GregorianCalendar)this.startDate.clone();
 		LetterDay day = LetterDay.A;
 		this.cal = new ArrayList<GHSCalendarDay>();
-		System.err.println(daysOff);
 		while(CurrentDate.before(endDate))
 		{
 			if(!(CurrentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) && !(CurrentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) && !isDateInDaysOff(CurrentDate))
