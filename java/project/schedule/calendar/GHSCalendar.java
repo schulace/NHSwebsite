@@ -13,13 +13,23 @@ public class GHSCalendar
 	public Calendar startDate;
 	public Calendar endDate;
 	public ArrayList<GHSCalendarDay> cal = new ArrayList<GHSCalendarDay>();
-	public ArrayList<Integer> daysOff = new ArrayList<Integer>();
+	public ArrayList<GregorianCalendar> daysOff = new ArrayList<GregorianCalendar>();
 	public StudentSchedule studentSchedule;
 	
+	public StudentSchedule getStudentSchedule()
+	{
+		return studentSchedule;
+	}
+
+	public void setStudentSchedule(StudentSchedule studentSchedule)
+	{
+		this.studentSchedule = studentSchedule;
+	}
+
 	public GHSCalendar(int monthStart, int dayStart, int yearStart, int monthEnd, int dayEnd, int yearEnd, StudentSchedule studentSched)
 	{
-		this.startDate = new GregorianCalendar(yearStart, monthStart -1, dayStart); //TODO fuck you java. why does the week start at 1, and months start at 0;
-		this.endDate = new GregorianCalendar(yearEnd, monthEnd -1, dayEnd);
+		this.startDate = new GregorianCalendar(yearStart, monthStart -1, dayStart,0,0,0);
+		this.endDate = new GregorianCalendar(yearEnd, monthEnd -1, dayEnd,0,0,0);
 		this.studentSchedule = studentSched;
 		this.refreshCalendar();
 	}
@@ -71,19 +81,19 @@ public class GHSCalendar
 	
 	public void refreshCalendar()
 	{
-		Calendar CurrentDate = (Calendar)this.startDate.clone();
+		GregorianCalendar CurrentDate = (GregorianCalendar)this.startDate.clone();
 		LetterDay day = LetterDay.A;
 		this.cal = new ArrayList<GHSCalendarDay>();
 		System.err.println(daysOff);
 		while(CurrentDate.before(endDate))
 		{
-			if(!(CurrentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) && !(CurrentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) && !this.daysOff.contains(CurrentDate.get(Calendar.DAY_OF_YEAR)))
+			if(!(CurrentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) && !(CurrentDate.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) && !isDateInDaysOff(CurrentDate))
 			{
 				SchoolClass[] SchoolClasses = studentSchedule.getBlockSchedule()[day.getIntDay()];
 				this.cal.add(new GHSCalendarDay(CurrentDate, day, SchoolClasses));
 				day = day.getNextLetterDay();
 			}
-			Calendar nextDate = (Calendar) CurrentDate.clone();
+			GregorianCalendar nextDate = (GregorianCalendar)CurrentDate.clone();
 			CurrentDate = nextDate;
 			CurrentDate.add(Calendar.DAY_OF_YEAR, 1);
 		}
@@ -95,16 +105,13 @@ public class GHSCalendar
 		refreshCalendar();
 	}
 	
-	public void addDayOff(Calendar day)
+	public void addDayOff(GregorianCalendar day)
 	{
-		int intDay = day.get(Calendar.DAY_OF_YEAR);
-		System.err.println(intDay);
-		if(!this.daysOff.contains(intDay))
+		if(!isDateInDaysOff(day))
 		{
-			this.daysOff.add(intDay);
+			daysOff.add(day);
 			refreshCalendar();
 		}
-		
 	}
 
 	@Override
@@ -117,6 +124,4 @@ public class GHSCalendar
 		}
 		return s;
 	}
-	
-	
 }

@@ -3,13 +3,15 @@ package project.user;
 
 import java.util.Date;
 
+import project.schedule.calendar.GHSCalendar;
 import project.schedule.calendar.ScheduleHistory;
 import project.schedule.classes.StudentSchedule;
 import project.schedule.classes.Year;
+import project.serverLogic.Reference;
 
 public abstract class User
 {
-	protected StudentSchedule schedule;
+	protected GHSCalendar cal;
 	protected String name;
 	protected Date dob;
 	protected String school;
@@ -19,7 +21,7 @@ public abstract class User
 	
 	public User(StudentSchedule Schedule, String name, Date dob, String school, Year year, Gender gender)
 	{
-		this.schedule = Schedule;
+		this.cal = new GHSCalendar(Reference.startDate, Reference.endDate, Schedule, Reference.breakDays);
 		this.name = name;
 		this.dob = dob;
 		this.grade = year;
@@ -67,10 +69,10 @@ public abstract class User
 			break;
 			case 12: y = Year.Senior;
 			break;
-			default: y = Year.Unknown; //TODO maybe make unknown for year?
+			default: y = Year.Unknown;
 		}
 			
-		this.schedule = new StudentSchedule();
+		this.cal = new GHSCalendar(Reference.startDate, Reference.endDate, null, Reference.breakDays);;
 		this.name = name;
 		this.school = "Greenwich High School";
 		this.gender = g;
@@ -82,11 +84,11 @@ public abstract class User
 	
 	public StudentSchedule getSchedule()
 	{
-		return schedule;
+		return cal.getStudentSchedule();
 	}
 	protected void setSchedule(StudentSchedule schedule)
 	{
-		this.schedule = schedule;
+		this.cal.setStudentSchedule(schedule);
 	}
 	public String getName()
 	{
@@ -140,7 +142,7 @@ public abstract class User
 	@Override
 	public String toString() 
 	{
-		return "User [schedule=" + schedule + ", name=" + name + ", dob=" + dob + ", school=" + school + ", grade="
+		return "User [schedule=" + cal + ", name=" + name + ", dob=" + dob + ", school=" + school + ", grade="
 				+ grade + ", gender=" + gender + ", history=" + history + "]";
 	}
 	

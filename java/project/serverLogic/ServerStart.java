@@ -19,7 +19,8 @@ public class ServerStart
 		GHSCalendar cal = new GHSCalendar(Reference.startDate, Reference.endDate, test_schedules.getStudent1Schedule(), daysOff);
 		System.out.println(cal);
 		
+		
 //		testing out schedule printing.
-		System.out.println(test_schedules.getStudent1Schedule());
+//		System.out.println(test_schedules.getStudent1Schedule());
 	}
 }
