@@ -37,9 +37,9 @@ public class StudentSchedule
 	}
 	
 	
-	public StudentSchedule() //TODO delete this once we're done testing
+	public StudentSchedule()
 	{
-		
+		this.classes = new ArrayList<SchoolClass>();
 	}
 	
 	public ArrayList<SchoolClass> getClasses()

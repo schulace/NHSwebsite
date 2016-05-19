@@ -24,6 +24,7 @@ public class GHSCalendar
 	public void setStudentSchedule(StudentSchedule studentSchedule)
 	{
 		this.studentSchedule = studentSchedule;
+		this.refreshCalendar();
 	}
 
 	public GHSCalendar(int monthStart, int dayStart, int yearStart, int monthEnd, int dayEnd, int yearEnd, StudentSchedule studentSched)

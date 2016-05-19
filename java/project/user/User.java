@@ -2,6 +2,7 @@ package project.user;
 
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import project.schedule.calendar.GHSCalendar;
 import project.schedule.calendar.ScheduleHistory;
@@ -13,13 +14,13 @@ public abstract class User
 {
 	protected GHSCalendar cal;
 	protected String name;
-	protected Date dob;
+	protected GregorianCalendar dob;
 	protected String school;
 	protected Year grade;
 	protected Gender gender;
 	protected ScheduleHistory history;
 	
-	public User(StudentSchedule Schedule, String name, Date dob, String school, Year year, Gender gender)
+	public User(StudentSchedule Schedule, String name, GregorianCalendar dob, String school, Year year, Gender gender)
 	{
 		this.cal = new GHSCalendar(Reference.startDate, Reference.endDate, Schedule, Reference.breakDays);
 		this.name = name;
@@ -28,7 +29,8 @@ public abstract class User
 		this.gender = gender;
 	}
 	
-	public User(String name, Date dob, String school, Gender gender) { //this is just so the teacher obj works
+	public User(String name, GregorianCalendar dob, String school, Gender gender)
+	{
 		this.name = name;
 		this.dob = dob;
 		this.school = school;
@@ -42,7 +44,7 @@ public abstract class User
 	
 	public User(String name, int year, int month, int date, int grade, String gender)
 	{
-		Date d = new Date(year, month, date); //TODO error handling in case of invalid date entered
+		GregorianCalendar d = new GregorianCalendar(year, month-1, date); //TODO error handling in case of invalid date entered
 		Gender g;
 		if(gender.equalsIgnoreCase("male"))
 		{
@@ -72,12 +74,17 @@ public abstract class User
 			default: y = Year.Unknown;
 		}
 			
-		this.cal = new GHSCalendar(Reference.startDate, Reference.endDate, null, Reference.breakDays);;
+		this.cal = new GHSCalendar(Reference.startDate, Reference.endDate, new StudentSchedule(), Reference.breakDays);
 		this.name = name;
 		this.school = "Greenwich High School";
 		this.gender = g;
 		this.dob = d;
 		this.grade = y;
+	}
+	
+	public void setSchedule(StudentSchedule sched)
+	{
+		this.cal = new GHSCalendar(Reference.startDate, Reference.endDate, sched, Reference.breakDays);
 	}
 	
 	//TODO Google acct linkage
@@ -86,10 +93,7 @@ public abstract class User
 	{
 		return cal.getStudentSchedule();
 	}
-	protected void setSchedule(StudentSchedule schedule)
-	{
-		this.cal.setStudentSchedule(schedule);
-	}
+	
 	public String getName()
 	{
 		return name;
@@ -98,11 +102,11 @@ public abstract class User
 	{
 		this.name = name;
 	}
-	public Date getDob()
+	public GregorianCalendar getDob()
 	{
 		return dob;
 	}
-	protected void setDob(Date dob)
+	protected void setDob(GregorianCalendar dob)
 	{
 		this.dob = dob;
 	}
@@ -155,5 +159,4 @@ public abstract class User
 		}
 		return equals;
 	}
-	
 }
