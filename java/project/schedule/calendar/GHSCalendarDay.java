@@ -23,8 +23,7 @@ public class GHSCalendarDay
 	public String toString()
 	{
 		return "GHSCalendarDay [date=" + (cal.get(Calendar.MONTH) +1)+ "/" + cal.get(Calendar.DAY_OF_MONTH)+
-				"/" + cal.get(Calendar.YEAR) +  ", letterDay=" + letterDay  + " " + "weekday =" + " " +
-				this.cal.get(Calendar.DAY_OF_WEEK) + " classes " + Arrays.toString(classes)+ "]";
+				"/" + cal.get(Calendar.YEAR) +  ",letterDay=" + letterDay  + " " + "classes " + Arrays.toString(classes)+ "]";
 	}
 	
 	
