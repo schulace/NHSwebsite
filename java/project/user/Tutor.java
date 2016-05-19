@@ -3,16 +3,13 @@ package project.user;
 import java.util.ArrayList;
 
 import project.schedule.classes.SchoolClass;
+import project.studyGuide.Review;
+import project.studyGuide.TutorReview;
 
 public class Tutor extends User
 {
-	private float rating;
-	private float stars; 
-	private String review;
 	private ArrayList<SchoolClass> strongClasses;
-	private	float studentRating = -1;
-	private float teacherRating = -1;
-	private boolean isShady = false;
+	private ArrayList<TutorReview> reviews;
 	
 	public Tutor(String name, int year, int month, int date, int grade, String gender)
 	{
@@ -32,118 +29,15 @@ public class Tutor extends User
 		return true;	
 	}
 	
-	public boolean isShady() //so the tutor review can be flagged as inappropriate
+	public void addReview(TutorReview re)
 	{
-		return isShady;
-	}
-
-	public void setShady(boolean isShady) 
-	{
-		this.isShady = isShady;
-	}
-	
-	public void studentReview(int score, String comment)
-	{
-		if(comment.contains("fuck") || comment.contains("shit") || comment.contains("bitch") || comment.contains("piss") || comment.contains("dick") || comment.contains("cock") || comment.contains("pussy") || comment.contains("asshole") || comment.contains("fag") || comment.contains("bastard") || comment.contains("slut") || comment.contains("douche"))
+		for(TutorReview r: this.reviews)
 		{
-			return;
-		}
-		
-		else 
-		{
-			this.review = comment;
-		}
-		
-		if (score <= 10 && score >=0 )
-		{
-			setStudentRating(score);
-		}
-	}
-	
-	public void teacherReview(int score, String comment)
-	{
-		if(comment.contains("fuck") || comment.contains("shit") || comment.contains("bitch") || comment.contains("piss") || comment.contains("dick") || comment.contains("cock") || comment.contains("pussy") || comment.contains("asshole") || comment.contains("fag") || comment.contains("bastard") || comment.contains("slut") || comment.contains("douche"))
-		{
-			return;
-		}
-		
-		else 
-		{
-			this.review = comment;
-		}
-		
-		if (score <= 10 && score >=0 )
-		{
-			setTeacherRating(score);
-		}
-	}
-	
-	public float setStudentRating(int score)
-	{
-		if (score <= 10 && score >=0 )
-		{
-			if(this.rating != -1)
+			if(re.getStudent().equals(r.getStudent()));
 			{
-				setStudentAvg(score);
+				return;
 			}
-			else 
-			{
-				this.studentRating = score;
-				
-			}
-			setRating();
-			return this.studentRating;
 		}
-		return -1;
-	}
-	
-	public float setTeacherRating(int score)
-	{
-		if (score <= 10 && score >=0 )
-		{
-			if(this.rating != -1)
-			{
-				setTeacherAvg(score);
-			}
-			else 
-			{
-				this.teacherRating = score;
-			}
-			setRating();
-			return this.teacherRating;
-		}
-		return -1;
-	}
-	
-	public void setStudentAvg(int score)
-	{
-		this.studentRating = (float)(this.studentRating + score) / 2; 
-	}
-	
-	public void setTeacherAvg(int score)
-	{
-		this.teacherRating = (float)(this.teacherRating + score) / 2; 
-	}
-	
-	public void setRating()
-	{
-		if (this.teacherRating == -1)
-		{
-			this.rating = this.studentRating;
-		}
-		else if (this.studentRating == -1)
-		{
-			this.rating = this.teacherRating;
-		}
-		else
-		{
-			this.rating = (this.studentRating + this.teacherRating) / 2;
-		}
-		setStar();
-	}
-	
-	public void setStar()
-	{
-		this.stars = (float)this.rating/2;
+		reviews.add(re);
 	}
 }

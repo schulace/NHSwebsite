@@ -8,13 +8,12 @@ import project.studyGuide.Review;
 import project.studyGuide.StudyGuide;
 public class Student extends User
 {
-	
+	private ArrayList<SchoolClass> StrugglingClasses;
+
 	public Student(String name, int year, int month, int date, int grade, String gender)
 	{
 		super(name, year, month, date, grade, gender);
 	}
-
-	private ArrayList<SchoolClass> StrugglingClasses;
 
 	public void requestHelp(SchoolClass sClass)
 	{
@@ -75,6 +74,6 @@ public class Student extends User
 	
 	public void rateTutor(Tutor placeholder, String review, int score)
 	{
-		//TODO actually do this.studentReview(score,review);
+		
 	}
 }
