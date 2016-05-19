@@ -12,6 +12,7 @@ public class Tutor extends User
 	private ArrayList<SchoolClass> strongClasses;
 	private	float studentRating = -1;
 	private float teacherRating = -1;
+	private boolean isShady = false;
 	
 	public Tutor(String name, int year, int month, int date, int grade, String gender)
 	{
@@ -29,6 +30,11 @@ public class Tutor extends User
 		}
 		strongClasses.add(newClass);
 		return true;	
+	}
+	
+	public void setShady() //if the review is flagged as not being relevant to the tutor
+	{
+		isShady = true;
 	}
 	
 	public void studentReview(int score, String comment)

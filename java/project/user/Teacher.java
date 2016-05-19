@@ -26,8 +26,8 @@ public class Teacher extends User
 		this.teachClasses = teachClasses;
 	}
 	
-	public void rateTutor(Tutor placeholder)
+	public void rateTutor(Tutor placeholder, int score, String review)
 	{
-		
+		placeholder.teacherReview(score, review);
 	}
 }
