@@ -19,15 +19,12 @@ public class Tutor extends User
 	{
 		for(SchoolClass c:this.strongClasses)
 		{
-			if(c.equals(newClass)) //TODO George fix ur shit.
+			if(c.equals(newClass)) 
 			{
 				return false;
 			}
-			else
-			{
-				strongClasses.add(newClass);
-			}
 		}
+		strongClasses.add(newClass);
 		return true;	
 	}
 }
