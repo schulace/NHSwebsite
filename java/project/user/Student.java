@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import project.schedule.classes.Request;
 import project.schedule.classes.SchoolClass;
 import project.serverLogic.requestManager;
+import project.studyGuide.StudyGuide;
 public class Student extends User
 {
 	
@@ -16,7 +17,7 @@ public class Student extends User
 
 	public void requestHelp(SchoolClass sClass)
 	{
-		Request request1 = new Request(this,sClass.getSubject(),true);
+		Request request1 = new Request(this,sClass.getSubject(),true); //TODO Alex look at this
 		requestManager.addRequest(request1);
 	}
 	
@@ -32,7 +33,7 @@ public class Student extends User
 			}
 		}
 
-		for(SchoolClass c:this.cal.getStudentSchedule().getClasses())
+		for(SchoolClass c:this.schedule.getClasses())
 		{
 			if(sClass.equals(c))
 			{
@@ -67,13 +68,14 @@ public class Student extends User
 		
 	}
 	
-	public void rateGuide()
+	public void rateGuide(StudyGuide guide, int rating)
 	{
-		//TODO finish rateGuide() when ReviewGuides works/is set up
+		guide.setRating(rating);
 	}
 	
-	public void rateGuide(Tutor placeholder, String review)
+	public void rateTutor(Tutor placeholder, String review, int score)
 	{
-		//TODO finish rateGuide(tutor, review) when tutor is set up
+		placeholder.studentReview(score, review);	
 	}
+	
 }
