@@ -9,6 +9,11 @@ import project.schedule.classes.StudentSchedule;
 import project.schedule.classes.Year;
 import project.serverLogic.Reference;
 
+/**
+ * @author schulace
+ * abstract class for user. extended by student and tutor.
+ * contains a school calendar, name, date of birth, grade, gender.
+ */
 public abstract class User
 {
 	protected GHSCalendar cal;
@@ -19,6 +24,17 @@ public abstract class User
 	protected Gender gender;
 	protected ScheduleHistory history;
 	
+	
+	
+	/**
+	 * 
+	 * @param Schedule type: StudentSchedule
+	 * @param name type: String
+	 * @param dob type: GregorianCalendar (note that gregorianCalendar months start with 0 for january)
+	 * @param school type: String; name of school
+	 * @param year	type: Year (enum)
+	 * @param gender type: Gender(enum)
+	 */
 	public User(StudentSchedule Schedule, String name, GregorianCalendar dob, String school, Year year, Gender gender)
 	{
 		this.cal = new GHSCalendar(Reference.startDate, Reference.endDate, Schedule, Reference.breakDays);
@@ -28,19 +44,41 @@ public abstract class User
 		this.gender = gender;
 	}
 	
+	
+	/**
+	 * 
+	 * @param name type: String
+	 * @param dob type: GregorianCalendar (note that gregorianCalendar months start with 0 for january)
+	 * @param school type: String; name of school
+	 * @param gender type: Gender(enum)
+	 */
 	public User(String name, GregorianCalendar dob, String school, Gender gender)
 	{
 		this.name = name;
 		this.dob = dob;
 		this.school = school;
 		this.gender = gender;
+		this.grade = Year.Unknown;
 	}
 
+	/**
+	 * 
+	 * @param name the name of the student to create
+	 */
 	public User(String name)
 	{
-		this(new StudentSchedule(), name, null, "Greenwich High School", null, null);
+		this(new StudentSchedule(), name, new GregorianCalendar(), "Greenwich High School", Year.Unknown, Gender.OTHER);
 	}
 	
+	/**
+	 * 
+	 * @param name student name
+	 * @param year year of birth
+	 * @param month month the user was born
+	 * @param date day user was born
+	 * @param grade school grade (int between 9 and 12)
+	 * @param gender (takes "male" or "female" defaults to other)
+	 */
 	public User(String name, int year, int month, int date, int grade, String gender)
 	{
 		GregorianCalendar d = new GregorianCalendar(year, month-1, date); //TODO error handling in case of invalid date entered
@@ -81,6 +119,10 @@ public abstract class User
 		this.grade = y;
 	}
 	
+	/**
+	 * @param sched student school schedule.
+	 * Generates a new calendar schedule with the school startdate, endDate, this schedule, and all days off.
+	 */
 	public void setSchedule(StudentSchedule sched)
 	{
 		this.cal = new GHSCalendar(Reference.startDate, Reference.endDate, sched, Reference.breakDays);
