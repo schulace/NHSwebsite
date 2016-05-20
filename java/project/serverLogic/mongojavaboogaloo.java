@@ -1,4 +1,4 @@
-package nhsjavamongobogaloo;
+package project.serverLogic;
 
 import com.mongodb.MongoClient;
 
