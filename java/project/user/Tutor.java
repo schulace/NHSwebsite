@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author george
+ * object for Tutor
+ *
+ */
+
 package project.user;
 
 import java.util.ArrayList;
@@ -9,6 +16,16 @@ public class Tutor extends User
 {
 	private ArrayList<SchoolClass> strongClasses;
 	private ArrayList<TutorReview> reviews;
+	
+	/**
+	 * calles super constructor
+	 * @param name
+	 * @param year
+	 * @param month
+	 * @param date
+	 * @param grade
+	 * @param gender
+	 */
 	
 	public Tutor(String name, int year, int month, int date, int grade, String gender)
 	{
@@ -27,6 +44,11 @@ public class Tutor extends User
 		strongClasses.add(newClass);
 		return true;	
 	}
+	
+	/**
+	 * adds review for the Tutor
+	 * @param re
+	 */
 	
 	public void addReview(TutorReview re)
 	{
