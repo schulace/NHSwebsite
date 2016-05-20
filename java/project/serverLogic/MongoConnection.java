@@ -10,6 +10,7 @@ import com.mongodb.*;
 import com.google.gson.*;
 import org.bson.*;
 
+<<<<<<< HEAD
 public class MongoConnection {
 	
 	public boolean sendtodb(String jsonstring, int userid){
@@ -27,5 +28,12 @@ public class MongoConnection {
 		
 	}
 	
+=======
+public class MongoConnection
+{
+
+	MongoClient mongoClient = new MongoClient( "localhost" );
+	MongoDatabase database = mongoClient.getDatabase("mydb");
+>>>>>>> javaOOP
 	
 }
