@@ -1,9 +1,7 @@
 package project.studyGuide;
 import java.util.ArrayList;
 
-import project.schedule.classes.SchoolClass;
 import project.schedule.classes.Subject;
-import project.user.Student;
 import project.user.User;
 
 public class StudyGuide 

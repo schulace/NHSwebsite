@@ -3,7 +3,6 @@ package project.user;
 import java.util.ArrayList;
 
 import project.schedule.classes.SchoolClass;
-import project.studyGuide.Review;
 import project.studyGuide.TutorReview;
 
 public class Tutor extends User

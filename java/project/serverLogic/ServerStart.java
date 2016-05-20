@@ -1,12 +1,9 @@
 package project.serverLogic;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import project.schedule.calendar.GHSCalendar;
-import project.schedule.classes.StudentSchedule;
 import test_data.test_schedules;
 
 public class ServerStart

@@ -1,10 +1,5 @@
 package project.user;
 
-import java.sql.Date;
-import java.util.ArrayList;
-
-import project.schedule.classes.SchoolClass;
-
 
 public class Teacher
 { //we may not even need this, but its nice to have (just in case)

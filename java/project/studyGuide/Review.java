@@ -1,7 +1,6 @@
 package project.studyGuide;
 
 import project.user.Student;
-import project.user.Teacher;
 
 public class Review
 {
