@@ -6,7 +6,7 @@
  */
 
 package project.user;
-
+//TODO make this clas have more admin shit
 import project.studyGuide.TutorReview;
 
 public class Teacher
@@ -50,5 +50,29 @@ public class Teacher
 	{
 		re = new TutorReview(placeholder,this, score, review);
 		placeholder.addReview(re);
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getSchool() {
+		return school;
+	}
+
+	public void setSchool(String school) {
+		this.school = school;
+	}
+
+	public Gender getGender() {
+		return gender;
+	}
+
+	public void setGender(Gender gender) {
+		this.gender = gender;
 	}
 }

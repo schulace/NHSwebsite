@@ -101,6 +101,11 @@ public class StudyGuide
 	{
 		this.content = content;
 	}
+	
+	public boolean isPlagiarism()
+	{
+		return this.isPlagiarism;
+	}
 
 
 	public float calcAndSetRating()
