@@ -20,7 +20,7 @@ public class MongoConnection {
 		
 		
 		
-//		Document dbObject = (DBObject)JSON.parse(jsonstring);
+//		Document dbObject = JSON.parse(jsonstring);
 //		collection.insertOne(dbObject);
 		
 		return false;
