@@ -14,9 +14,11 @@ public class ServerStart
 	{
 		ArrayList<GregorianCalendar> daysOff = Reference.setAndGetBreakDays();
 		GHSCalendar cal = new GHSCalendar(Reference.startDate, Reference.endDate, test_schedules.getStudent1Schedule(), daysOff);
-		System.out.println(cal);
 		Gson gs = new Gson();
-		System.out.println(gs.toJson(cal));
+		String s = gs.toJson(cal);
+		System.out.println(s);
+		GHSCalendar newCal = gs.fromJson(s, cal.getClass());
+		System.out.println(newCal);
 		
 //		testing out schedule printing.
 //		System.out.println(test_schedules.getStudent1Schedule());
