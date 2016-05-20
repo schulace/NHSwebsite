@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author george
+ * object for a review of the Tutor
+ *
+ */
+
 package project.studyGuide;
 
 import project.user.Student;
@@ -15,12 +22,28 @@ public class TutorReview
 	private Teacher teacherReviewer;
 	private Student studentReviewer;
 	
+	/**
+	 * constructor for a student reviewer 
+	 * @param reviewee (the tutor getting reviewed)
+	 * @param su (the reviewer) 
+	 * @param rating
+	 * @param comment
+	 */
+	
 	public TutorReview(Tutor reviewee,Student su, int rating, String comment) 
 	{
 		this.reviewee = reviewee;
 		this.studentReviewer = su;
 		studentReview(rating, comment);
 	}
+	
+	/**
+	 * constructor for a teacher reviewer
+	 * @param reviewee (the tutor getting reviewed)
+	 * @param su (the reviewer)
+	 * @param rating
+	 * @param comment
+	 */
 	
 	public TutorReview(Tutor reviewee,Teacher su, int rating, String comment) 
 	{
@@ -29,12 +52,13 @@ public class TutorReview
 		teacherReview(rating, comment);
 	}
 	
-	public float getRating()
-	{
-		return this.rating;
-	}
+	/**
+	 * takes the parameters from the studentReview constructor and creates a score
+	 * @param score
+	 * @param comment
+	 */
 	
-	public void studentReview(int score, String comment)
+	private void studentReview(int score, String comment)
 	{
 		if(comment.contains("fuck") || comment.contains("shit") || comment.contains("bitch") || comment.contains("piss") || comment.contains("dick") || comment.contains("cock") || comment.contains("pussy") || comment.contains("asshole") || comment.contains("fag") || comment.contains("bastard") || comment.contains("slut") || comment.contains("douche"))
 		{
@@ -52,7 +76,13 @@ public class TutorReview
 		}
 	}
 	
-	public void teacherReview(int score, String comment)
+	/**
+	 * takes the parameter from the teacherReview constructor and creates a score
+	 * @param score
+	 * @param comment
+	 */
+	
+	private void teacherReview(int score, String comment)
 	{
 		if(comment.contains("fuck") || comment.contains("shit") || comment.contains("bitch") || comment.contains("piss") || comment.contains("dick") || comment.contains("cock") || comment.contains("pussy") || comment.contains("asshole") || comment.contains("fag") || comment.contains("bastard") || comment.contains("slut") || comment.contains("douche"))
 		{
@@ -70,7 +100,13 @@ public class TutorReview
 		}
 	}
 	
-	public float setStudentRating(int score)
+	/**
+	 * sets the student score
+	 * @param score
+	 * @return
+	 */
+	
+	private float setStudentRating(int score)
 	{
 		if (score <= 10 && score >=0 )
 		{
@@ -89,7 +125,13 @@ public class TutorReview
 		return -1;
 	}
 	
-	public float setTeacherRating(int score)
+	/**
+	 * sets the teacher score 
+	 * @param score
+	 * @return
+	 */
+	
+	private float setTeacherRating(int score)
 	{
 		if (score <= 10 && score >=0 )
 		{
@@ -107,17 +149,31 @@ public class TutorReview
 		return -1;
 	}
 	
+	/**
+	 * sets the student avg (if multiple students have already inputted review scores)
+	 * @param score
+	 */
+	
 	public void setStudentAvg(int score)
 	{
 		this.studentRating = (float)(this.studentRating + score) / 2; 
 	}
+	
+	/**
+	 * sets the teacher avg (if multiple teachers have already inputted review scores)
+	 * @param score
+	 */
 	
 	public void setTeacherAvg(int score)
 	{
 		this.teacherRating = (float)(this.teacherRating + score) / 2; 
 	}
 	
-	public void setRating()
+	/**
+	 * calculates the avg of the teachers and the students and sets that as the final rating of the tutor
+	 */
+	
+	private void setRating()
 	{
 		if (this.teacherRating == -1)
 		{
@@ -134,9 +190,18 @@ public class TutorReview
 		setStar();
 	}
 	
-	public void setStar()
+	/**
+	 * calculates the tutor's stars based on the final rating (obtained from the above meathod)
+	 */
+	
+	private void setStar()
 	{
 		this.stars = (float)this.rating/2;
+	}
+	
+	public float getRating()
+	{
+		return this.rating;
 	}
 	
 	public float getStar()

@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author george
+ * object for StudyGuide
+ *
+ */
+
 package project.studyGuide;
 import java.util.ArrayList;
 
@@ -15,6 +22,14 @@ public class StudyGuide
 	private boolean isPlagiarism;
 	private ArrayList<Review> reviews;
 	
+	/**
+	 * 
+	 * @param author
+	 * @param subject
+	 * @param content
+	 */
+	
+	
 	public StudyGuide(User author, Subject subject, String content) 
 	{
 		this.author = author;
@@ -23,15 +38,10 @@ public class StudyGuide
 		reviews = new ArrayList<Review>();
 	}
 	
-	public boolean isShady() //so the guide can be flagged as inappropriate
-	{
-		return isShady;
-	}
-
-	public void setShady(boolean isShady)
-	{
-		this.isShady = isShady;
-	}
+	/**
+	 * adds a review to reviews (not after checking it first)
+	 * @param re
+	 */
 	
 	public void addReview(Review re)
 	{
@@ -44,7 +54,17 @@ public class StudyGuide
 		}
 		reviews.add(re);
 	}
+	
+	public boolean isShady() //so the guide can be flagged as inappropriate
+	{
+		return isShady;
+	}
 
+	public void setShady(boolean isShady)
+	{
+		this.isShady = isShady;
+	}
+	
 	public float getAndCalcStars()
 	{
 		calcAndSetRating();
@@ -111,5 +131,4 @@ public class StudyGuide
 		}
 		return equals;
 	}
-	
 }

@@ -1,15 +1,33 @@
+/**
+ * 
+ * @author george
+ * object for Student
+ *
+ */
+
 package project.user;
 import java.util.ArrayList;
-
 import project.schedule.classes.Request;
 import project.schedule.classes.SchoolClass;
 import project.serverLogic.requestManager;
 import project.studyGuide.Review;
 import project.studyGuide.StudyGuide;
+import project.studyGuide.TutorReview;
 public class Student extends User
 {
 	private ArrayList<SchoolClass> StrugglingClasses;
+	private TutorReview re;
 
+	/**
+	 * constructor calls User's 
+	 * @param name
+	 * @param year
+	 * @param month
+	 * @param date
+	 * @param grade
+	 * @param gender
+	 */
+	
 	public Student(String name, int year, int month, int date, int grade, String gender)
 	{
 		super(name, year, month, date, grade, gender);
@@ -20,6 +38,12 @@ public class Student extends User
 		Request request1 = new Request(this,sClass.getSubject(),true);
 		requestManager.addRequest(request1);
 	}
+	
+	/**
+	 * sets a struggling class for the student
+	 * @param sClass
+	 * @return
+	 */
 	
 	public boolean setStruggle (SchoolClass sClass)
 	{
@@ -67,13 +91,29 @@ public class Student extends User
 		}
 	}
 	
+	/**
+	 * rates a StudyGuide
+	 * @param guide
+	 * @param score
+	 * @param reviewText
+	 */
+	
 	public void rateGuide(StudyGuide guide, int score, String reviewText)
 	{
 		guide.addReview(new Review(this,(float)score, reviewText));
 	}
 	
-	public void rateTutor(Tutor placeholder, String review, int score)
+	/**
+	 * rates Tutor (by creating a TutorReview object + adding it to Tutor's review arrayList)
+	 * @param placeholder
+	 * @param review
+	 * @param score
+	 * @param re
+	 */
+	
+	public void rateTutor(Tutor placeholder,String review, int score, TutorReview re)
 	{
-		
+		re = new TutorReview(placeholder,this, score, review);
+		placeholder.addReview(re);
 	}
 }
