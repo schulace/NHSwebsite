@@ -41,8 +41,11 @@ public class MongoConnection {
 		//collection.insertOne(doc);
 		
 		
-		Document dbObject = JSON.parse(jsonstring);
-		collection.insertOne(dbObject);
+		DBObject parsedjson = (DBObject) JSON.parse(ServerStart.getTestJson());
+		
+		
+//		Document parsedjson = JSON.parse();
+		collection.insert(parsedjson);
 		}
 	
 	

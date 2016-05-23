@@ -32,4 +32,13 @@ public class ServerStart
 //		testing out schedule printing.
 //		System.out.println(test_schedules.getStudent1Schedule());
 	}
+	
+	public static String getTestJson()
+	{
+		ArrayList<GregorianCalendar> daysOff = Reference.setAndGetBreakDays();
+		Student stu = new Student(test_schedules.getStudent1Schedule(), "test_student@greenwich.k12.ct.us", 10);
+		Gson g = new Gson();
+		String s = g.toJson(stu);
+		return s;
+	}
 }
