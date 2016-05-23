@@ -26,7 +26,16 @@ public class GHSCalendar
 		this.studentSchedule = studentSchedule;
 		this.refreshCalendar();
 	}
-
+/**
+ * @deprecated
+ * @param monthStart
+ * @param dayStart
+ * @param yearStart
+ * @param monthEnd
+ * @param dayEnd
+ * @param yearEnd
+ * @param studentSched
+ */
 	public GHSCalendar(int monthStart, int dayStart, int yearStart, int monthEnd, int dayEnd, int yearEnd, StudentSchedule studentSched)
 	{
 		this.startDate = new GregorianCalendar(yearStart, monthStart -1, dayStart,0,0,0);
@@ -34,7 +43,12 @@ public class GHSCalendar
 		this.studentSchedule = studentSched;
 		this.refreshCalendar();
 	}
-	
+	/**
+	 * @deprecated
+	 * @param startDate
+	 * @param endDate
+	 * @param studentSched
+	 */
 	public GHSCalendar(GregorianCalendar startDate, GregorianCalendar endDate, StudentSchedule studentSched)
 	{
 		this.startDate = startDate;
@@ -44,7 +58,13 @@ public class GHSCalendar
 		this.studentSchedule = studentSched;
 		this.refreshCalendar();
 	}
-	
+	/**
+	 * pls use this constructor
+	 * @param startDate
+	 * @param endDate
+	 * @param studentSched
+	 * @param breakDays
+	 */
 	public GHSCalendar(GregorianCalendar startDate, GregorianCalendar endDate, StudentSchedule studentSched, ArrayList<GregorianCalendar> breakDays)
 	{
 		

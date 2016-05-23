@@ -27,9 +27,9 @@ public class Tutor extends User
 	 * @param gender
 	 */
 	
-	public Tutor(String name, int year, int month, int date, int grade, String gender)
+	public Tutor(String name, int grade)
 	{
-		super(name, year, month, date, grade, gender);
+		super(name, grade);
 	}
 	
 	public boolean addStrongClass(SchoolClass newClass)

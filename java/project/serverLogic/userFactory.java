@@ -12,15 +12,21 @@ public class userFactory
 	public static ArrayList<Student> studentList = new ArrayList<Student>();
 	public static ArrayList<Tutor> tutorList = new ArrayList<Tutor>();
 	
-	public static void addStudent(String studentID, int yearDob, int monthDob, int dayDob, int grade, String gender)
+	public static void addStudent(String studentID, int grade)
 	{
-		Student toAdd = new Student(studentID, monthDob, yearDob, dayDob, grade, gender);
+		Student toAdd = new Student(studentID, grade);
+		boolean inList = false;
 		for(Student student:studentList)
 		{
-			if(!student.getName().equals(toAdd.getName()))
+			if(student.getName().equals(toAdd.getName()))
 			{
-				studentList.add(toAdd);
+				inList = true;
+				break;
 			}
+		}
+		if(!inList)
+		{
+			studentList.add(toAdd);
 		}
 	}
 	
