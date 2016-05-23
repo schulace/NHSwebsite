@@ -6,6 +6,11 @@ import java.util.Calendar;
 import project.schedule.classes.LetterDay;
 import project.schedule.classes.SchoolClass;
 
+/**
+ * 
+ * @author a
+ * contains a Calendar for the day, the letterday of a day, and an array of classes in time order for the day.
+ */
 public class GHSCalendarDay
 {
 	public Calendar cal;

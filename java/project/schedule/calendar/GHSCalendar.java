@@ -7,7 +7,14 @@ import java.util.GregorianCalendar;
 import project.schedule.classes.LetterDay;
 import project.schedule.classes.SchoolClass;
 import project.schedule.classes.StudentSchedule;
-
+/**
+ * 
+ * @author schulace
+ * Calendar object specific to Greenwich high school.
+ * This draws up a year-long student schedule from a given end-date, start date, days off list, and a "block schedule"
+ * the "meat" of this class is an arrayList of GHSCalendarDay. Each calendarDay contains the student's schedule for the day.
+ * 
+ */
 public class GHSCalendar
 {
 	public Calendar startDate;
@@ -21,21 +28,29 @@ public class GHSCalendar
 		return studentSchedule;
 	}
 
+	/**
+	 * 
+	 * @param studentSchedule a schedule object
+	 * sets the studentSchedule object to the schedule inputed, then runs refreshCalendar() to set up everything by day again.
+	 */
 	public void setStudentSchedule(StudentSchedule studentSchedule)
 	{
 		this.studentSchedule = studentSchedule;
 		this.refreshCalendar();
 	}
-/**
- * @deprecated
- * @param monthStart
- * @param dayStart
- * @param yearStart
- * @param monthEnd
- * @param dayEnd
- * @param yearEnd
- * @param studentSched
- */
+	/**
+	 * 
+	 * @param monthStart
+	 * @param dayStart
+	 * @param yearStart
+	 * @param monthEnd
+	 * @param dayEnd
+	 * @param yearEnd
+	 * @param studentSched
+	 * 
+	 * creates a new GHSCalendar with no days off and the inputted studentSchedule
+	 * @deprecated
+	 */
 	public GHSCalendar(int monthStart, int dayStart, int yearStart, int monthEnd, int dayEnd, int yearEnd, StudentSchedule studentSched)
 	{
 		this.startDate = new GregorianCalendar(yearStart, monthStart -1, dayStart,0,0,0);
@@ -43,11 +58,15 @@ public class GHSCalendar
 		this.studentSchedule = studentSched;
 		this.refreshCalendar();
 	}
+	
 	/**
-	 * @deprecated
+	 * 
 	 * @param startDate
 	 * @param endDate
 	 * @param studentSched
+	 * 
+	 * creates a new GHSCalendar with no break days and the inputted student schedule.
+	 * @deprecated
 	 */
 	public GHSCalendar(GregorianCalendar startDate, GregorianCalendar endDate, StudentSchedule studentSched)
 	{
@@ -59,11 +78,11 @@ public class GHSCalendar
 		this.refreshCalendar();
 	}
 	/**
-	 * pls use this constructor
-	 * @param startDate
-	 * @param endDate
-	 * @param studentSched
-	 * @param breakDays
+	 * 
+	 * @param startDate typically Reference.StartDate
+	 * @param endDate typically Reference.endDate
+	 * @param studentSched a student schedule
+	 * @param breakDays typically Reference.getBreakDays
 	 */
 	public GHSCalendar(GregorianCalendar startDate, GregorianCalendar endDate, StudentSchedule studentSched, ArrayList<GregorianCalendar> breakDays)
 	{
@@ -99,7 +118,9 @@ public class GHSCalendar
 		}
 		return false;
 	}
-	
+	/**
+	 * remakes the calendar based off this calendar's current data.
+	 */
 	public void refreshCalendar()
 	{
 		GregorianCalendar CurrentDate = (GregorianCalendar)this.startDate.clone();
