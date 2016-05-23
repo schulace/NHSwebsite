@@ -13,8 +13,6 @@ public class Teacher
 { //we may not even need this, but its nice to have (just in case)
 	private String name;
 	private String school;
-	private Gender gender;
-	private TutorReview re;
 	
 	/**
 	 * basic constructor 
@@ -23,11 +21,10 @@ public class Teacher
 	 * @param g
 	 */
 	
-	public Teacher(String n, String school, Gender g)
+	public Teacher(String n, String school)
 	{
 		this.name = n;
 		this.school = school;
-		this.gender = g;
 	}
 	
 	/**
@@ -36,7 +33,7 @@ public class Teacher
 	
 	public Teacher()
 	{
-		this("test_teacher", "GHS", Gender.MALE);
+		this("test_teacher", "GHS");
 	}
 	
 	/**
@@ -46,33 +43,23 @@ public class Teacher
 	 * @param review
 	 */
 
-	public void rateTutor(Tutor placeholder, int score, String review)
+	public String getName() 
 	{
-		re = new TutorReview(placeholder,this, score, review);
-		placeholder.addReview(re);
-	}
-
-	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(String name)
+	{
 		this.name = name;
 	}
 
-	public String getSchool() {
+	public String getSchool()
+	{
 		return school;
 	}
 
-	public void setSchool(String school) {
+	public void setSchool(String school) 
+	{
 		this.school = school;
-	}
-
-	public Gender getGender() {
-		return gender;
-	}
-
-	public void setGender(Gender gender) {
-		this.gender = gender;
 	}
 }

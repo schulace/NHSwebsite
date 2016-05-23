@@ -7,6 +7,7 @@
 
 package project.studyGuide;
 
+import project.user.Administrator;
 import project.user.Student;
 import project.user.Teacher;
 import project.user.Tutor;
@@ -19,7 +20,7 @@ public class TutorReview
 	private String review;
 	private	float studentRating = -1;
 	private float teacherRating = -1;
-	private Teacher teacherReviewer;
+	private Administrator teacherReviewer;
 	private Student studentReviewer;
 	
 	/**
@@ -45,7 +46,7 @@ public class TutorReview
 	 * @param comment
 	 */
 	
-	public TutorReview(Tutor reviewee,Teacher su, int rating, String comment) 
+	public TutorReview(Tutor reviewee,Administrator su, int rating, String comment) 
 	{
 		this.reviewee = reviewee;
 		this.teacherReviewer = su;
@@ -224,7 +225,7 @@ public class TutorReview
 		return this.reviewee;
 	}
 	
-	public Teacher getTeacher()
+	public Administrator getTeacher()
 	{
 		return this.teacherReviewer;
 	}

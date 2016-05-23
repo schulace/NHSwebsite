@@ -116,7 +116,7 @@ public class Student extends User
 	 * @param re
 	 */
 	
-	public void rateTutor(Tutor placeholder,String review, int score, TutorReview re)
+	public void rateTutor(Tutor placeholder,String review, int score)
 	{
 		placeholder.addReview(new TutorReview(placeholder,this, score, review));
 	}
