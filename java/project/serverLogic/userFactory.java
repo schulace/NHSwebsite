@@ -83,6 +83,4 @@ public class userFactory
 	{
 		profaneGuides.add(s);
 	}
-	
-	
 }

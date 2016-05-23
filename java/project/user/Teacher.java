@@ -6,8 +6,6 @@
  */
 
 package project.user;
-//TODO make this class have more admin shit
-import project.studyGuide.TutorReview;
 
 public class Teacher
 { //we may not even need this, but its nice to have (just in case)
