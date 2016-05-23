@@ -30,6 +30,10 @@ public class Request
 		}
 		
 	}
+	public ArrayList<int[]> getAvailableBlocks()
+	{
+		return this.availableBlocks;
+	}
 
 	public Student getStudentName()
 	{

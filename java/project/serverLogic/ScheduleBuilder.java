@@ -1,5 +1,6 @@
 package project.serverLogic;
 
-public class ScheduleBuilder {
+public class ScheduleBuilder
+{
 
 }
