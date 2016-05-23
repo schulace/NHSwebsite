@@ -1,52 +1,42 @@
 package project.serverLogic;
 
-import com.mongodb.DB;
-import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-import com.mongodb.util.JSON;
-import com.mongodb.*;
-import com.google.gson.*;
 import org.bson.*;
 
 public class MongoConnection {
 	
-//	public boolean sendtodb(String jsonstring, int userid){
-//		
-//		MongoClient mongoClient = new MongoClient( "localhost" ); //connects to client on localhost
-//		MongoDatabase database = mongoClient.getDatabase("mydb");//gets db called mydb
-//		MongoCollection<Document> collection = database.getCollection("test");//
-//		Document doc = new Document("name", "MongoDB")
-//	               .append("type", "database")
-//	               .append("count", 1)
-//	               .append("info", new Document("x", 203).append("y", 102));
-//		
-//		
-////		Document dbObject = JSON.parse(jsonstring);
-////		collection.insertOne(dbObject);
-//		
-//		return false;
-//		
-//	}
 	
-	public static void main(String[] args){
+	public static String getdbinfo(){//get db info, probably never gonna be used, might commend out
+			MongoClient mongoClient = new MongoClient( "localhost" ); //connects to client on localhost
+			MongoDatabase database = mongoClient.getDatabase("mydb");//gets db called mydb
+			MongoCollection<Document> collection = database.getCollection("test1");//replace with not test
+			
+			String info = database.getName();//just make a string with the name of the db
+			return info;//return
+	}
+	
+	public static void sendtodb(){//send data to database
+			MongoClient mongoClient = new MongoClient( "localhost" ); //connects to client on localhost
+			MongoDatabase database = mongoClient.getDatabase("mydb");//gets db called mydb
+			MongoCollection<Document> collection = database.getCollection("test1");//replace with not tes
+			
+			Document parsedjson = Document.parse(ServerStart.getTestJson()); //REPLACE THIS WITH NOT TEST METHOD, create new document from JSON string
+			collection.insertOne(parsedjson); //insert document into collection
+	}
+
+	public static void sendtodb(String json){//send data to database
 		MongoClient mongoClient = new MongoClient( "localhost" ); //connects to client on localhost
 		MongoDatabase database = mongoClient.getDatabase("mydb");//gets db called mydb
-		MongoCollection<Document> collection = database.getCollection("test1");//
-//		Document doc = new Document("name", "MongoDB")
-//	               .append("type", "database")
-//	               .append("count", 1)
-//	               .append("info", new Document("x", 203).append("y", 102));
-		//collection.insertOne(doc);
+		MongoCollection<Document> collection = database.getCollection("test1");//replace with not tes
 		
-		
-		DBObject parsedjson = (DBObject) JSON.parse(ServerStart.getTestJson());
-		
-		
-//		Document parsedjson = JSON.parse();
-		collection.insert(parsedjson);
-		}
+		Document parsedjson = Document.parse(json); //REPLACE THIS WITH NOT TEST METHOD, create new document from JSON string
+		collection.insertOne(parsedjson); //insert document into collection
+	}
 	
-	
+//	public static String getfromdb(){    TODO
+//		
+//	}
+
 }
