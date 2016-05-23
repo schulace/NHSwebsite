@@ -14,9 +14,9 @@ public class Administrator extends User
 	private userFactory master;
 	private ArrayList<Tutor> badboyzbadboyz;
 	
-	public Administrator(String name, String school)
+	public Administrator(String name)
 	{
-		super(name, school);
+		super(name);
 		updateList();
 	}
 	
