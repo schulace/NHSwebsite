@@ -21,6 +21,7 @@ public class StudyGuide
 	private boolean isShady = false;
 	private boolean isPlagiarism;
 	private ArrayList<Review> reviews;
+	private boolean profanity  = false;
 	
 	/**
 	 * 
@@ -30,11 +31,19 @@ public class StudyGuide
 	 */
 	
 	
-	public StudyGuide(User author, Subject subject, String content) 
+	public StudyGuide(User author, Subject subject, String comment) 
 	{
+		if(comment.contains("fuck") || comment.contains("shit") || comment.contains("bitch") || comment.contains("piss") || comment.contains("dick") || comment.contains("cock") || comment.contains("pussy") || comment.contains("asshole") || comment.contains("fag") || comment.contains("bastard") || comment.contains("slut") || comment.contains("douche"))
+		{
+			profanity = true;
+			return;
+		}
+		else 
+		{
+			this.content = comment;
+		}
 		this.author = author;
 		this.subject = subject;
-		this.content = content;
 		reviews = new ArrayList<Review>();
 	}
 	
@@ -53,6 +62,11 @@ public class StudyGuide
 			}
 		}
 		reviews.add(re);
+	}
+	
+	public boolean profanity()
+	{
+		return this.profanity;
 	}
 	
 	public boolean isShady() //so the guide can be flagged as inappropriate
@@ -100,6 +114,11 @@ public class StudyGuide
 	public void setContent(String content)
 	{
 		this.content = content;
+	}
+	
+	public boolean isPlagiarism()
+	{
+		return this.isPlagiarism;
 	}
 
 

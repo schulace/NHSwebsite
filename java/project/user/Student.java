@@ -9,6 +9,7 @@ package project.user;
 import java.util.ArrayList;
 import project.schedule.classes.Request;
 import project.schedule.classes.SchoolClass;
+import project.schedule.classes.StudentSchedule;
 import project.serverLogic.requestManager;
 import project.studyGuide.Review;
 import project.studyGuide.StudyGuide;
@@ -16,7 +17,6 @@ import project.studyGuide.TutorReview;
 public class Student extends User
 {
 	private ArrayList<SchoolClass> StrugglingClasses;
-	private TutorReview re;
 
 	/**
 	 * constructor calls User's 
@@ -25,12 +25,16 @@ public class Student extends User
 	 * @param month
 	 * @param date
 	 * @param grade
-	 * @param gender
 	 */
 	
-	public Student(String name, int year, int month, int date, int grade, String gender)
+	public Student(String name, int year)
 	{
-		super(name, year, month, date, grade, gender);
+		super(new StudentSchedule(), name, year);
+	}
+	
+	public Student(StudentSchedule sched, String name, int year)
+	{
+		super(sched, name, year);
 	}
 
 	public void requestHelp(SchoolClass sClass)
@@ -57,7 +61,7 @@ public class Student extends User
 			}
 		}
 
-		for(SchoolClass c:this.cal.getStudentSchedule().getClasses())
+		for(SchoolClass c:this.userCalendar.getStudentSchedule().getClasses())
 		{
 			if(sClass.equals(c))
 			{
@@ -93,6 +97,7 @@ public class Student extends User
 	
 	/**
 	 * rates a StudyGuide
+	 * @param gender
 	 * @param guide
 	 * @param score
 	 * @param reviewText
@@ -113,7 +118,6 @@ public class Student extends User
 	
 	public void rateTutor(Tutor placeholder,String review, int score, TutorReview re)
 	{
-		re = new TutorReview(placeholder,this, score, review);
-		placeholder.addReview(re);
+		placeholder.addReview(new TutorReview(placeholder,this, score, review));
 	}
 }

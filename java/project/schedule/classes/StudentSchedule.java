@@ -36,7 +36,9 @@ public class StudentSchedule
 		return this.blockSchedule;
 	}
 	
-	
+	/**
+	 * generates an empty schedule
+	 */
 	public StudentSchedule()
 	{
 		this.classes = new ArrayList<SchoolClass>();

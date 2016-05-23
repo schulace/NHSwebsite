@@ -16,12 +16,9 @@ import project.serverLogic.Reference;
  */
 public abstract class User
 {
-	protected GHSCalendar cal;
+	protected GHSCalendar userCalendar;
 	protected String name;
-	protected GregorianCalendar dob;
-	protected String school;
 	protected Year grade;
-	protected Gender gender;
 	protected ScheduleHistory history;
 	
 	
@@ -35,31 +32,15 @@ public abstract class User
 	 * @param year	type: Year (enum)
 	 * @param gender type: Gender(enum)
 	 */
-	public User(StudentSchedule Schedule, String name, GregorianCalendar dob, String school, Year year, Gender gender)
+	public User(StudentSchedule Schedule, String name,  Year year)
 	{
-		this.cal = new GHSCalendar(Reference.startDate, Reference.endDate, Schedule, Reference.breakDays);
+		this.userCalendar = new GHSCalendar(Reference.startDate, Reference.endDate, Schedule, Reference.breakDays);
 		this.name = name;
-		this.dob = dob;
 		this.grade = year;
-		this.gender = gender;
 	}
 	
 	
-	/**
-	 * 
-	 * @param name type: String
-	 * @param dob type: GregorianCalendar (note that gregorianCalendar months start with 0 for january)
-	 * @param school type: String; name of school
-	 * @param gender type: Gender(enum)
-	 */
-	public User(String name, GregorianCalendar dob, String school, Gender gender)
-	{
-		this.name = name;
-		this.dob = dob;
-		this.school = school;
-		this.gender = gender;
-		this.grade = Year.Unknown;
-	}
+
 
 	/**
 	 * 
@@ -67,7 +48,12 @@ public abstract class User
 	 */
 	public User(String name)
 	{
-		this(new StudentSchedule(), name, new GregorianCalendar(), "Greenwich High School", Year.Unknown, Gender.OTHER);
+		this(new StudentSchedule(), name, Year.Unknown);
+	}
+	
+	public User(String name, int grade)
+	{
+		this(new StudentSchedule(), name, grade);
 	}
 	
 	/**
@@ -79,25 +65,9 @@ public abstract class User
 	 * @param grade school grade (int between 9 and 12)
 	 * @param gender (takes "male" or "female" defaults to other)
 	 */
-	public User(String name, int year, int month, int date, int grade, String gender)
-	{
-		GregorianCalendar d = new GregorianCalendar(year, month-1, date); //TODO error handling in case of invalid date entered
-		Gender g;
-		if(gender.equalsIgnoreCase("male"))
-		{
-			g = Gender.MALE;
-		}
-		else if(gender.equalsIgnoreCase("female"))
-		{
-			g = Gender.FEMALE;
-		}
-		else
-		{
-			g = Gender.OTHER;
-		}
-		
+	public User(StudentSchedule sched, String name, int grade)
+	{		
 		Year y;
-		
 		switch(grade)
 		{
 			case 9: y = Year.Freshman;
@@ -111,12 +81,14 @@ public abstract class User
 			default: y = Year.Unknown;
 		}
 			
-		this.cal = new GHSCalendar(Reference.startDate, Reference.endDate, new StudentSchedule(), Reference.breakDays);
+		this.userCalendar = new GHSCalendar(Reference.startDate, Reference.endDate, sched, Reference.breakDays);
 		this.name = name;
-		this.school = "Greenwich High School";
-		this.gender = g;
-		this.dob = d;
 		this.grade = y;
+	}
+	
+	public GHSCalendar getCalendar()
+	{
+		return this.userCalendar;
 	}
 	
 	/**
@@ -125,14 +97,14 @@ public abstract class User
 	 */
 	public void setSchedule(StudentSchedule sched)
 	{
-		this.cal = new GHSCalendar(Reference.startDate, Reference.endDate, sched, Reference.breakDays);
+		this.userCalendar = new GHSCalendar(Reference.startDate, Reference.endDate, sched, Reference.breakDays);
 	}
 	
 	//TODO Google acct linkage
 	
 	public StudentSchedule getSchedule()
 	{
-		return cal.getStudentSchedule();
+		return userCalendar.getStudentSchedule();
 	}
 	
 	public String getName()
@@ -143,22 +115,6 @@ public abstract class User
 	{
 		this.name = name;
 	}
-	public GregorianCalendar getDob()
-	{
-		return dob;
-	}
-	protected void setDob(GregorianCalendar dob)
-	{
-		this.dob = dob;
-	}
-	public String getSchool()
-	{
-		return school;
-	}
-	protected void setSchool(String school)
-	{
-		this.school = school;
-	}
 	public Year getGrade()
 	{
 		return grade;
@@ -166,14 +122,6 @@ public abstract class User
 	protected void setGrade(Year grade)
 	{
 		this.grade = grade;
-	}
-	public Gender getGender()
-	{
-		return gender;
-	}
-	protected void setGender(Gender gender)
-	{
-		this.gender = gender;
 	}
 	protected ScheduleHistory getHistory()
 	{
@@ -184,20 +132,45 @@ public abstract class User
 		this.history = history;
 	}
 	
-	@Override
-	public String toString() 
-	{
-		return "User [schedule=" + cal + ", name=" + name + ", dob=" + dob + ", school=" + school + ", grade="
-				+ grade + ", gender=" + gender + ", history=" + history + "]";
-	}
 	
-	public boolean equals(User c)
-	{ 
-		boolean equals = false;
-		if(c.name.equals(this.name) && c.dob.equals(this.dob))
-		{
-			equals = true;
-		}
-		return equals;
+	
+	@Override
+	public String toString()
+	{
+		return "User [cal=" + userCalendar + ", name=" + name + ", grade=" + grade + ", history=" + history + "]";
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (userCalendar == null) {
+			if (other.userCalendar != null)
+				return false;
+		} else if (!userCalendar.equals(other.userCalendar))
+			return false;
+		if (grade != other.grade)
+			return false;
+		if (history == null) {
+			if (other.history != null)
+				return false;
+		} else if (!history.equals(other.history))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
+
+
+
+
+	
 }
