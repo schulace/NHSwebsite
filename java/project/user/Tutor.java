@@ -29,7 +29,7 @@ public class Tutor extends User
 	
 	public Tutor(String name, int year, int month, int date, int grade, String gender)
 	{
-		super(name, year, month, date, grade, gender);
+		super(name, year, month, date, grade);
 	}
 	
 	public boolean addStrongClass(SchoolClass newClass)

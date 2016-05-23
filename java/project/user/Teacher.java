@@ -6,7 +6,7 @@
  */
 
 package project.user;
-//TODO make this clas have more admin shit
+//TODO make this class have more admin shit
 import project.studyGuide.TutorReview;
 
 public class Teacher

@@ -13,51 +13,32 @@ public abstract class User
 {
 	protected GHSCalendar cal;
 	protected String name;
-	protected GregorianCalendar dob;
 	protected String school;
 	protected Year grade;
-	protected Gender gender;
 	protected ScheduleHistory history;
 	
-	public User(StudentSchedule Schedule, String name, GregorianCalendar dob, String school, Year year, Gender gender)
+	public User(StudentSchedule Schedule, String name,String school, Year year)
 	{
 		this.cal = new GHSCalendar(Reference.startDate, Reference.endDate, Schedule, Reference.breakDays);
 		this.name = name;
-		this.dob = dob;
 		this.grade = year;
-		this.gender = gender;
 	}
 	
-	public User(String name, GregorianCalendar dob, String school, Gender gender)
+	public User(String name, String school)
 	{
 		this.name = name;
-		this.dob = dob;
 		this.school = school;
-		this.gender = gender;
 	}
 
 	public User(String name)
 	{
-		this(new StudentSchedule(), name, null, "Greenwich High School", null, null);
+		this(new StudentSchedule(), name, null, null);
 	}
 	
-	public User(String name, int year, int month, int date, int grade, String gender)
+	public User(String name, int year, int month, int date, int grade)
 	{
 		GregorianCalendar d = new GregorianCalendar(year, month-1, date); //TODO error handling in case of invalid date entered
 		Gender g;
-		if(gender.equalsIgnoreCase("male"))
-		{
-			g = Gender.MALE;
-		}
-		else if(gender.equalsIgnoreCase("female"))
-		{
-			g = Gender.FEMALE;
-		}
-		else
-		{
-			g = Gender.OTHER;
-		}
-		
 		Year y;
 		
 		switch(grade)
@@ -76,8 +57,6 @@ public abstract class User
 		this.cal = new GHSCalendar(Reference.startDate, Reference.endDate, new StudentSchedule(), Reference.breakDays);
 		this.name = name;
 		this.school = "Greenwich High School";
-		this.gender = g;
-		this.dob = d;
 		this.grade = y;
 	}
 	
@@ -101,14 +80,6 @@ public abstract class User
 	{
 		this.name = name;
 	}
-	public GregorianCalendar getDob()
-	{
-		return dob;
-	}
-	protected void setDob(GregorianCalendar dob)
-	{
-		this.dob = dob;
-	}
 	public String getSchool()
 	{
 		return school;
@@ -125,14 +96,6 @@ public abstract class User
 	{
 		this.grade = grade;
 	}
-	public Gender getGender()
-	{
-		return gender;
-	}
-	protected void setGender(Gender gender)
-	{
-		this.gender = gender;
-	}
 	protected ScheduleHistory getHistory()
 	{
 		return history;
@@ -145,14 +108,14 @@ public abstract class User
 	@Override
 	public String toString() 
 	{
-		return "User [schedule=" + cal + ", name=" + name + ", dob=" + dob + ", school=" + school + ", grade="
-				+ grade + ", gender=" + gender + ", history=" + history + "]";
+		return "User [schedule=" + cal + ", name=" + name +", school=" + school + ", grade="
+				+ grade + ", history=" + history + "]";
 	}
 	
 	public boolean equals(User c)
 	{ 
 		boolean equals = false;
-		if(c.name.equals(this.name) && c.dob.equals(this.dob))
+		if(c.getName().equals(this.getName()) && c.getGrade().equals(this.getGrade()))
 		{
 			equals = true;
 		}

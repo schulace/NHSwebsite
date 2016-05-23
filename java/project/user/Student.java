@@ -25,12 +25,11 @@ public class Student extends User
 	 * @param month
 	 * @param date
 	 * @param grade
-	 * @param gender
 	 */
 	
-	public Student(String name, int year, int month, int date, int grade, String gender)
+	public Student(String name, int year, int month, int date, int grade)
 	{
-		super(name, year, month, date, grade, gender);
+		super(name, year, month, date, grade);
 	}
 
 	public void requestHelp(SchoolClass sClass)
