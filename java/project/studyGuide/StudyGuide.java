@@ -9,11 +9,13 @@ package project.studyGuide;
 import java.util.ArrayList;
 
 import project.schedule.classes.Subject;
+import project.serverLogic.userFactory;
+import project.user.Tutor;
 import project.user.User;
 
 public class StudyGuide 
 {
-	private User author;
+	private Tutor author;
 	private Subject subject;
 	private String content;
 	private float rating = -1;
@@ -22,6 +24,7 @@ public class StudyGuide
 	private boolean isPlagiarism;
 	private ArrayList<Review> reviews;
 	private boolean profanity  = false;
+	private userFactory master;
 	
 	/**
 	 * 
@@ -31,11 +34,12 @@ public class StudyGuide
 	 */
 	
 	
-	public StudyGuide(User author, Subject subject, String comment) 
+	public StudyGuide(Tutor author, Subject subject, String comment) 
 	{
 		if(comment.contains("fuck") || comment.contains("shit") || comment.contains("bitch") || comment.contains("piss") || comment.contains("dick") || comment.contains("cock") || comment.contains("pussy") || comment.contains("asshole") || comment.contains("fag") || comment.contains("bastard") || comment.contains("slut") || comment.contains("douche"))
 		{
 			profanity = true;
+			sendGuide(author, subject, comment);
 			return;
 		}
 		else 
@@ -62,6 +66,14 @@ public class StudyGuide
 			}
 		}
 		reviews.add(re);
+	}
+	
+	public void sendGuide(Tutor u, Subject subj, String s)
+	{
+		this.author = u;
+		this.subject = subj;
+		this.content = s;
+		master.addProfaneGuide(this);
 	}
 	
 	public boolean profanity()
@@ -91,7 +103,7 @@ public class StudyGuide
 		return author;
 	}
 
-	public void setAuthor(User author)
+	public void setAuthor(Tutor author)
 	{
 		this.author = author;
 	}
