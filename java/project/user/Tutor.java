@@ -9,13 +9,17 @@ package project.user;
 
 import java.util.ArrayList;
 
+import javax.security.auth.Subject;
+
 import project.schedule.classes.SchoolClass;
+import project.studyGuide.StudyGuide;
 import project.studyGuide.TutorReview;
 
 public class Tutor extends User
 {
 	private ArrayList<SchoolClass> strongClasses;
 	private ArrayList<TutorReview> reviews;
+	private ArrayList<StudyGuide> Guides;
 	
 	/**
 	 * calles super constructor
@@ -60,5 +64,10 @@ public class Tutor extends User
 			}
 		}
 		reviews.add(re);
+	}
+	
+	public void submitGuide(project.schedule.classes.Subject sub, String comment)
+	{
+		Guides.add(new StudyGuide(this, sub, comment));
 	}
 }
