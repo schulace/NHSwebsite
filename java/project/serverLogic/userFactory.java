@@ -7,6 +7,7 @@ import project.studyGuide.StudyGuide;
 import project.user.Administrator;
 import project.user.Student;
 import project.user.Tutor;
+import com.google.gson.Gson;
 
 public class userFactory
 {
@@ -16,9 +17,28 @@ public class userFactory
 	public static ArrayList<StudyGuide> profaneGuides = new ArrayList<StudyGuide>();
 	public static ArrayList<Tutor> badBoyz = new ArrayList<Tutor>();
 	
-	public static void addStudent(String studentID, int yearDob, int monthDob, int dayDob, int grade, String gender)
+	public static void addStudent(String studentID, int grade)
 	{
-		Student toAdd = new Student(studentID, monthDob, yearDob, dayDob, grade);
+		Student toAdd = new Student(studentID, grade);
+		boolean inList = false;
+		for(Student student:studentList)
+		{
+			if(student.getName().equals(toAdd.getName()))
+			{
+				inList = true;
+				break;
+			}
+		}
+		if(!inList)
+		{
+			studentList.add(toAdd);
+		}
+	}
+	
+	public static void addStudent(String jsonIn)
+	{
+		Gson gs = new Gson();
+		Student toAdd = gs.fromJson(jsonIn, Student.class);
 		for(Student student:studentList)
 		{
 			if(!student.getName().equals(toAdd.getName()))

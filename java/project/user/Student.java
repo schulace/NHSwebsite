@@ -9,6 +9,7 @@ package project.user;
 import java.util.ArrayList;
 import project.schedule.classes.Request;
 import project.schedule.classes.SchoolClass;
+import project.schedule.classes.StudentSchedule;
 import project.serverLogic.requestManager;
 import project.studyGuide.Review;
 import project.studyGuide.StudyGuide;
@@ -26,9 +27,14 @@ public class Student extends User
 	 * @param grade
 	 */
 	
-	public Student(String name, int year, int month, int date, int grade)
+	public Student(String name, int year)
 	{
-		super(name, year, month, date, grade);
+		super(new StudentSchedule(), name, year);
+	}
+	
+	public Student(StudentSchedule sched, String name, int year)
+	{
+		super(sched, name, year);
 	}
 
 	public void requestHelp(SchoolClass sClass)
@@ -55,7 +61,7 @@ public class Student extends User
 			}
 		}
 
-		for(SchoolClass c:this.cal.getStudentSchedule().getClasses())
+		for(SchoolClass c:this.userCalendar.getStudentSchedule().getClasses())
 		{
 			if(sClass.equals(c))
 			{
