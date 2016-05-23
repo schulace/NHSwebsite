@@ -16,7 +16,6 @@ import project.studyGuide.TutorReview;
 public class Student extends User
 {
 	private ArrayList<SchoolClass> StrugglingClasses;
-	private TutorReview re;
 
 	/**
 	 * constructor calls User's 
@@ -92,6 +91,7 @@ public class Student extends User
 	
 	/**
 	 * rates a StudyGuide
+	 * @param gender
 	 * @param guide
 	 * @param score
 	 * @param reviewText
@@ -112,7 +112,6 @@ public class Student extends User
 	
 	public void rateTutor(Tutor placeholder,String review, int score, TutorReview re)
 	{
-		re = new TutorReview(placeholder,this, score, review);
-		placeholder.addReview(re);
+		placeholder.addReview(new TutorReview(placeholder,this, score, review));
 	}
 }
