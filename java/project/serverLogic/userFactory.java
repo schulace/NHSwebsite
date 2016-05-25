@@ -98,10 +98,6 @@ public class userFactory
 				}
 			}
 		}
-		if(!inList)
-		{
-			break;
-		}
 	}
 	
 	public static void addTutor(String studentID, int grade){
@@ -175,10 +171,6 @@ public class userFactory
 				}
 			}
 		}
-		if(!inList)
-		{
-			break;
-		}
 	}
 	
 	public static void addAdminitrator(String name)
@@ -216,10 +208,7 @@ public class userFactory
 				}
 			}
 		}
-		if(!inList)
-		{
-			break;
-		}
+
 	}
 	
 	public static void addTeacher(String teacher, String school)
@@ -258,9 +247,6 @@ public class userFactory
 				}
 			}
 		}
-		if(!inList)
-		{
-			break;
-		}
+
 	}
 }
