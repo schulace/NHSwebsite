@@ -1,10 +1,12 @@
 package project.user;
 
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 import project.schedule.calendar.GHSCalendar;
 import project.schedule.calendar.ScheduleHistory;
+import project.schedule.classes.SchoolClass;
 import project.schedule.classes.StudentSchedule;
 import project.schedule.classes.Year;
 import project.serverLogic.Reference;
@@ -52,6 +54,29 @@ public abstract class User
 	public User(String name, int grade)
 	{
 		this(new StudentSchedule(), name, grade);
+	}
+	
+	
+	/**
+	 * 
+	 * @return arrayList of int[] that represents a student's open blocks.
+	 */
+	public ArrayList<int[]> getOpens()
+	{
+		SchoolClass[][] blockSched = this.userCalendar.studentSchedule.getBlockSchedule();
+		ArrayList<int[]> toReturn = new ArrayList<int[]>();
+		for(int x = 0; x < 8; x ++)
+		{
+			for(int y = 0; y < 6; y++)
+			{
+				if(blockSched[x][y] == null)
+				{
+					int[] arr = {x,y};
+					toReturn.add(arr);
+				}
+			}
+		}
+		return toReturn;
 	}
 	
 	/**

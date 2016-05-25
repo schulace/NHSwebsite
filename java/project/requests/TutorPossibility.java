@@ -1,7 +1,8 @@
-package project.schedule.classes;
+package project.requests;
 
 import java.util.ArrayList;
 
+import project.schedule.classes.SchoolClass;
 import project.user.Tutor;
 
 public class TutorPossibility

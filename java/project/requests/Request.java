@@ -1,7 +1,9 @@
-package project.schedule.classes;
+package project.requests;
 
 import java.util.ArrayList;
 
+import project.schedule.classes.SchoolClass;
+import project.schedule.classes.Subject;
 import project.user.Student;
 
 public class Request 
