@@ -1,10 +1,12 @@
 package project.user;
 
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 import project.schedule.calendar.GHSCalendar;
 import project.schedule.calendar.ScheduleHistory;
+import project.schedule.classes.SchoolClass;
 import project.schedule.classes.StudentSchedule;
 import project.schedule.classes.Year;
 import project.serverLogic.Reference;
@@ -27,10 +29,7 @@ public abstract class User
 	 * 
 	 * @param Schedule type: StudentSchedule
 	 * @param name type: String
-	 * @param dob type: GregorianCalendar (note that gregorianCalendar months start with 0 for january)
-	 * @param school type: String; name of school
 	 * @param year	type: Year (enum)
-	 * @param gender type: Gender(enum)
 	 */
 	public User(StudentSchedule Schedule, String name,  Year year)
 	{
@@ -54,14 +53,33 @@ public abstract class User
 		this(new StudentSchedule(), name, grade);
 	}
 	
+	
 	/**
 	 * 
+	 * @return arrayList of int[] that represents a student's open blocks.
+	 */
+	public ArrayList<int[]> getOpens()
+	{
+		SchoolClass[][] blockSched = this.userCalendar.studentSchedule.getBlockSchedule();
+		ArrayList<int[]> toReturn = new ArrayList<int[]>();
+		for(int x = 0; x < 8; x ++)
+		{
+			for(int y = 0; y < 6; y++)
+			{
+				if(blockSched[x][y] == null)
+				{
+					int[] arr = {x,y};
+					toReturn.add(arr);
+				}
+			}
+		}
+		return toReturn;
+	}
+	
+	/**
+	 * @param sched a student schedule
 	 * @param name student name
-	 * @param year year of birth
-	 * @param month month the user was born
-	 * @param date day user was born
 	 * @param grade school grade (int between 9 and 12)
-	 * @param gender (takes "male" or "female" defaults to other)
 	 */
 	public User(StudentSchedule sched, String name, int grade)
 	{		
@@ -165,10 +183,5 @@ public abstract class User
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
-	}
-
-
-
-
-	
+	}	
 }

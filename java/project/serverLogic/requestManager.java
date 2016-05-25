@@ -2,8 +2,8 @@ package project.serverLogic;
 
 import java.util.ArrayList;
 
-import project.schedule.classes.Request;
-import project.schedule.classes.TutorPossibility;
+import project.requests.Request;
+import project.requests.TutorPossibility;
 import project.user.Tutor;
 
 public class requestManager

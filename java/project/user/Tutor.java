@@ -51,9 +51,8 @@ public class Tutor extends User
 	
 	/**
 	 * adds review for the Tutor
-	 * @param re
+	 * @param re review of tutor.
 	 */
-	
 	public void addReview(TutorReview re)
 	{
 		for(TutorReview r: this.reviews)
@@ -66,6 +65,11 @@ public class Tutor extends User
 		reviews.add(re);
 	}
 	
+	/**
+	 * 
+	 * @param sub generates a new study guide i think?
+	 * @param comment
+	 */
 	public void submitGuide(project.schedule.classes.Subject sub, String comment)
 	{
 		Guides.add(new StudyGuide(this, sub, comment));
