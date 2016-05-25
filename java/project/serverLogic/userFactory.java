@@ -68,6 +68,30 @@ public class userFactory
 		toAttachSched.setSchedule(sched);
 	}
 	
+	public static void removeStudent (Student s)
+	{
+		Student toRemove = new Student(s.getName(), s.getGradeAsInt());
+		boolean inList = false;
+		for(Student student:studentList)
+		{
+			if(student.getName().equals(toRemove.getName()))
+			{
+				for (int i = 0; i < studentList.size(); i++)
+				{
+					if (student.getName().equals(toRemove.getName()))
+					{
+						inList = true;
+						studentList.remove(i);
+					}
+				}
+			}
+		}
+		if(!inList)
+		{
+			break;
+		}
+	}
+	
 	public static void addTutor(String studentID, int grade){
 		Tutor toAdd = new Tutor(studentID, grade);
 		boolean inList = false;
@@ -103,7 +127,7 @@ public class userFactory
 		toAttachSched.setSchedule(sched);
 	}
 	
-	public void updateList()
+	public static void updateList()
 	{
 		for (int i = 0; i< profaneGuides.size(); i++)
 		{
@@ -116,13 +140,36 @@ public class userFactory
 		return profaneGuides;
 	}
 	
-	public void addProfaneGuide(StudyGuide s)
+	public static void addProfaneGuide(StudyGuide s)
 	{
 		profaneGuides.add(s);
 		updateList();
 	}
 	
-	public void addAdminitrator(String name)
+	public static void  removeTutor(Tutor t){
+		Tutor toRemove = new Tutor(t.getName(), t.getGradeAsInt());
+		boolean inList = false;
+		for(Tutor teacher:tutorList)
+		{
+			if(t.getName().equals(toRemove.getName()))
+			{
+				for (int i = 0; i < tutorList.size(); i++)
+				{
+					if (t.getName().equals(toRemove.getName()))
+					{
+						inList = true;
+						tutorList.remove(i);
+					}
+				}
+			}
+		}
+		if(!inList)
+		{
+			break;
+		}
+	}
+	
+	public static void addAdminitrator(String name)
 	{
 		Administrator toAdd = new Administrator(name);
 		boolean inList = false;
@@ -137,6 +184,29 @@ public class userFactory
 		if(!inList)
 		{
 			adminList.add(toAdd);
+		}
+	}
+	
+	public static void removeAdministrator(Administrator a ){
+		Administrator toRemove = new Administrator(a.getName());
+		boolean inList = false;
+		for(Teacher teacher:teacherList)
+		{
+			if(a.getName().equals(toRemove.getName()))
+			{
+				for (int i = 0; i < adminList.size(); i++)
+				{
+					if (a.getName().equals(toRemove.getName()))
+					{
+						inList = true;
+						adminList.remove(i);
+					}
+				}
+			}
+		}
+		if(!inList)
+		{
+			break;
 		}
 	}
 	
@@ -155,6 +225,30 @@ public class userFactory
 		if(!inList)
 		{
 			teacherList.add(toAdd);
+		}
+	}
+	
+	public static void  removeTeacher (Teacher Meyers)
+	{
+		Teacher toRemove = new Teacher(Meyers.getName());
+		boolean inList = false;
+		for(Teacher teacher:teacherList)
+		{
+			if(Meyers.getName().equals(toRemove.getName()))
+			{
+				for (int i = 0; i < teacherList.size(); i++)
+				{
+					if (Meyers.getName().equals(toRemove.getName()))
+					{
+						inList = true;
+						teacherList.remove(i);
+					}
+				}
+			}
+		}
+		if(!inList)
+		{
+			break;
 		}
 	}
 }

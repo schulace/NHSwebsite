@@ -135,6 +135,11 @@ public abstract class User
 	{
 		return grade;
 	}
+	public int getGradeAsInt(){
+		String letsHopeThisWorks = ""+this.grade;
+		int intGrade = Integer.parseInt(letsHopeThisWorks);
+		return intGrade;
+	}
 	protected void setGrade(Year grade)
 	{
 		this.grade = grade;

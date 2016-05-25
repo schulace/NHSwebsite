@@ -12,6 +12,7 @@ import project.requests.Request;
 import project.schedule.classes.SchoolClass;
 import project.schedule.classes.StudentSchedule;
 import project.serverLogic.requestManager;
+import project.serverLogic.userFactory;
 import project.studyGuide.Review;
 import project.studyGuide.StudyGuide;
 import project.studyGuide.TutorReview;
@@ -121,4 +122,10 @@ public class Student extends User
 	{
 		placeholder.addReview(new TutorReview(placeholder,this, score, review));
 	}
+	
+	public void removeMyself()
+	{
+		userFactory.removeStudent(this);
+	}
+
 }

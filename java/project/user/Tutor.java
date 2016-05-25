@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import javax.security.auth.Subject;
 
 import project.schedule.classes.SchoolClass;
+import project.serverLogic.userFactory;
 import project.studyGuide.StudyGuide;
 import project.studyGuide.TutorReview;
 
@@ -65,9 +66,14 @@ public class Tutor extends User
 		reviews.add(re);
 	}
 	
+	public void removeMyself()
+	{
+		userFactory.removeTutor(this);
+	}
+	
 	/**
 	 * 
-	 * @param sub generates a new study guide i think?
+	 * @param sub generates a new study guide
 	 * @param comment
 	 */
 	public void submitGuide(project.schedule.classes.Subject sub, String comment)

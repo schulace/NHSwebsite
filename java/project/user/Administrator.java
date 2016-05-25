@@ -11,7 +11,6 @@ public class Administrator extends User
 	private String name;
 	private String school;
 	private ArrayList<StudyGuide> profaneStudyGuides;
-	private userFactory master;
 	private ArrayList<Tutor> badboyzbadboyz;
 	
 	public Administrator(String name)
@@ -22,7 +21,7 @@ public class Administrator extends User
 	
 	public void updateList()
 	{
-		master.updateList();
+		userFactory.updateList();
 		profaneStudyGuides = userFactory.getProfaneGuides();
 		badboyzbadboyz = userFactory.badBoyz;
 	}
@@ -30,6 +29,35 @@ public class Administrator extends User
 	public void rateTutor(Tutor placeholder, int score, String review)
 	{
 		placeholder.addReview(new TutorReview(placeholder,this, score, review));
+	}
+	
+	public void removeStudent(Student s)
+	{
+		userFactory.removeStudent(s);
+	}
+	
+	public void removeTeacher(Teacher Meyers)
+	{
+		userFactory.removeTeacher(Meyers);
+	}
+	
+	public void removeTutor(Tutor t)
+	{
+		userFactory.removeTutor(t);
+	}
+	
+	public void removeAdministrator(Administrator a)
+	{
+		userFactory.removeAdministrator(a);
+	}
+	
+	public void removeMyself(){
+		userFactory.removeAdministrator(this);
+	}
+	
+	public void logIn()
+	{
+		this.updateList();
 	}
 	
 	public String getName()
