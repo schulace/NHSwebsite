@@ -1,6 +1,7 @@
 package project.serverLogic;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import project.requests.Request;
 import project.requests.TutorPossibility;
@@ -30,5 +31,16 @@ public class requestManager
 				posList.add(pos);
 			}
 		}
+	}
+	
+	public String printPosList(int a)
+	{
+		TutorPossibility posb = posList.get(a);
+		String s = "";
+		for(int[] z:posb.commonBlocks)
+		{
+			s += Arrays.toString(z) + ";";
+		}
+		return s;
 	}
 }

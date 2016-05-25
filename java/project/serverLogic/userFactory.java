@@ -50,6 +50,18 @@ public class userFactory
 		}
 	}
 	
+	//TODO only for testing. delete later
+	public static void addStudent(Student stIn)
+	{
+		studentList.add(stIn);
+	}
+	//TODO only for testing. delete later
+	public static void addTutor(Tutor tutIn)
+	{
+		tutorList.add(tutIn);
+	}
+	
+	
 	public static void attachStudentSchedule(String studentID, StudentSchedule sched)
 	{
 		Student toAttachSched = null;
@@ -107,7 +119,7 @@ public class userFactory
 	{
 		for (int i = 0; i< profaneGuides.size(); i++)
 		{
-			badBoyz.set(i, profaneGuides.get(i).getAuthor());
+			badBoyz.set(i, (Tutor)profaneGuides.get(i).getAuthor());
 		}
 	}
 	

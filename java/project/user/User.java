@@ -155,6 +155,11 @@ public abstract class User
 	{
 		return "User [cal=" + userCalendar + ", name=" + name + ", grade=" + grade + ", history=" + history + "]";
 	}
+	
+	public String toStringMinusSchedule()
+	{
+		return "User [name=" + name + ", grade=" + grade + "]";
+	}
 
 	@Override
 	public boolean equals(Object obj) {

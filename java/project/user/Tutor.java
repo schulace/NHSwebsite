@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import javax.security.auth.Subject;
 
 import project.schedule.classes.SchoolClass;
+import project.schedule.classes.StudentSchedule;
 import project.studyGuide.StudyGuide;
 import project.studyGuide.TutorReview;
 
@@ -34,6 +35,11 @@ public class Tutor extends User
 	public Tutor(String name, int grade)
 	{
 		super(name, grade);
+	}
+	
+	public Tutor(StudentSchedule sc, String name, int gr)
+	{
+		super(sc,name,gr);
 	}
 	
 	public boolean addStrongClass(SchoolClass newClass)
