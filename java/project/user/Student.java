@@ -7,7 +7,8 @@
 
 package project.user;
 import java.util.ArrayList;
-import project.schedule.classes.Request;
+
+import project.requests.Request;
 import project.schedule.classes.SchoolClass;
 import project.schedule.classes.StudentSchedule;
 import project.serverLogic.requestManager;
