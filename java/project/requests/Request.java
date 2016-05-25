@@ -8,17 +8,17 @@ import project.user.Student;
 
 public class Request 
 {
-	private Student StudentName;
+	private Student requestor;
 	private Subject schoolSubject;
 	private boolean isFilled;
 	private ArrayList<int[]> availableBlocks;
 
-	public Request(Student studentName, Subject subject, boolean isFilled) 
+	public Request(Student studentIn, Subject subject, boolean isFilled) 
 	{
-		StudentName = studentName;
+		requestor = studentIn;
 		schoolSubject = subject;
 		this.isFilled = isFilled;
-		this.availableBlocks = studentName.getOpens();
+		this.availableBlocks = studentIn.getOpens();
 		
 	}
 	public ArrayList<int[]> getAvailableBlocks()
@@ -28,7 +28,7 @@ public class Request
 
 	public Student getStudentName()
 	{
-		return StudentName;
+		return requestor;
 	}
 
 	public Subject getSubject() 

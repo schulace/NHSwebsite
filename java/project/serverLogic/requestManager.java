@@ -25,7 +25,7 @@ public class requestManager
 		
 		for(Tutor t:userFactory.tutorList)
 		{
-			TutorPossibility pos = new TutorPossibility(t, req.getAvailableBlocks());
+			TutorPossibility pos = new TutorPossibility(t, req.getAvailableBlocks(), req.getStudentName());
 			if(pos.commonBlocks.size() > 0)
 			{
 				posList.add(pos);
