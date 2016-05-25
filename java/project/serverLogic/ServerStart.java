@@ -35,7 +35,7 @@ public class ServerStart
 		requestManager.addRequest(req1);
 		System.out.println(Arrays.deepToString(st.getOpens().toArray()));
 		System.out.println(Arrays.deepToString(tut.getOpens().toArray()));
-		System.out.println(requestManager.posList);
+		System.out.println(requestManager.getRequestList());
 		
 	}
 	

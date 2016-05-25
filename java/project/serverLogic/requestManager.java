@@ -7,11 +7,17 @@ import project.requests.Request;
 import project.requests.TutorPossibility;
 import project.user.Tutor;
 
+
+//TODO generate a tutoring session class, put it into schedules, and then be able to move a request into an archive + out of the list.
 public class requestManager
 {
 	private static ArrayList<Request> requestList = new ArrayList<Request>();
-	public static ArrayList<TutorPossibility> posList = new ArrayList<TutorPossibility>();
 	
+	public static ArrayList<Request> getRequestList()
+	{
+		return requestList;
+	}
+
 	public static void addRequest(Request req)
 	{
 		for(Request inList:requestList)
@@ -21,26 +27,17 @@ public class requestManager
 				return;
 			}
 		}
-		requestList.add(req);
+		
 		
 		for(Tutor t:userFactory.tutorList)
 		{
-			TutorPossibility pos = new TutorPossibility(t, req.getAvailableBlocks(), req.getStudentName());
+			TutorPossibility pos = new TutorPossibility(t, req.getRequestor());
 			if(pos.commonBlocks.size() > 0)
 			{
-				posList.add(pos);
+				req.addPossibleFill(pos);
 			}
 		}
+		requestList.add(req);
 	}
 	
-	public String printPosList(int a)
-	{
-		TutorPossibility posb = posList.get(a);
-		String s = "";
-		for(int[] z:posb.commonBlocks)
-		{
-			s += Arrays.toString(z) + ";";
-		}
-		return s;
-	}
 }

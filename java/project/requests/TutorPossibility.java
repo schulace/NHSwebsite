@@ -6,19 +6,25 @@ import java.util.Arrays;
 import project.schedule.classes.SchoolClass;
 import project.user.Student;
 import project.user.Tutor;
-
+/**
+ * 
+ * @author schulace
+ * representative of the possibility of a particular tutor teaching a student.
+ * contains the tutor, the student, and which opens are shared between the 2.
+ */
 public class TutorPossibility
 {
 	public Tutor tut;
 	public ArrayList<int[]> commonBlocks = new ArrayList<int[]>();
 	public Student stu;
 	
-	public TutorPossibility(Tutor tut, ArrayList<int[]> studentOpens, Student stu)
+	public TutorPossibility(Tutor tut, Student stu)
 	{
 		this.tut = tut;
 		this.stu = stu;
 		ArrayList<int[]> availableBlocks = tut.getOpens();
-		for(int[] stArr:studentOpens)
+		ArrayList<int[]> studentAvailableBlocks = stu.getOpens();
+		for(int[] stArr:studentAvailableBlocks)
 		{
 			for(int[] tArr:availableBlocks)
 			{

@@ -191,7 +191,8 @@ public class userFactory
 		}
 	}
 	
-	public static void removeAdministrator(Administrator a ){
+	public static void removeAdministrator(Administrator a )
+	{
 		Administrator toRemove = new Administrator(a.getName());
 		boolean inList = false;
 		for(Teacher teacher:teacherList)
@@ -247,6 +248,5 @@ public class userFactory
 				}
 			}
 		}
-
 	}
 }
