@@ -7,6 +7,8 @@
 
 package project.user;
 
+import project.serverLogic.userFactory;
+
 public class Teacher
 { //we may not even need this, but its nice to have (just in case)
 	private String name;
@@ -23,6 +25,11 @@ public class Teacher
 	{
 		this.name = n;
 		this.school = school;
+	}
+	
+	public Teacher(String n)
+	{
+		this.name = n;
 	}
 	
 	/**
@@ -44,6 +51,11 @@ public class Teacher
 	public String getName() 
 	{
 		return name;
+	}
+	
+	public void removeMyself()
+	{
+		userFactory.removeTeacher(this);
 	}
 
 	public void setName(String name)

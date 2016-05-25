@@ -24,7 +24,6 @@ public class StudyGuide
 	private boolean isPlagiarism;
 	private ArrayList<Review> reviews;
 	private boolean profanity  = false;
-	private userFactory master;
 	
 	/**
 	 * 
@@ -73,7 +72,7 @@ public class StudyGuide
 		this.author = u;
 		this.subject = subj;
 		this.content = s;
-		master.addProfaneGuide(this);
+		userFactory.addProfaneGuide(this);
 	}
 	
 	public boolean profanity()
