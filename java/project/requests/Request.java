@@ -18,18 +18,7 @@ public class Request
 		StudentName = studentName;
 		schoolSubject = subject;
 		this.isFilled = isFilled;
-		SchoolClass[][] sched = studentName.getSchedule().getBlockSchedule();
-		for(int i = 0; i< 8; i++)
-		{
-			for (int z = 0; z < 6; z++)
-			{
-				if(sched[i][z] == null)
-				{
-					int[] temp = {i,z};
-					availableBlocks.add(temp);
-				}
-			}
-		}
+		this.availableBlocks = studentName.getOpens();
 		
 	}
 	public ArrayList<int[]> getAvailableBlocks()
@@ -61,7 +50,4 @@ public class Request
 	{
 		this.isFilled = isFilled;
 	}
-	
-	
-	
 }

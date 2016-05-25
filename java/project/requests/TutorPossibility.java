@@ -12,19 +12,7 @@ public class TutorPossibility
 	
 	public TutorPossibility(Tutor tut, ArrayList<int[]> studentOpens)
 	{
-		SchoolClass[][] sched = tut.getSchedule().getBlockSchedule();
-		ArrayList<int[]> availableBlocks = new ArrayList<int[]>();
-		for(int i = 0; i< 8; i++)
-		{
-			for (int z = 0; z < 6; z++)
-			{
-				if(sched[i][z] == null)
-				{
-					int[] temp = {i,z};
-					availableBlocks.add(temp);
-				}
-			}
-		}
+		ArrayList<int[]> availableBlocks = tut.getOpens();
 		for(int[] stArr:studentOpens)
 		{
 			for(int[] tArr:availableBlocks)

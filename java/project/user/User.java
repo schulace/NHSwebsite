@@ -29,10 +29,7 @@ public abstract class User
 	 * 
 	 * @param Schedule type: StudentSchedule
 	 * @param name type: String
-	 * @param dob type: GregorianCalendar (note that gregorianCalendar months start with 0 for january)
-	 * @param school type: String; name of school
 	 * @param year	type: Year (enum)
-	 * @param gender type: Gender(enum)
 	 */
 	public User(StudentSchedule Schedule, String name,  Year year)
 	{
@@ -80,13 +77,9 @@ public abstract class User
 	}
 	
 	/**
-	 * 
+	 * @param sched a student schedule
 	 * @param name student name
-	 * @param year year of birth
-	 * @param month month the user was born
-	 * @param date day user was born
 	 * @param grade school grade (int between 9 and 12)
-	 * @param gender (takes "male" or "female" defaults to other)
 	 */
 	public User(StudentSchedule sched, String name, int grade)
 	{		
@@ -190,10 +183,5 @@ public abstract class User
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
-	}
-
-
-
-
-	
+	}	
 }
