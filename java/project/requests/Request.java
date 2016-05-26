@@ -85,6 +85,11 @@ public class Request
 		this.isFilled = isFilled;
 	}
 
+	public ArrayList<TutorPossibility> getTutPossibilities()
+	{
+		return tutPossibilities;
+	}
+
 	@Override
 	public String toString() {
 		return "Request [requestor=" + requestor.toStringMinusSchedule() + ", schoolSubject=" + schoolSubject + ", isFilled=" + isFilled + ", tutPosibilities=" + tutPossibilities + "]";

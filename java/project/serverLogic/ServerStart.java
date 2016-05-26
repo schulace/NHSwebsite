@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.GregorianCalendar;
 import com.google.gson.Gson;
 import com.google.gson.JsonIOException;
@@ -25,6 +26,12 @@ public class ServerStart
 	{
 		testMatching();
 	}
+	
+	public static void testSchedule()
+	{
+		System.out.println(test_schedules.getStudent1Schedule());
+	}
+	
 	public static void testMatching()
 	{
 		Tutor tut = test_user.newTut;
@@ -33,9 +40,13 @@ public class ServerStart
 		userFactory.addStudent(st);
 		userFactory.addTutor(tut);
 		requestManager.addRequest(req1);
-		System.out.println(Arrays.deepToString(st.getOpens().toArray()));
-		System.out.println(Arrays.deepToString(tut.getOpens().toArray()));
+		int[][] wantedBlocksArray = {{1,5},{2,4},{3,4}};
+		ArrayList<int[]> wantedBlocks = new ArrayList<int[]>();
+		Collections.addAll(wantedBlocks, wantedBlocksArray);
 		System.out.println(requestManager.getRequestList());
+		tut.fillRequest(st.getName(),wantedBlocks);
+		System.out.println(requestManager.getRequestList());
+		System.out.println(tut.getCalendar().getStudentSchedule());
 		
 	}
 	
