@@ -6,6 +6,8 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.*;
 import static com.mongodb.client.model.Filters.*;
 
+import java.util.ArrayList;
+
 //	Here's how do:
 //	
 //	You can pass 0, 1, 2 or 3 variables to the constructor. If nothing is passed, it uses all default values,
@@ -24,24 +26,39 @@ public class Mongoconnect {
 	private static String host = "localhost";
 	private static String dbname = "mydb";
 	private static String usedcoll = "test1";
+	public static ArrayList<String> collectionlist;
 	
 	public Mongoconnect(){
 		super();
+		checkCollection();
 	}
 	
 	public Mongoconnect(String calledcoll){
 		this.usedcoll = calledcoll;//testdb
+		checkCollection();
 	}
 	
 	public Mongoconnect(String calledcoll, String db){
 		this.dbname = db;//defualtdb
 		this.usedcoll = calledcoll;//testdb
+		checkCollection();
 	}
 	
 	public Mongoconnect(String calledcoll, String db, String location){
 		this.host = location;//default host
 		this.dbname = db;//defualtdb
 		this.usedcoll = calledcoll;//testdb
+		checkCollection();
+	}
+	
+	public void checkCollection(){
+		Boolean isin = false;
+		for (int i = 0;i<this.collectionlist.size();i++){
+			if (this.usedcoll ==  collectionlist.get(i)){
+				 isin = true;
+			}
+		}
+		collectionlist.add(this.usedcoll);
 	}
 	
 	public MongoCollection<Document> getConnection(){//sets up initial connection
@@ -74,6 +91,10 @@ public class Mongoconnect {
 		MongoCollection<Document> collection = getConnection();//retrieve a collection
 		long usercount = collection.count();
 		return usercount;
+	}
+	
+	public ArrayList<String> getCollectionList(){
+		return this.collectionlist;
 	}
 	
 	public String getfromdb(String field, String value){//for example, getfromdb(username, john);
