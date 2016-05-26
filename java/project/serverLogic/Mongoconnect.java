@@ -81,5 +81,10 @@ public class Mongoconnect {
 		Document myDoc = collection.find(eq(field,value)).first();
 		return myDoc.toJson();
 	}
+	
+	public void closeconnection(){
+		MongoClient mongoClient = new MongoClient(this.host); //connects to client on localhost
+		mongoClient.close();
+	}
 
 }
