@@ -23,8 +23,14 @@ public class ServerStart
 	
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		testMatching();
+		testSchedule();
 	}
+	
+	public static void testSchedule()
+	{
+		System.out.println(test_schedules.getStudent1Schedule());
+	}
+	
 	public static void testMatching()
 	{
 		Tutor tut = test_user.newTut;

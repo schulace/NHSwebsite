@@ -66,7 +66,8 @@ public class StudentSchedule
 		}
 	}
 	
-	public void putClassInSchedOnDay(int day, SchoolClass sClass)
+	public void putClassInSchedOnDay(int day, SchoolClass sClass) //magic. this one takes classes + their block and puts it into blockSchedule based off of the ints representing blocks in
+	//the blocks[][] double array.
 	{
 		int block = sClass.getBlock();
 		for(int x = 0; x < 6; x ++)
@@ -82,25 +83,27 @@ public class StudentSchedule
 	@Override
 	public String toString()
 	{
-//		return Arrays.deepToString(blockSchedule);
 		String s = "";
-		for(int x = 0; x < 8; x ++)
-		{
-			for(int y = 0; y < 6; y ++)
-			{
-				if(blockSchedule[x][y] == null)
-				{
-					s += "\t\t,";
-				}
-				else
-				{
-					s += blockSchedule[x][y].getSubject() + "\t,";
-				}
-				
-			}
-			s += "\n";
-		}
+		s += Arrays.toString(blockSchedule[0]);
 		return s;
+//		String s = "";
+//		for(int x = 0; x < 8; x ++)
+//		{
+//			for(int y = 0; y < 6; y ++)
+//			{
+//				if(blockSchedule[x][y] == null)
+//				{
+//					s += "\t\t,";
+//				}
+//				else
+//				{
+//					s += blockSchedule[x][y].getSubject() + "\t,";
+//				}
+//				
+//			}
+//			s += "\n";
+//		}
+//		return s;
 		
 		
 	}

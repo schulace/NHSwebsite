@@ -21,7 +21,8 @@ public class SchoolClass
 		this.setProf(teacher);
 	}
 
-	public Teacher getProf() {
+	public Teacher getProf()
+	{
 		return prof;
 	}
 
