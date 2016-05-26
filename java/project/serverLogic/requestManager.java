@@ -1,8 +1,6 @@
 package project.serverLogic;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-
 import project.requests.Request;
 import project.requests.TutorPossibility;
 import project.schedule.classes.LetterDay;
