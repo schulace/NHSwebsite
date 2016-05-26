@@ -82,7 +82,7 @@ public class Mongoconnect {
 		return myDoc.toJson();
 	}
 	
-	public void closeconnection(){
+	public void closeConnection(){
 		MongoClient mongoClient = new MongoClient(this.host); //connects to client on localhost
 		mongoClient.close();
 	}
