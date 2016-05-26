@@ -30,6 +30,4 @@ public class GHSCalendarDay
 		return "GHSCalendarDay [date=" + (cal.get(Calendar.MONTH) +1)+ "/" + cal.get(Calendar.DAY_OF_MONTH)+
 				"/" + cal.get(Calendar.YEAR) +  ",letterDay=" + letterDay  + " " + "classes " + Arrays.toString(classes)+ "]";
 	}
-	
-	
 }
