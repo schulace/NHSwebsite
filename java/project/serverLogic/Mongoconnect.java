@@ -21,24 +21,19 @@ import static com.mongodb.client.model.Filters.*;
 
 public class Mongoconnect {
 	
-	private static String host;
-	private static String dbname;
-	private static String usedcoll;
+	private static String host = "localhost";
+	private static String dbname = "mydb";
+	private static String usedcoll = "test1";
 	
 	public Mongoconnect(){
-		this.host = "localhost";//default host
-		this.dbname = "mydb";//defualtdb
-		this.usedcoll = "test1";//testdb
+		super();
 	}
 	
 	public Mongoconnect(String calledcoll){
-		this.host = "localhost";//default host
-		this.dbname = "mydb";//defualtdb
 		this.usedcoll = calledcoll;//testdb
 	}
 	
 	public Mongoconnect(String calledcoll, String db){
-		this.host = "localhost";//default host
 		this.dbname = db;//defualtdb
 		this.usedcoll = calledcoll;//testdb
 	}
