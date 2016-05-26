@@ -9,7 +9,6 @@ package project.studyGuide;
 
 import project.user.Administrator;
 import project.user.Student;
-import project.user.Teacher;
 import project.user.Tutor;
 
 public class TutorReview 
