@@ -37,13 +37,30 @@ public class requestManager
 		for(Tutor t:userFactory.tutorList)
 		{
 			TutorPossibility pos = new TutorPossibility(t, req.getRequestor());
-			if(pos.commonBlocks.size() >= 3) //only considers the request as valid if they can meet at least 3 times per cycle.
+			if(pos.commonBlocks.size() >= 3 && t.getStrongClasses().contains(req.getSubject())) //only considers the request as valid if they can meet at least 3 times per cycle.
 			{
 				req.addPossibleFill(pos);
 				t.addRequest(req);
 			}
 		}
-		requestList.add(req);
+		if(req.getTutPossibilities().size() > 0)
+		{
+			requestList.add(req);
+			return;
+		}
+		else
+		{
+			for(Tutor t:userFactory.tutorList)
+			{
+				TutorPossibility pos = new TutorPossibility(t, req.getRequestor());
+				if(pos.commonBlocks.size() >= 3) //only considers the request as valid if they can meet at least 3 times per cycle.
+				{
+					req.addPossibleFill(pos);
+					t.addRequest(req);
+				}
+			}
+			requestList.add(req);
+		}
 	}
 	
 	public static Request getRequest(String name)
@@ -67,11 +84,16 @@ public class requestManager
 	 */
 	public static void update(ArrayList<int[]> blocks, Tutor tutIn)
 	{
-		for(Request re: requestList)
+		for(int x = 0; x < requestList.size(); x ++)
 		{
+			Request re = requestList.get(x);
 			if(re.isFilled())
 			{
-				GenClassesFromRequest(re, blocks, tutIn);
+				boolean b = GenClassesFromRequest(re, blocks, tutIn);
+				if(b)
+				{
+					x --;
+				}
 			}
 		}
 	}
@@ -84,22 +106,23 @@ public class requestManager
 	 * if the amount of classes filled is < 3, then this doesn't do anything. it sets the request filled to false.
 	 * if it can continue, it adds 3 classes to the tutor + student schedule and updates their calendars to reflect this.
 	 */
-	public static void GenClassesFromRequest(Request reqIn, ArrayList<int[]> blocks, Tutor tutIn)
+	public static boolean GenClassesFromRequest(Request reqIn, ArrayList<int[]> blocks, Tutor tutIn)
 	{
 		if(blocks.size() < 3)
 		{
 			reqIn.setFilled(false);
-			return;
+			return false;
 		}
 		for(int x = 0; x < 3; x ++)
 		{
-			SchoolClass c1 = new SchoolClass("Tutoring session for " + Subject.TUTORING, reqIn.getSubject(), genLetterDayFromArray(blocks.get(x)), getBlockFromArray(blocks.get(x)), new Teacher(tutIn.getName()));
+			SchoolClass c1 = new SchoolClass("Tutoring session for " + tutIn.getName(), Subject.TUTORING, genLetterDayFromArray(blocks.get(x)), getBlockFromArray(blocks.get(x)), new Teacher(tutIn.getName()));
 			reqIn.getRequestor().getCalendar().getStudentSchedule().addClass(c1);
 			tutIn.getCalendar().getStudentSchedule().addClass(c1);
 			tutIn.getCalendar().refreshCalendar();
 			reqIn.getRequestor().getCalendar().refreshCalendar();
 		}
 		requestList.remove(requestList.indexOf(reqIn));
+		return true;
 	}
 	
 	public static LetterDay[] genLetterDayFromArray(int[] arrIn)

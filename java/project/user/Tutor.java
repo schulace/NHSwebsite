@@ -9,10 +9,7 @@ package project.user;
 
 import java.util.ArrayList;
 
-import javax.security.auth.Subject;
-
 import project.requests.Request;
-import project.requests.TutorPossibility;
 import project.schedule.classes.SchoolClass;
 import project.schedule.classes.StudentSchedule;
 import project.serverLogic.requestManager;
@@ -22,7 +19,9 @@ import project.studyGuide.TutorReview;
 
 public class Tutor extends User
 {
-	private ArrayList<SchoolClass> strongClasses;
+	private ArrayList<SchoolClass> strongClasses = new ArrayList<SchoolClass>();
+	
+
 	private ArrayList<TutorReview> reviews;
 	private ArrayList<StudyGuide> Guides;
 	private ArrayList<Request> possibilities = new ArrayList<Request>();
@@ -41,6 +40,16 @@ public class Tutor extends User
 	public Tutor(StudentSchedule sc, String name, int gr)
 	{
 		super(sc,name,gr);
+	}
+	
+	public ArrayList<SchoolClass> getStrongClasses()
+	{
+		return strongClasses;
+	}
+
+	public void setStrongClasses(ArrayList<SchoolClass> strongClasses)
+	{
+		this.strongClasses = strongClasses;
 	}
 	
 	public boolean addStrongClass(SchoolClass newClass)
