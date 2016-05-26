@@ -76,7 +76,6 @@ public class StudentSchedule
 				blockSchedule[day][x] = sClass;
 			}
 		}
-		
 	}
 	
 	@Override

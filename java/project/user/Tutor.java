@@ -82,8 +82,10 @@ public class Tutor extends User
 	 * @param sub generates a new study guide
 	 * @param comment
 	 */
+	
 	public void submitGuide(project.schedule.classes.Subject sub, String comment)
 	{
 		Guides.add(new StudyGuide(this, sub, comment));
 	}
+
 }
