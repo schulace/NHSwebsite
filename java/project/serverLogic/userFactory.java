@@ -2,6 +2,7 @@ package project.serverLogic;
 
 import java.util.ArrayList;
 
+import project.schedule.calendar.ScheduleHistory;
 import project.schedule.classes.StudentSchedule;
 import project.studyGuide.StudyGuide;
 import project.user.Administrator;
@@ -18,6 +19,7 @@ public class userFactory
 	public static ArrayList<StudyGuide> profaneGuides = new ArrayList<StudyGuide>();
 	public static ArrayList<Tutor> badBoyz = new ArrayList<Tutor>();
 	public static ArrayList<Teacher> teacherList = new ArrayList<Teacher>();
+	public static ArrayList<ScheduleHistory> confirmationList = new ArrayList<ScheduleHistory>();
 	
 	public static void addStudent(String studentID, int grade)
 	{
@@ -240,6 +242,18 @@ public class userFactory
 					}
 				}
 			}
+		}
+	}
+	
+	public static boolean sessionConfirm (Tutor t, Student s)
+	{
+		if((t.confirmSession() && s.confirmSession()) == true)
+		{
+			return true;
+		}
+		else if (t.confirmSession() || s.confirmSession() == false)
+		{
+			return false;
 		}
 	}
 }

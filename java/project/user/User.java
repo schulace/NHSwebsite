@@ -20,6 +20,7 @@ public abstract class User
 	protected String name;
 	protected Year grade;
 	protected ScheduleHistory history;
+	private boolean confirm = false;
 	
 	
 	
@@ -109,6 +110,7 @@ public abstract class User
 	 * @param sched student school schedule.
 	 * Generates a new calendar schedule with the school startdate, endDate, this schedule, and all days off.
 	 */
+	
 	public void setSchedule(StudentSchedule sched)
 	{
 		this.userCalendar = new GHSCalendar(Reference.startDate, Reference.endDate, sched, Reference.breakDays);
@@ -125,14 +127,17 @@ public abstract class User
 	{
 		return name;
 	}
+	
 	protected void setName(String name)
 	{
 		this.name = name;
 	}
+	
 	public Year getGrade()
 	{
 		return grade;
 	}
+	
 	public int getGradeAsInt(){
 		String letsHopeThisWorks = ""+this.grade;
 		int intGrade = Integer.parseInt(letsHopeThisWorks);
@@ -142,16 +147,16 @@ public abstract class User
 	{
 		this.grade = grade;
 	}
+	
 	protected ScheduleHistory getHistory()
 	{
 		return history;
 	}
+	
 	protected void setHistory(ScheduleHistory history)
 	{
 		this.history = history;
 	}
-	
-	
 	
 	@Override
 	public String toString()
@@ -162,6 +167,21 @@ public abstract class User
 	public String toStringMinusSchedule()
 	{
 		return "User [name=" + name + ", grade=" + grade + "]";
+	}
+	
+	public void acceptSession() //TODO Josh talk to me about this when you know PHP
+	{
+		this.confirm = true;
+	}
+	
+	public void denySession()
+	{
+		this.confirm = false;
+	}
+	
+	public boolean confirmSession()
+	{
+		return this.confirm;
 	}
 
 	@Override
