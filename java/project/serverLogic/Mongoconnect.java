@@ -34,43 +34,43 @@ public class Mongoconnect {
 	}
 	
 	public Mongoconnect(String calledcoll){
-		this.usedcoll = calledcoll;//testdb
+		usedcoll = calledcoll;//testdb
 		checkCollection();
 	}
 	
 	public Mongoconnect(String calledcoll, String db){
-		this.dbname = db;//defualtdb
-		this.usedcoll = calledcoll;//testdb
+		dbname = db;//defualtdb
+		usedcoll = calledcoll;//testdb
 		checkCollection();
 	}
 	
 	public Mongoconnect(String calledcoll, String db, String location){
-		this.host = location;//default host
-		this.dbname = db;//defualtdb
-		this.usedcoll = calledcoll;//testdb
+		host = location;//default host
+		dbname = db;//defualtdb
+		usedcoll = calledcoll;//testdb
 		checkCollection();
 	}
 	
 	public void checkCollection(){
 		Boolean isin = false;
-		for (int i = 0;i<this.collectionlist.size();i++){
-			if (this.usedcoll ==  collectionlist.get(i)){
+		for (int i = 0;i<collectionlist.size();i++){
+			if (usedcoll ==  collectionlist.get(i)){
 				 isin = true;
 			}
 		}
-		collectionlist.add(this.usedcoll);
+		collectionlist.add(usedcoll);
 	}
 	
 	public MongoCollection<Document> getConnection(){//sets up initial connection
-		MongoClient mongoClient = new MongoClient(this.host); //connects to client on localhost
-		MongoDatabase database = mongoClient.getDatabase(this.dbname);//gets db called mydb
-		MongoCollection<Document> collection = database.getCollection(this.usedcoll);//replace with not tes
+		MongoClient mongoClient = new MongoClient(host); //connects to client on localhost
+		MongoDatabase database = mongoClient.getDatabase(dbname);//gets db called mydb
+		MongoCollection<Document> collection = database.getCollection(usedcoll);//replace with not tes
 		return collection;
 	}
 	
 	public String getDbInfo(){//get db info, probably never gonna be used, might commend out
-		MongoClient mongoClient = new MongoClient(this.host); //connects to client on localhost
-		MongoDatabase database = mongoClient.getDatabase(this.dbname);//gets db called mydb
+		MongoClient mongoClient = new MongoClient(host); //connects to client on localhost
+		MongoDatabase database = mongoClient.getDatabase(dbname);//gets db called mydb
 		String info = database.getName();//just make a string with the name of the db
 		return info;//return
 	}
@@ -94,7 +94,7 @@ public class Mongoconnect {
 	}
 	
 	public ArrayList<String> getCollectionList(){
-		return this.collectionlist;
+		return collectionlist;
 	}
 	
 	public String getfromdb(String field, String value){//for example, getfromdb(username, john);
@@ -104,7 +104,7 @@ public class Mongoconnect {
 	}
 	
 	public void closeConnection(){
-		MongoClient mongoClient = new MongoClient(this.host); //connects to client on localhost
+		MongoClient mongoClient = new MongoClient( host); //connects to client on localhost
 		mongoClient.close();
 	}
 
