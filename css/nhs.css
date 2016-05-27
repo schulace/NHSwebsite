@@ -1,0 +1,26 @@
+/*General*/
+body, html {
+  padding: 0;
+  margin: 0;
+  font-family: 'Quicksand', sans-serif;
+}
+/*Navbar*/
+nav {
+  position: fixed;
+  width: 100%;
+  top: 42px;
+  background-color: red;
+  text-align: center;
+}
+.navItems {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.navItems li {
+  display: inline-block;
+  padding: 14px 10px;
+  max-width: 50px;
+  font-size: 12px;
+  font-weight: 500;
+}
