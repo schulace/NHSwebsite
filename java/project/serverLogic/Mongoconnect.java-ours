@@ -8,23 +8,20 @@ import static com.mongodb.client.model.Filters.*;
 
 import java.util.ArrayList;
 
+//	Here's how do:
+//	
+//	You can pass 0, 1, 2 or 3 variables to the constructor. If nothing is passed, it uses all default values,
+//	But you can also specify the collection, database, and host in that order.
+//
+//	Methods: 
+//	getDbInfo(), returns String dbinfo;
+//	insertToDb(), returns nothing;
+//	insertToDb(String json), returns nothing;
+//	getUserCount(), returns int count;
+//	getFromDb(String field, String value), returns String json;
 
-/**
- * Here's how do:
-	
-	You can pass 0, 1, 2 or 3 variables to the constructor. If nothing is passed, it uses all default values,
-	But you can also specify the collection, database, and host in that order.
 
-	Methods: 
-	getDbInfo(), returns String dbinfo;
-	insertToDb(), returns nothing;
-	insertToDb(String json), returns nothing;
-	getUserCount(), returns int count;
-	getFromDb(String field, String value), returns String json;
- */
-//TODO josh you use javadoccing for this kind of shit not just a bunch of commented lines. /** on the first line to indicate a javadoc.
-public class Mongoconnect //TODO josh what have you done. there are like 25 warnings and 20 of them are from this class because you use this.blah to access static fields.
-{
+public class Mongoconnect {
 	
 	private static String host = "localhost";
 	private static String dbname = "mydb";

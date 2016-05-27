@@ -2,8 +2,6 @@ package project.user;
 
 
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
-
 import project.schedule.calendar.GHSCalendar;
 import project.schedule.calendar.ScheduleHistory;
 import project.schedule.classes.SchoolClass;

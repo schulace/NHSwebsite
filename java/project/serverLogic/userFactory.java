@@ -85,7 +85,6 @@ public class userFactory
 	public static void removeStudent (Student s)
 	{
 		Student toRemove = new Student(s.getName(), s.getGradeAsInt());
-		boolean inList = false;
 		for(Student student:studentList)
 		{
 			if(student.getName().equals(toRemove.getName()))
@@ -94,7 +93,6 @@ public class userFactory
 				{
 					if (student.getName().equals(toRemove.getName()))
 					{
-						inList = true;
 						studentList.remove(i);
 					}
 				}
@@ -156,9 +154,9 @@ public class userFactory
 		updateList();
 	}
 	
-	public static void  removeTutor(Tutor t){
+	public static void  removeTutor(Tutor t) //TODO george wtf is this
+	{
 		Tutor toRemove = new Tutor(t.getName(), t.getGradeAsInt());
-		boolean inList = false;
 		for(Tutor teacher:tutorList)
 		{
 			if(t.getName().equals(toRemove.getName()))
@@ -167,7 +165,6 @@ public class userFactory
 				{
 					if (t.getName().equals(toRemove.getName()))
 					{
-						inList = true;
 						tutorList.remove(i);
 					}
 				}
@@ -193,10 +190,9 @@ public class userFactory
 		}
 	}
 	
-	public static void removeAdministrator(Administrator a )
+	public static void removeAdministrator(Administrator a ) //TODO george wat did you doooooooooooo
 	{
 		Administrator toRemove = new Administrator(a.getName());
-		boolean inList = false;
 		for(Teacher teacher:teacherList)
 		{
 			if(a.getName().equals(toRemove.getName()))
@@ -205,7 +201,6 @@ public class userFactory
 				{
 					if (a.getName().equals(toRemove.getName()))
 					{
-						inList = true;
 						adminList.remove(i);
 					}
 				}
@@ -232,10 +227,9 @@ public class userFactory
 		}
 	}
 	
-	public static void  removeTeacher (Teacher Meyers)
+	public static void  removeTeacher (Teacher Meyers) //TODO george wat
 	{
 		Teacher toRemove = new Teacher(Meyers.getName());
-		boolean inList = false;
 		for(Teacher teacher:teacherList)
 		{
 			if(Meyers.getName().equals(toRemove.getName()))
@@ -244,7 +238,6 @@ public class userFactory
 				{
 					if (Meyers.getName().equals(toRemove.getName()))
 					{
-						inList = true;
 						teacherList.remove(i);
 					}
 				}
