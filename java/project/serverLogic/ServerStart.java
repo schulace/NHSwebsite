@@ -40,7 +40,7 @@ public class ServerStart
 		System.out.println(requestManager.getRequestList());
 		tut.fillRequest(st.getName(),wantedBlocks);
 		System.out.println(requestManager.getRequestList());
-		System.out.println(tut.getCalendar().getStudentSchedule());
+		System.out.println(tut.getCalendar());
 		
 	}
 	

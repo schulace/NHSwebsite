@@ -7,6 +7,7 @@ import project.schedule.classes.LetterDay;
 import project.schedule.classes.SchoolClass;
 import project.schedule.classes.StudentSchedule;
 import project.schedule.classes.Subject;
+import project.schedule.classes.TutoringSession;
 import project.user.Teacher;
 import project.user.Tutor;
 
@@ -113,7 +114,7 @@ public class requestManager
 		}
 		for(int x = 0; x < 3; x ++)
 		{
-			SchoolClass c1 = new SchoolClass("Tutoring session for " + tutIn.getName(), Subject.TUTORING, genLetterDayFromArray(blocks.get(x)), getBlockFromArray(blocks.get(x)), new Teacher(tutIn.getName()));
+			TutoringSession c1 = new TutoringSession("Tutoring session for " + reqIn.getRequestor().getName(), genLetterDayFromArray(blocks.get(x)), getBlockFromArray(blocks.get(x)), new Teacher(tutIn.getName()));
 			reqIn.getRequestor().getCalendar().getStudentSchedule().addClass(c1);
 			tutIn.getCalendar().getStudentSchedule().addClass(c1);
 			tutIn.getCalendar().refreshCalendar();

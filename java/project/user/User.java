@@ -3,7 +3,7 @@ package project.user;
 
 import java.util.ArrayList;
 import project.schedule.calendar.GHSCalendar;
-import project.schedule.calendar.ScheduleHistory;
+import project.schedule.calendar.TutoringHistory;
 import project.schedule.classes.SchoolClass;
 import project.schedule.classes.StudentSchedule;
 import project.schedule.classes.Year;
@@ -19,7 +19,7 @@ public abstract class User
 	protected GHSCalendar userCalendar;
 	protected String name;
 	protected Year grade;
-	protected ScheduleHistory history;
+	protected TutoringHistory history;
 	private boolean confirm = false;
 	
 	
@@ -148,12 +148,12 @@ public abstract class User
 		this.grade = grade;
 	}
 	
-	protected ScheduleHistory getHistory()
+	protected TutoringHistory getHistory()
 	{
 		return history;
 	}
 	
-	protected void setHistory(ScheduleHistory history)
+	protected void setHistory(TutoringHistory history)
 	{
 		this.history = history;
 	}
