@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import com.google.gson.Gson;
 import project.requests.Request;
+import project.schedule.classes.SchoolClass;
+import project.schedule.classes.TutoringSession;
 import project.user.Student;
 import project.user.Tutor;
 import test_data.testRequests;
@@ -18,12 +20,18 @@ public class ServerStart
 	
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		testMatching();
+		objTest();
 	}
 	
 	public static void testSchedule()
 	{
 		System.out.println(test_schedules.getStudent1Schedule());
+	}
+	
+	public static void objTest()
+	{
+		SchoolClass x = test_schedules.a;
+		System.out.println(((TutoringSession)x).happened);
 	}
 	
 	public static void testMatching()

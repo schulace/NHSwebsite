@@ -45,28 +45,35 @@ public class TutoringHistory
 	public void update()
 	{
 		this.history =  new ArrayList<GHSCalendarDay>();
-		for(GHSCalendarDay day : this.allTutoringSessions)
+		for(GHSCalendarDay day : this.allTutoringSessions) //loops through alltutoringsessions. this contains things that have and have not happened
 		{
-			for( SchoolClass c: day.classes)
+			for( SchoolClass c: day.classes) //goes through each day, checking if a tutoringSession has happened.
 			{
-				TutoringSession sesh = (TutoringSession) c;
-				if(sesh.happened)
+				if(c instanceof TutoringSession)
 				{
-					GHSCalendarDay histDay = day.clone();
-					for(SchoolClass n: histDay.classes)
+					TutoringSession sesh = (TutoringSession) c;
+					if(sesh.happened)
 					{
-						TutoringSession histSesh = (TutoringSession)n;
-						if(!histSesh.happened)
+						GHSCalendarDay histDay = day.clone(); //if the session did happen, the day is cloned.
+						for(SchoolClass n: histDay.classes) //loops through the cloned one, this time being destructive
 						{
-							n = null;
+							if(n instanceof TutoringSession)
+							{
+								if(!((TutoringSession)n).happened) //if the class is a tutoring session that hasn't happened, it's set to null, effectively removing it.
+								{
+									n = null;
+								}
+							}
+							else //if it's not a tutoring session, it doesn't belong in a history of them. removed as well.
+							{
+								n = null;
+							}
 						}
+						this.history.add(histDay); //day gets added to history, with only null and completed tutoringsessions in it.
+						break;
 					}
-					this.history.add(histDay);
-					
 				}
 			}
 		}
 	}
-	
-	
 }
