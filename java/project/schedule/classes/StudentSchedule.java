@@ -79,6 +79,32 @@ public class StudentSchedule
 		}
 	}
 	
+	public String toHTML()
+	{
+		String s = "<table>";
+		for(int x = 0; x < 8; x ++)
+		{
+			s += "<tr>";
+			for(int y = 0; y < 6; y ++)
+			{
+				s += "<td>";
+				if(blockSchedule[x][y] == null)
+				{
+					s += "open";
+				}
+				else
+				{
+					s += blockSchedule[x][y].getSubject();
+				}
+				s += "</td>";
+				
+			}
+			s += "</tr>";
+		}
+		s += "</table>";
+		return s;
+	}
+	
 	@Override
 	public String toString()
 	{
