@@ -10,6 +10,7 @@ import project.schedule.classes.Subject;
 import project.schedule.classes.TutoringSession;
 import project.user.Teacher;
 import project.user.Tutor;
+import com.google.gson.Gson;
 
 
 //TODO generate a tutoring session class, put it into schedules, and then be able to move a request into an archive + out of the list.
@@ -134,6 +135,15 @@ public class requestManager
 	public static int getBlockFromArray(int[] arrIn)
 	{
 		return StudentSchedule.blocks[arrIn[0]][arrIn[1]];
+	}
+	//Creates a JSON of the requestList and returns it 		
+	
+	public static String toJSON()
+	{
+		Gson g = new Gson();
+		String s = g.toJson(getRequestList());
+		System.out.println(s);
+		return s;
 	}
 	
 }
