@@ -13,9 +13,12 @@
   <!--Navbar-->
   <div id="header">
   <div id="preHeader">
-    <div id="preHeaderCenter">
-        <a href="#" id="logo">GHS Tutoring</a>
-    </div>
+    <ul id="preHeaderleft" class="navItems float_center">
+      <a href="#"><li id="logo">GHS Tutoring</li></a>
+    </ul>
+    <ul id="preHeaderRight" class="navItems">
+      <a href="#"><li>Test</li></a>
+    </ul>
   </div>
   <nav>
     <ul class="navItems">
