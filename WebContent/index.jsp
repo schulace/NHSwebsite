@@ -14,7 +14,7 @@
   <div id="header">
   <div id="preHeader">
     <ul id="preHeaderleft" class="navItems float_center">
-      <a href="#"><li id="logo">GHS Tutoring</li></a>
+      <a href="#"><img src="svg/logo.svg" class="cardinal"></a>
     </ul>
     <ul id="preHeaderRight" class="navItems">
       <a href="#"><li>Test</li></a>

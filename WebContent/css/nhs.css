@@ -35,6 +35,7 @@ nav {
   float: none;
   display: inline-block;
   margin-left: 20px;
+  text-align: center;
 }
 #preHeaderRight {
   display: inline-block;
@@ -49,4 +50,9 @@ nav {
     font-size: 15px;
     letter-spacing: 2px;
     padding: 14px 0;
+}
+.cardinal {
+  width: 30px;
+  height: 30px;
+  padding: 6px 0;
 }
