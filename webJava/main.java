@@ -52,9 +52,9 @@ public class main extends HttpServlet
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-//		String email = request.getParameter("email");
-//		System.out.println(email);
-//		response.sendRedirect("NewFile.html");
+		String email = request.getParameter("email");
+		System.out.println(email);
+		response.sendRedirect("NewFile.html");
 	}
 
 }
