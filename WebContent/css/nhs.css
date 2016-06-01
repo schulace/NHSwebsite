@@ -9,7 +9,7 @@ nav {
   position: fixed;
   width: 100%;
   top: 42px;
-  background-color: red;
+  background-color: #1D3557;
   text-align: center;
 }
 .navItems {
@@ -20,7 +20,6 @@ nav {
 .navItems li {
   display: inline-block;
   padding: 14px 10px;
-  max-width: 50px;
   font-size: 12px;
   font-weight: 500;
 }
