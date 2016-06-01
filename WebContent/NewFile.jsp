@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="google-signin-client_id" content="546309547030-ahl9ebonp8vi7i2e2otlkiu95tmnpd3r.apps.googleusercontent.com">
 <title>test</title>
 </head>
 <body>
