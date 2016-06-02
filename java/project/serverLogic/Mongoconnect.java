@@ -68,6 +68,7 @@ public class Mongoconnect //TODO josh what have you done. there are like 25 warn
 		MongoClient mongoClient = new MongoClient(host); //connects to client on localhost
 		MongoDatabase database = mongoClient.getDatabase(dbname);//gets db called mydb
 		MongoCollection<Document> collection = database.getCollection(collection2);//replace with not tes
+		mongoClient.close();
 		return collection;
 	}
 	
@@ -75,6 +76,7 @@ public class Mongoconnect //TODO josh what have you done. there are like 25 warn
 		MongoClient mongoClient = new MongoClient(host); //connects to client on localhost
 		MongoDatabase database = mongoClient.getDatabase(dbname);//gets db called mydb
 		String info = database.getName();//just make a string with the name of the db
+		mongoClient.close();
 		return info;//return
 	}
 	
@@ -106,9 +108,5 @@ public class Mongoconnect //TODO josh what have you done. there are like 25 warn
 		return myDoc.toJson();
 	}
 	
-	public void closeConnection(){
-		MongoClient mongoClient = new MongoClient( host); //connects to client on localhost
-		mongoClient.close();
-	}
 
 }
