@@ -59,32 +59,9 @@ function classFunction()
 	var teacherName = document.createElement("INPUT");
 	teacherName.setAttribute("type", "text");
 	teacherName.setAttribute("placeholder", "Teacher Name");
-	
-	
-	
-	
-	var days = document.createElement("span");
-	
-	for(var x = 0; x < 8; x ++)
-	{
-		var letterday = document.createElement("INPUT");
-		letterday.setAttribute("type", "checkbox");
-		letterday.setAttribute("name", letters[x]);
-		letterday.setAttribute("value", x);
-		var textint = document.createTextNode(letters[x]);
-		var br = document.createElement("br");
-		days.appendChild(br);
-		days.appendChild(letterday);
-		days.appendChild(textint);
-		
-	}
-	
-	
 
-	
-	
-	
 	i ++;
+	
 	var deletebutton = document.createElement("img");
 	deletebutton.setAttribute("src", "https://s-media-cache-ak0.pinimg.com/30x30/60/cb/a7/60cba772a1da77d743dd6b59b7cc5161.jpg");
 	deletebutton.setAttribute("onclick", "removeElem('formClasses','id_" + i + "')");
@@ -92,12 +69,22 @@ function classFunction()
 	subj.setAttribute("name", "subject" + i);
 	block.setAttribute("name", "block" + i);
 	teacherName.setAttribute("name", "teacherName" + i);
-	days.setAttribute("name", "days" + i);
 	r.appendChild(className);
 	r.appendChild(subj);
 	r.appendChild(block);
 	r.appendChild(teacherName);
-	r.appendChild(days);
+	for(var x = 0; x < 8; x ++)
+	{
+		var letterday = document.createElement("INPUT");
+		letterday.setAttribute("type", "checkbox");
+		letterday.setAttribute("name", i);
+		letterday.setAttribute("value", x);
+		var textint = document.createTextNode(letters[x]);
+		var br = document.createElement("br");
+		r.appendChild(br);
+		r.appendChild(letterday);
+		r.appendChild(textint);
+	}
 	r.appendChild(deletebutton);
 	r.setAttribute("id", "id_" + i);
 	document.getElementById("formClasses").appendChild(r);
@@ -111,7 +98,7 @@ function classFunction()
 </head>
 <body>
 
-<button onclick="classFunction()">add class</button>
+<button onclick="classFunction()">add class</button> <!--black magic javascript function to generate form fields to input classes. it works.-->
 <form action="ScheduleSubmit" method="post">
 	email: <input type="text" name="email"></input><br>
 	year:
