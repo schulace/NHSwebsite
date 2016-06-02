@@ -1,6 +1,9 @@
 package webJava;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Enumeration;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,7 +38,18 @@ public class ScheduleSubmit extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		System.out.println(request.getAttributeNames());
+		Enumeration<String> e = request.getParameterNames();
+		ArrayList<String> s = new ArrayList<String>();
+		while(e.hasMoreElements())
+		{
+			s.add(e.nextElement());
+		}
+		for(String st: s)
+		{
+			System.out.println(st);
+		}
+		
+		
 	}
 
 }
