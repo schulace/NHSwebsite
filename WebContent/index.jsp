@@ -20,7 +20,7 @@
       <a href="#"><li>Test</li></a>
     </ul>
   </div>
-  <nav>
+  <nav
     <ul class="navItems">
       <a href="#"><li>Schedule a Tutor</li></a>
       <a href="#"><li>Study Guides</li></a>
@@ -30,10 +30,13 @@
   </nav>
 </div>
   <!--Header Splash-->
-  <header>
-  </header>
+  <div id="firstHeader">
+    <div class="promoText">
+      <p class=smallTagline>An easy A has never been</p>
+      <p class="largeTagline">This simple</p>
+    </div>
+  </div>
   <!--Scripts-->
   <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <script src="js/scrollattributes.js"></script>
 </body>

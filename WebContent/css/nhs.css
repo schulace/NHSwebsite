@@ -25,6 +25,11 @@ nav {
   color: white;
   text-transform: uppercase;
 }
+#header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
 #preHeader {
   width: 100%;
   height: 42px;
@@ -55,4 +60,39 @@ nav {
   width: 30px;
   height: 30px;
   padding: 6px 0;
+}
+/*Header*/
+#firstHeader {
+  height: 540px;
+  display: block;
+  margin-top: 83px;
+  width: 100%;
+  background-image: url("../img/tower.jpg.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.largeTagline {
+  font-weight: 600;
+  text-transform: uppercase;
+  color: white;
+  font-size: 7em;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+  margin-top: 0;
+  padding-top: 0;
+}
+.smallTagline {
+  color: white;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+}
+.promoText {
+  width: 1000px;
+  height: 500px;
+  text-align: center;
+  left: 50%;
+  top: 50%;
+  margin-top: -250px;
+  margin-left: -500px;
+  position: absolute;
 }
