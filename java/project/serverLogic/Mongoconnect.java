@@ -64,10 +64,11 @@ public class Mongoconnect //TODO josh what have you done. there are like 25 warn
 		collectionlist.add(usedcoll);
 	}
 	
-	public MongoCollection<Document> getConnection(){//sets up initial connection
+	public MongoCollection<Document> getConnection(String collection2){//sets up initial connection
 		MongoClient mongoClient = new MongoClient(host); //connects to client on localhost
 		MongoDatabase database = mongoClient.getDatabase(dbname);//gets db called mydb
-		MongoCollection<Document> collection = database.getCollection(usedcoll);//replace with not tes
+		MongoCollection<Document> collection = database.getCollection(collection2);//replace with not tes
+		mongoClient.close();
 		return collection;
 	}
 	
@@ -75,23 +76,24 @@ public class Mongoconnect //TODO josh what have you done. there are like 25 warn
 		MongoClient mongoClient = new MongoClient(host); //connects to client on localhost
 		MongoDatabase database = mongoClient.getDatabase(dbname);//gets db called mydb
 		String info = database.getName();//just make a string with the name of the db
+		mongoClient.close();
 		return info;//return
 	}
 	
-	public void insertToDb(){//send data to database, test method using ServerStart.getTestJson()
-		MongoCollection<Document> collection = getConnection();
+	public void insertToDb(String collection){//send data to database, test method using ServerStart.getTestJson()
+		MongoCollection<Document> collname = getConnection(collection);
 		Document parsedjson = Document.parse(ServerStart.getTestJson()); //REPLACE THIS WITH NOT TEST METHOD, create new document from JSON string
-		collection.insertOne(parsedjson); //insert document into collection
+		collname.insertOne(parsedjson); //insert document into collection
 	}
 	
-	public void insertToDb(String json){//send data to database
-		MongoCollection<Document> collection = getConnection();
+	public void insertToDb(String json, String collection){//send data to database
+		MongoCollection<Document> collname = getConnection(collection);
 		Document parsedjson = Document.parse(json); //REPLACE THIS WITH NOT TEST METHOD, create new document from JSON string
-		collection.insertOne(parsedjson); //insert document into collection
+		collname.insertOne(parsedjson); //insert document into collection
 	}
 	
-	public long getUserCount(){//gets the number of users in a db
-		MongoCollection<Document> collection = getConnection();//retrieve a collection
+	public long getUserCount(String collection2){//gets the number of users in a db
+		MongoCollection<Document> collection = getConnection(null);//retrieve a collection
 		long usercount = collection.count();
 		return usercount;
 	}
@@ -100,15 +102,11 @@ public class Mongoconnect //TODO josh what have you done. there are like 25 warn
 		return collectionlist;
 	}
 	
-	public String getfromdb(String field, String value){//for example, getfromdb(username, john);
-		MongoCollection<Document> collection = getConnection();//retrieve a collection
-		Document myDoc = collection.find(eq(field,value)).first();
+	public String getfromdb(String field, String value, String collection){//for example, getfromdb(username, john);
+		MongoCollection<Document> collname = getConnection(collection);//retrieve a collection
+		Document myDoc = collname.find(eq(field,value)).first();
 		return myDoc.toJson();
 	}
 	
-	public void closeConnection(){
-		MongoClient mongoClient = new MongoClient( host); //connects to client on localhost
-		mongoClient.close();
-	}
 
 }
