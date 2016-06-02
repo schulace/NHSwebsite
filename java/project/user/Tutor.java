@@ -40,6 +40,12 @@ public class Tutor extends User
 		super(name, grade);
 	}
 	
+	public void Override(ArrayList<Request> s)
+	{
+		this.possibilities = null;
+		this.possibilities = (ArrayList<Request>) s.clone();
+	}
+	
 	public Tutor(StudentSchedule sc, String name, int gr)
 	{
 		super(sc,name,gr);
@@ -52,11 +58,11 @@ public class Tutor extends User
 	
 	public void prepForJson()
 	{
-		userCalendar.cal = null;
-		userCalendar.daysOff = null;
-		userCalendar.endDate = null;
-		userCalendar.startDate = null;
-		possibilities = null;
+		this.userCalendar.cal = null;
+		this.userCalendar.daysOff = null;
+		this.userCalendar.endDate = null;
+		this.userCalendar.startDate = null;
+		this.possibilities = null;
 	}
 
 	public void setStrongClasses(ArrayList<SchoolClass> strongClasses)

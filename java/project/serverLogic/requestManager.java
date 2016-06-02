@@ -86,6 +86,12 @@ public class requestManager
 		}
 	}
 	
+	public static void deserializeRequestList(String g)
+	{
+		Gson s = new Gson();
+		Request t = s.fromJson(g, Request.class);
+		addRequest(t);
+	}	
 	
 	/**
 	 * 

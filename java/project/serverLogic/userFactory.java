@@ -2,6 +2,7 @@ package project.serverLogic;
 
 import java.util.ArrayList;
 
+import project.schedule.calendar.GHSCalendarDay;
 import project.schedule.calendar.TutoringHistory;
 import project.schedule.classes.StudentSchedule;
 import project.studyGuide.StudyGuide;
@@ -50,21 +51,65 @@ public class userFactory
 		}
 	}
 	
+	public static void deserializeStudentList(String g)
+	{
+		Gson s = new Gson();
+		Student t = s.fromJson(g, Student.class);
+	}
+	
 	public static void serializeTutorList()
 	{
 		Gson g = new Gson();
 		for(Tutor t: tutorList)
 		{
+			t.prepForJson();
 			String s = g.toJson(t);
 			Mongoconnect con = new Mongoconnect();
 			con.insertToDb(s); //TODO delete old ones first if necessary
 		}
 	}
 	
-	public static void deserializeTutorList()
+	public static void deserializeTutorList(String g)
 	{
-		Gson g = new Gson();
-	}
+		Gson s = new Gson();
+		Tutor t = s.fromJson(g, Tutor.class);
+		boolean match = false;
+		int position = 0;
+		for (int i = 0; i< tutorList.size(); i++)
+		{
+			if (tutorList.get(i).getName() == t.getName())
+			{
+				match = true;
+				position = i;
+			}
+		}
+		if (match == false)
+		{
+			tutorList.add(t);
+		}
+		else
+		{
+				tutorList.get(position).getCalendar().daysOff = Reference.setAndGetBreakDays();
+				tutorList.get(position).getCalendar().endDate = Reference.endDate;
+				tutorList.get(position).getCalendar().startDate = Reference.startDate;
+				tutorList.get(position).getCalendar().cal = new ArrayList<GHSCalendarDay>();
+				tutorList.get(position).getCalendar().refreshCalendar();
+						
+				if(tutorList.get(position).getSchedule() != t.getSchedule())
+				{
+					tutorList.get(position).setSchedule(t.getSchedule());
+				}
+				else if(tutorList.get(position).getRequests() != t.getRequests())
+				{
+					tutorList.get(position).Override(t.getRequests());
+				}
+				else if(tutorList.get(position).getStrongClasses() != t.getStrongClasses())
+				{
+					tutorList.get(position).setStrongClasses(t.getStrongClasses());
+				}
+			}
+		}
+	
 	
 	public static void addStudent(String jsonIn)
 	{
