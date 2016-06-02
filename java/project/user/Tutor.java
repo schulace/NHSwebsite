@@ -23,6 +23,9 @@ public class Tutor extends User
 	
 
 	private ArrayList<TutorReview> reviews;
+	/**
+	 * @deprecated
+	 */
 	private ArrayList<StudyGuide> Guides;
 	private ArrayList<Request> possibilities = new ArrayList<Request>();
 	
@@ -45,6 +48,15 @@ public class Tutor extends User
 	public ArrayList<SchoolClass> getStrongClasses()
 	{
 		return strongClasses;
+	}
+	
+	public void prepForJson()
+	{
+		userCalendar.cal = null;
+		userCalendar.daysOff = null;
+		userCalendar.endDate = null;
+		userCalendar.startDate = null;
+		possibilities = null;
 	}
 
 	public void setStrongClasses(ArrayList<SchoolClass> strongClasses)
