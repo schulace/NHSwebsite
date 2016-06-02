@@ -74,6 +74,19 @@ public class requestManager
 		}
 		return null;
 	}
+	
+	public static void serializeRequestList()
+	{
+		Gson g = new Gson();
+		for (Request req: requestList)
+		{
+			String w = g.toJson(req);
+			Mongoconnect con = new Mongoconnect();
+			con.insertToDb(w); //TODO delete old ones first if necessary
+		}
+	}
+	
+	
 	/**
 	 * 
 	 * @param blocks blocks the tutor would want to teach

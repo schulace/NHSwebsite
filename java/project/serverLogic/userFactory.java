@@ -39,12 +39,22 @@ public class userFactory
 		}
 	}
 	
+	public static void serializeStudentList()
+	{
+		Gson g = new Gson();
+		for (Student s: studentList)
+		{
+			String w = g.toJson(s);
+			Mongoconnect con = new Mongoconnect();
+			con.insertToDb(w); //TODO delete old ones first if necessary
+		}
+	}
+	
 	public static void serializeTutorList()
 	{
 		Gson g = new Gson();
 		for(Tutor t: tutorList)
 		{
-			
 			String s = g.toJson(t);
 			Mongoconnect con = new Mongoconnect();
 			con.insertToDb(s); //TODO delete old ones first if necessary
