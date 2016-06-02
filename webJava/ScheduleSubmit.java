@@ -35,7 +35,7 @@ public class ScheduleSubmit extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		
+		System.out.println(request.getAttributeNames());
 	}
 
 }

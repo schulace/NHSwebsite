@@ -8,11 +8,26 @@ var i = 0;
 var subjList = ["BIOLOGY", "CHEMISTRY", "PHYSICS", "ENGLISH", "HISTORY", "SPANISH", "FRENCH", "ITALIAN", "GERMAN", "LATIN", "CHINESE", "MATH", "PROGRAMMING", "ELECTIVE", "OTHER"];
 var letters = ["a", "b", "c", "d", "e", "f", "g", "h"];
 
-function removeElem(p, c)
+function removeElem(parentDiv, childDiv)
 {
-	var parent = document.getElementById(p);
-	var child = document.getElementById(c);
-	parent.removeChild(child);
+	if (childDiv == parentDiv)
+	{
+		alert("The parent div cannot be removed.");
+	}
+	else if (document.getElementById(childDiv))
+	{
+		var child = document.getElementById(childDiv);
+		var parent = document.getElementById(parentDiv);
+		parent.removeChild(child);
+		var child = document.getElementById(childDiv);
+		var parent = document.getElementById(parentDiv);
+		parent.removeChild(child);
+	}
+	else
+	{
+		alert("Child div has already been removed or does not exist.");
+		return false;
+	}
 }
 
 function classFunction()
@@ -70,8 +85,9 @@ function classFunction()
 	
 	
 	i ++;
-	var deletebutton = document.createElement("button");
-	deletebutton.setAttribute("onclick", "removeElement('formClasses','id_" + i + "')");
+	var deletebutton = document.createElement("img");
+	deletebutton.setAttribute("src", "https://s-media-cache-ak0.pinimg.com/30x30/60/cb/a7/60cba772a1da77d743dd6b59b7cc5161.jpg");
+	deletebutton.setAttribute("onclick", "removeElem('formClasses','id_" + i + "')");
 	className.setAttribute("Name", "className" + i);
 	subj.setAttribute("name", "subject" + i);
 	block.setAttribute("name", "block" + i);
@@ -86,9 +102,8 @@ function classFunction()
 	r.setAttribute("id", "id_" + i);
 	document.getElementById("formClasses").appendChild(r);
 	var br = document.createElement('br')
+	br.setAttribute("id", "id_" + i);
 	document.getElementById("formClasses").appendChild(br);
-	
-	
 }
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -97,7 +112,7 @@ function classFunction()
 <body>
 
 <button onclick="classFunction()">add class</button>
-<form>
+<form action="ScheduleSubmit" method="post">
 	email: <input type="text" name="email"></input><br>
 	year:
 	<select name="year">
@@ -112,7 +127,7 @@ function classFunction()
 		
 	
 	</fieldset>
-	<button ></button>
+	<input type="submit" value="hello?">
 	
 </form>
 
