@@ -8,64 +8,224 @@ body, html {
 nav {
   display: block;
   width: 100%;
-  top: 42px;
   background-color: #1D3557;
-  text-align: center;
+  max-height: 42px;
 }
 .navItems {
   list-style-type: none;
   padding: 0;
   margin: 0;
+  display: inline-block;
+  margin-left: 10px;
 }
 .navItems li {
   display: inline-block;
-  padding: 14px 10px;
+  padding: 0;
   font-size: 11px;
   font-weight: 500;
   color: white;
   text-transform: uppercase;
+  line-height: 42px;
+  padding: 0 10px;
+  margin: 0 !important;
 }
 #header {
   position: fixed;
   width: 100%;
   top: 0;
 }
-#preHeader {
-  width: 100%;
-  height: 42px;
-  background-color: #1D3557;
-  display: block;
-}
-#preHeaderLeft {
-  float: none;
-  display: inline-block;
-  margin-left: 20px;
-  text-align: center;
-}
-#preHeaderRight {
-  display: inline-block;
+.pullRight {
   float: right;
-  margin-right: 20px;
+  margin-right: 10px;
 }
+.userName a {
+  color: white;
+}
+.userName {
+  cursor: pointer;
+}
+.nhsDropdown {
+  background-color: black;
+  line-height: 100px !important;
+}
+.dropit .dropit-open .dropit-submenu {
+  border-radius: 2px;
+  border: 1px solid #343434
+}
+.dropit-submenu li {
+  width: 150px;
+  display: block;
+} 
+.dropit > li > a {
+  height: 100%;
+  display: block;
+  padding: 0 10px;
+}
+ul.menu > li {
+  padding: 0;
+}
+ul.nhsDropdown li {
+  padding 0 10px;
+}
+.dropit .dropit-submenu.userNameDropdown {
+  left: -71px !important;
+}
+.dropit .dropit-submenu.notificationDropdown {
+  left: -139px !important;
+}
+.navItems > li > ul > li{
+  line-height: 34px;
+  font-size: 10px;
+  border-top: 1px solid #343434;
+  transition: 0.1s ease-out;
+}
+.navItems > li > ul > li:first-of-type {
+  border-top: none;
+}
+.navItems > li > ul > li:hover {
+  background-color: #1f1f1f;
+  transition: 0.1s ease-out;
+}
+nav li {
+  transition: 0.1s ease-out;
+}
+nav li:hover {
+  background-color: #172A45;
+  transition: 0.1s ease-out;
+}
+.dropit > li {
+  max-height: 42px;
+}
+.dropdownIcon {
+  padding-right: 10px
+}
+.notificationsIcon {
+  font-size: 18px;
+}
+.nhsDropdownLight {
+  background-color: white;
+  border: none !important;
+  top: 10px
+}
+.nhsDropdownLight > li {
+  border-top: none !important;
+  color: black;
+}
+.dropdownHeader {
+  text-align: center;
+  background-color: #497b9d;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  color: white !important;
+}
+.notificationList {
+  overflow: wrap;
+}
+.cornerGrowAnimation{
+  animation: cornerGrow ease-out 0.07s;
+  animation-iteration-count: 1;
+  transform-origin: 100% 0%;
+  -webkit-animation: cornerGrow ease-out 0.07s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-transform-origin: 100% 0%;
+  -moz-animation: cornerGrow ease-out 0.07s;
+  -moz-animation-iteration-count: 1;
+  -moz-transform-origin: 100% 0%;
+  -o-animation: cornerGrow ease-out 0.07s;
+  -o-animation-iteration-count: 1;
+  -o-transform-origin: 100% 0%;
+  -ms-animation: cornerGrow ease-out 0.07s;
+  -ms-animation-iteration-count: 1;
+  -ms-transform-origin: 100% 0%;
+}
+
+@keyframes cornerGrow{
+  0% {
+    opacity:0;
+    transform:  scaleX(0.75) scaleY(0.75) ;
+  }
+  100% {
+    opacity:1;
+    transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+}
+
+@-moz-keyframes cornerGrow{
+  0% {
+    opacity:0;
+    -moz-transform:  scaleX(0.75) scaleY(0.75) ;
+  }
+  100% {
+    opacity:1;
+    -moz-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+}
+
+@-webkit-keyframes cornerGrow {
+  0% {
+    opacity:0;
+    -webkit-transform:  scaleX(0.75) scaleY(0.75) ;
+  }
+  100% {
+    opacity:1;
+    -webkit-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+}
+
+@-o-keyframes cornerGrow {
+  0% {
+    opacity:0;
+    -o-transform:  scaleX(0.75) scaleY(0.75) ;
+  }
+  100% {
+    opacity:1;
+    -o-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+}
+
+@-ms-keyframes cornerGrow {
+  0% {
+    opacity:0;
+    -ms-transform:  scaleX(0.75) scaleY(0.75) ;
+  }
+  100% {
+    opacity:1;
+    -ms-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+}
+
 /*Logo*/
+logo {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
 #logo {
-    color: white;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-size: 15px;
-    letter-spacing: 2px;
-    padding: 14px 0;
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 15px;
+  letter-spacing: 2px;
+  padding: 14px 0;
 }
 .cardinal {
-  width: 30px;
-  height: 30px;
-  padding: 6px 0;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  padding: 9px 9px;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  margin-left: -21px;
+}
+.logoLi {
+  padding: 0 !important;;
 }
 /*Header*/
 #firstHeader {
-  height: 540px;
+  height: 300px;
   display: block;
-  margin-top: 83px;
+  margin-top: 42px;
   width: 100%;
   background-image: url("../img/tower.jpg.jpg");
   background-size: cover;
@@ -96,3 +256,19 @@ nav {
   margin-left: -500px;
   position: absolute;
 }
+/*Offsets*/
+.container .offset-by-one                   { padding-left: 80px; }
+.container .offset-by-two                   { padding-left: 160px; }
+.container .offset-by-three                 { padding-left: 240px; }
+.container .offset-by-four                  { padding-left: 320px; }
+.container .offset-by-five                  { padding-left: 400px; }
+.container .offset-by-six                   { padding-left: 480px; }
+.container .offset-by-seven                 { padding-left: 560px; }
+.container .offset-by-eight                 { padding-left: 640px; }
+.container .offset-by-nine                  { padding-left: 720px; }
+.container .offset-by-ten                   { padding-left: 800px; }
+.container .offset-by-eleven                { padding-left: 880px; }
+.container .offset-by-twelve                { padding-left: 960px; }
+.container .offset-by-thirteen              { padding-left: 1040px; }
+.container .offset-by-fourteen              { padding-left: 1120px; }
+.container .offset-by-fifteen               { padding-left: 1200px; }

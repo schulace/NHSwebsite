@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<head>
+  <!--Stylesheets-->
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:400,700,300" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lobster+Two:700italic" rel="stylesheet" type="text/css">
+  <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet" type="text/css">
+  <link href="css/app.css" rel="stylesheet" type="text/css">
+  <link href="css/foundation.min.css" rel="stylesheet" type="text/css">
+  <link href="css/nhs.css" rel="stylesheet">
+  <!--Scripts-->
+  <script src="https://code.jquery.com/jquery-2.2.3.min.js" integrity="sha256-a23g1Nt4dtEYOj7bR+vTu7+T8VP13humZFBJNIYoEJo=" crossorigin="anonymous"></script>
+  <script src="js/dropit.js"></script>
+  <link rel="stylesheet" href="css/dropit.css" type="text/css">
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="js/vendor/foundation.min.js"></script>
+  <script src="js/vendor/what-input.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/scrollattributes.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.menu').dropit();
+    });
+  </script>
+  <!--Favicon-->
+  <link rel="icon" type="image/png" href="img/favicon.png">
+</head>
+<body>
+  <!--Navbar-->
+  <div id="header">
+    <nav>
+      <ul class="navItems">
+        <a href="#"><li>Schedule a Tutor</li></a>
+        <a href="#"><li>Study Guides</li></a>
+        <a href="#"><li>FAQ</li></a>
+        <a href="#"><li>About Us</li></a>
+      </ul>
+      <img src="svg/logo.svg" class="cardinal">
+      <ul id="menu1" class="navItems pullRight menu dropit">
+        <li class="dropit-trigger userName btn"><a class="btn"><i class="icon ion-ios-arrow-down dropdownIcon"></i>userName</a>
+          <ul class="dropit-submenu nhsDropdown userNameDropdown cornerGrowAnimation">
+            <li><i class="icon ion-person dropdownIcon"></i>My Profile</li>
+            <li><i class="icon ion-gear-a dropdownIcon"></i>Settings</li>
+            <li><i class="icon ion-log-out dropdownIcon"></i>Log Out</li>
+          </ul>
+        </li>
+      </ul>
+      <ul id="menu2" class="navItems pullRight menu dropit">
+        <li class="dropit-trigger userName btn"><a class="btn"><i class="icon ion-android-notifications notificationsIcon"></i></a>
+          <ul class="dropit-submenu nhsDropdown nhsDropdownLight cornerGrowAnimation notificationDropdown">
+            <li class=dropdownHeader>Notifications</li>
+            <li class="notificationList">TRedfldhflsdhafkhdslkfjhdskjfhlkdsjahf</li>
+            <li><i class="icon ion-gear-a dropdownIcon"></i>Settings</li>
+          </ul>
+        </li>
+      </ul>
+
+    </nav>
+  </div>
+  <!--Header Splash-->
+  <div class="container">
+    <div class="row">
+      
+    </div>
+  </div>
+</body>
