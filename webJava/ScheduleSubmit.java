@@ -55,7 +55,7 @@ public class ScheduleSubmit extends HttpServlet {
 			String[] ar = m.get(s); //gets a string array of numbers representing which days of the schedule the class meets
 			if (ar == null) //error checking for people not checking any days for their classes
 			{
-				theyDoneFuckedUp(request, response);
+				theyDoneFuckedUp(request, response, "a class you entered did not have any blocks ticked"); //TODO AJAX this shit so we can make a java popup.
 			}
 			
 			else if(ar != null) //errors if not this (deals with retards not checking any days.
@@ -73,17 +73,15 @@ public class ScheduleSubmit extends HttpServlet {
 				
 				for (int i = 0; i < classes.size(); i++)
 				{
-					if (classes.get(i) == c)
+					if (classes.get(i).getName().equals(c.getName()))
 					{
 						match = true;
+						theyDoneFuckedUp(request, response, "2 classes with the same name");
 					}
-					else if (classes.get(i).getName() == c.getName())
+					else if (isArrayInOtherArray(classes.get(i).getDays(), c.getDays()) && ((classes.get(i).getBlock()) == c.getBlock()))  
 					{
 						match = true;
-					}
-					else if ((classes.get(i).getDays() == c.getDays()) && ((classes.get(i).getBlock()) == c.getBlock()))  
-					{
-						match = true;
+						theyDoneFuckedUp(request, response, "2 classes scheduled in the same block");
 					}
 					else
 					{
@@ -91,11 +89,7 @@ public class ScheduleSubmit extends HttpServlet {
 					}
 				}
 				
-				if (match = true) //if they enter two of the same classes
-				{
-					theyDoneFuckedUp(request, response);
-				}
-				else
+				if (!match)
 				{
 					classes.add(c); //adds the class generated above to an array.
 				}
@@ -105,9 +99,24 @@ public class ScheduleSubmit extends HttpServlet {
 		System.out.println("\n"+sched);
 		response.getWriter().append(sched.toPrettierHTML());
 	}
+	
+	private boolean isArrayInOtherArray(LetterDay[] a, LetterDay[] b)
+	{
+		for(LetterDay dA: a)
+		{
+			for(LetterDay dB : b)
+			{
+				if(dA == dB)
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 	//redirects them to the userInfoEntry if they fucked up
-	private void theyDoneFuckedUp (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().write("It seems like you have entered your shedule information incorrectly, please re-input your student shedule, you will be redirected shortly....");
+	private void theyDoneFuckedUp (HttpServletRequest request, HttpServletResponse response, String message) throws ServletException, IOException {
+		response.getWriter().write("It seems like you have entered your shedule information incorrectly, please re-input your student shedule, you will be redirected shortly...." + "\n" + message);
 			try 
 			{
 			    Thread.sleep(3000);                 //1000 milliseconds is one second, i'd say that 3 sec is a good time for the users to read the error message
@@ -115,7 +124,7 @@ public class ScheduleSubmit extends HttpServlet {
 			{
 			    Thread.currentThread().interrupt();
 			}
-			String redirectURL = "http://localhost:8080/nhsWeb/userInfoEntry.jsp"; //TODO change this once we have a domian name for the website
+			String redirectURL = "userInfoEntry.jsp"; //TODO change this once we have a domian name for the website
 		    response.sendRedirect(redirectURL);
 		    return;
 	}
