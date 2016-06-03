@@ -3,6 +3,8 @@ package project.serverLogic;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoIterable;
+
 import org.bson.*;
 import static com.mongodb.client.model.Filters.*;
 
@@ -29,7 +31,7 @@ public class Mongoconnect //TODO josh what have you done. there are like 25 warn
 	private static String host = "localhost";
 	private static String dbname = "mydb";
 	private static String usedcoll = "test1";
-	public static ArrayList<String> collectionlist;
+	public static ArrayList<String> collectionlist = new ArrayList<String>();
 	
 	public Mongoconnect(){
 		super();
@@ -73,10 +75,12 @@ public class Mongoconnect //TODO josh what have you done. there are like 25 warn
 	}
 	
 	public String getDbInfo(){//get db info, probably never gonna be used, might commend out
-		MongoClient mongoClient = new MongoClient(host); //connects to client on localhost
+		MongoClient mongoClient = new MongoClient(host); //connects to client
 		MongoDatabase database = mongoClient.getDatabase(dbname);//gets db called mydb
 		String info = database.getName();//just make a string with the name of the db
-		mongoClient.close();
+		info += " , collections are ";
+		MongoIterable<String> fuckyou = database.listCollectionNames();
+		info += fuckyou.first();
 		return info;//return
 	}
 	
@@ -88,7 +92,7 @@ public class Mongoconnect //TODO josh what have you done. there are like 25 warn
 	
 	public void insertToDb(String json, String collection){//send data to database
 		MongoCollection<Document> collname = getConnection(collection);
-		Document parsedjson = Document.parse(json); //REPLACE THIS WITH NOT TEST METHOD, create new document from JSON string
+		Document parsedjson = Document.parse(json); //create new document from JSON string
 		collname.insertOne(parsedjson); //insert document into collection
 	}
 	
