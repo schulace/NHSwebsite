@@ -209,14 +209,14 @@ logo {
   padding: 14px 0;
 }
 .cardinal {
-  width: 24px;
-  height: 24px;
-  margin: 0;
-  padding: 9px 9px;
-  position: absolute;
-  left: 50%;
-  top: 0;
-  margin-left: -21px;
+      height: 24px;
+    margin: 0;
+    /* padding: 9px 9px; */
+    position: absolute;
+    left: 50%;
+    top: 9px;
+    margin-left: -21px;
+    background-size: 100%;
 }
 .logoLi {
   padding: 0 !important;;
