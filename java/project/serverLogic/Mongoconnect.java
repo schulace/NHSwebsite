@@ -24,7 +24,7 @@ import java.util.ArrayList;
 	getUserCount(), returns int count;
 	getFromDb(String field, String value), returns String json;
  */
-//TODO josh you use javadoccing for this kind of shit not just a bunch of commented lines. /** on the first line to indicate a javadoc.
+
 public class Mongoconnect
 {
 	
@@ -66,15 +66,16 @@ public class Mongoconnect
 		collectionlist.add(usedcoll);
 	}
 	
-	public MongoCollection<Document> getConnection(String collection2){//sets up initial connection
+	//sets up initial connection
+	public MongoDatabase getConnection(){
 		MongoClient mongoClient = new MongoClient(host); //connects to client on localhost
 		MongoDatabase database = mongoClient.getDatabase(dbname);//gets db called mydb
-		MongoCollection<Document> collection = database.getCollection(collection2);//replace with not tes
-		mongoClient.close();
-		return collection;
+		//MongoCollection<Document> collection = database.getCollection(collection2);//replace with not tes
+		return database;
 	}
 	
-	public String getDbInfo(){//get db info, probably never gonna be used, might commend out
+	//get db info, probably never gonna be used, might commend out
+	public String getDbInfo(){
 		MongoClient mongoClient = new MongoClient(host); //connects to client
 		MongoDatabase database = mongoClient.getDatabase(dbname);//gets db called mydb
 		String info = database.getName();//just make a string with the name of the db
@@ -84,39 +85,62 @@ public class Mongoconnect
 		return info;//return
 	}
 	
-	public void insertToDb(String collection){//send data to database, test method using ServerStart.getTestJson()
-		MongoCollection<Document> collname = getConnection(collection);
+	//send data to database, test method using ServerStart.getTestJson()
+	public void insertToDb(String collection){
+		MongoDatabase database = getConnection();
+		MongoCollection<Document> coll = database.getCollection(collection);//replace with not tes
 		Document parsedjson = Document.parse(ServerStart.getTestJson()); //REPLACE THIS WITH NOT TEST METHOD, create new document from JSON string
-		collname.insertOne(parsedjson); //insert document into collection
+		coll.insertOne(parsedjson); //insert document into collection
 	}
 	
 	public void insertToDb(String json, String collection){//send data to database
-		MongoCollection<Document> collname = getConnection(collection);
+		MongoDatabase database = getConnection();
+		MongoCollection<Document> coll = database.getCollection(collection);//replace with not tes
 		Document parsedjson = Document.parse(json); //create new document from JSON string
-		collname.insertOne(parsedjson); //insert document into collection
+		coll.insertOne(parsedjson); //insert document into collection
 	}
 	
-	public long getUserCount(String collection2){//gets the number of users in a db
-		MongoCollection<Document> collection = getConnection(null);//retrieve a collection
-		long usercount = collection.count();
+	//Gets the number of users in a db
+	public long getUserCount(String collection){
+		MongoDatabase database = getConnection();//retrieve a collection
+		MongoCollection<Document> coll = database.getCollection(collection);//replace with not tes
+		long usercount = coll.count();
 		return usercount;
 	}
 	
+	//Return collection list. TODO: Get rid of this I think
 	public ArrayList<String> getCollectionList(){
 		return collectionlist;
 	}
 	
-	public String getfromdb(String field, String value, String collection){//for example, getfromdb(username, john);
-		MongoCollection<Document> collname = getConnection(collection);//retrieve a collection
-		Document myDoc = collname.find(eq(field,value)).first();
+	//Get specified document from collection. For example, getfromdb(username, john);
+	public String getFromDb(String field, String value, String collection){
+		MongoDatabase database = getConnection();//retrieve a collection
+		MongoCollection<Document> coll = database.getCollection(collection);
+		Document myDoc = coll.find(eq(field,value)).first();
 		return myDoc.toJson();
 	}
 
-	public ArrayList<String> getCollection(String collectionName) //TODO josh make this work. i want an arrayList of json strings that are in a collection.
+	public ArrayList<String> getCollection(String collection) 
 	{
-		ArrayList<String> toReturn = new ArrayList<String>();
-		MongoCollection<Document> collname = getConnection(collectionName);
-		return null;
+		MongoDatabase database = getConnection();//retrieve a collection
+		MongoCollection<Document> colls = database.getCollection(collection);
+		ArrayList<String> allJSON = null;
+		for (Document cur : colls.find()) {
+		    allJSON.add(cur.toJson());
+		}
+		return allJSON;
+	}
+	
+	
+	public ArrayList<String> listCollections(String collectionName){
+		MongoDatabase database = getConnection();//retrieve a collection
+		MongoIterable<String> colls = database.listCollectionNames();
+		ArrayList<String> collnames = null;
+		for (String s : colls) {
+			collnames.add(s);
+		}
+		return collnames;
 	}
 	
 
