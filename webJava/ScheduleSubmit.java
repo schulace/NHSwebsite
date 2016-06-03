@@ -55,7 +55,7 @@ public class ScheduleSubmit extends HttpServlet {
 			String[] ar = m.get(s); //gets a string array of numbers representing which days of the schedule the class meets
 			if (ar == null) //error checking for people not checking any days for their classes
 			{
-				theyDoneFuckedUp(request, response, "a class you entered did not have any blocks ticked"); //TODO AJAX this shit so we can make a java popup.
+				//TODO use AJAX to push a pop-up warning to the user
 			}
 			
 			else if(ar != null) //errors if not this (deals with retards not checking any days.
@@ -82,6 +82,11 @@ public class ScheduleSubmit extends HttpServlet {
 					{
 						match = true;
 						theyDoneFuckedUp(request, response, "2 classes scheduled in the same block");
+					}
+					else if ((classes.get(i).getSubject() == c.getSubject()) && ((classes.get(i).getName().equals(c.getName()))))
+					{
+						match = true;
+						theyDoneFuckedUp(request, response, "2 classes with the same subject + name"); //may not be needed to check (since people can take multiple english classes, etc) but I figured that we may aswell check for it
 					}
 					else
 					{
@@ -118,18 +123,11 @@ public class ScheduleSubmit extends HttpServlet {
 		return false;
 	}
 	//redirects them to the userInfoEntry if they fucked up
-	private void theyDoneFuckedUp (HttpServletRequest request, HttpServletResponse response, String message) throws ServletException, IOException {
-		response.getWriter().write("It seems like you have entered your shedule information incorrectly, please re-input your student shedule, you will be redirected shortly...." + "\n" + message);
-			try 
-			{
-			    Thread.sleep(3000);                 //1000 milliseconds is one second, i'd say that 3 sec is a good time for the users to read the error message
-			} catch(InterruptedException ex)
-			{
-			    Thread.currentThread().interrupt();
-			}
-			String redirectURL = "userInfoEntry.jsp"; //TODO change this once we have a domian name for the website
-		    response.sendRedirect(redirectURL);
-		    return;
+	private void theyDoneFuckedUp (HttpServletRequest request, HttpServletResponse response, String message) throws ServletException, IOException 
+	{
+		System.err.println("Error: " + message);
+		String redirectURL = "userInfoEntry.jsp"; //TODO change this once we have a domian name for the website
+		response.sendRedirect(redirectURL);
 	}
 	private int getNumberOfClasses(HttpServletRequest request)
 	{
