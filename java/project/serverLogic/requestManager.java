@@ -10,6 +10,7 @@ import project.schedule.classes.Subject;
 import project.schedule.classes.TutoringSession;
 import project.user.Teacher;
 import project.user.Tutor;
+import com.google.gson.Gson;
 
 
 //TODO generate a tutoring session class, put it into schedules, and then be able to move a request into an archive + out of the list.
@@ -73,6 +74,25 @@ public class requestManager
 		}
 		return null;
 	}
+	
+	public static void serializeRequestList()
+	{
+		Gson g = new Gson();
+		for (Request req: requestList)
+		{
+			String w = g.toJson(req);
+			Mongoconnect con = new Mongoconnect();
+			con.insertToDb(w); //TODO delete old ones first if necessary
+		}
+	}
+	
+	public static void deserializeRequestList(String g)
+	{
+		Gson s = new Gson();
+		Request t = s.fromJson(g, Request.class);
+		addRequest(t);
+	}	
+	
 	/**
 	 * 
 	 * @param blocks blocks the tutor would want to teach
@@ -134,6 +154,15 @@ public class requestManager
 	public static int getBlockFromArray(int[] arrIn)
 	{
 		return StudentSchedule.blocks[arrIn[0]][arrIn[1]];
+	}
+	//Creates a JSON of the requestList and returns it 		
+	
+	public static String toJSON()
+	{
+		Gson g = new Gson();
+		String s = g.toJson(getRequestList());
+		System.out.println(s);
+		return s;
 	}
 	
 }

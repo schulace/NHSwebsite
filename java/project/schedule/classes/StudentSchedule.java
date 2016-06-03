@@ -105,6 +105,32 @@ public class StudentSchedule
 		return s;
 	}
 	
+	public String toPrettierHTML()
+	{
+		String s = "<table><tr><td></td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td></tr>";
+		for(int x = 0; x < 6; x ++)
+		{
+			s += "<tr><td>" + (x+1) + "</td>";
+			for(int y = 0; y < 8; y ++)
+			{
+				s += "<td>";
+				if(blockSchedule[y][x] == null)
+				{
+					s += "open";
+				}
+				else
+				{
+					s += blockSchedule[y][x].getSubject();
+				}
+				s += "</td>";
+				
+			}
+			s += "</tr>";
+		}
+		s += "</table>";
+		return s;
+	}
+	
 	@Override
 	public String toString()
 	{

@@ -1,14 +1,20 @@
 package project.serverLogic;
 
-public class MongoTest {
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.MongoIterable;
 
-		public static void main(String[] args){
-			
-			Mongoconnect newconnection = new Mongoconnect();
-			System.out.println(newconnection.getDbInfo());
-			newconnection.insertToDb(ServerStart.getTestJson());
-			System.out.println(newconnection.getUserCount());
-			String json = newconnection.getfromdb("name", "test_student@greenwich.k12.ct.us");
-			System.out.println(json);
+public class MongoTest
+{
+
+		public static void main(String[] args)
+		{
+			MongoClient mc = new MongoClient(" 24.38.233.137", 27017);
+			MongoDatabase db = mc.getDatabase("mydb");
+			MongoIterable<String> z = db.listCollectionNames();
+			for(String s:z)
+			{
+				System.out.println(s);
+			}
 		}
 }
