@@ -155,6 +155,34 @@ public class GHSCalendar
 		}
 	}
 
+	public Calendar getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Calendar startDate) {
+		this.startDate = startDate;
+	}
+
+	public Calendar getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Calendar endDate) {
+		this.endDate = endDate;
+	}
+
+	public ArrayList<GHSCalendarDay> getCal() {
+		return cal;
+	}
+
+	public void setCal(ArrayList<GHSCalendarDay> cal) {
+		this.cal = cal;
+	}
+
+	public ArrayList<GregorianCalendar> getDaysOff() {
+		return daysOff;
+	}
+
 	@Override
 	public String toString()
 	{

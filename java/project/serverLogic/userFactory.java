@@ -2,6 +2,8 @@ package project.serverLogic;
 
 import java.util.ArrayList;
 
+import project.requests.Request;
+import project.schedule.calendar.GHSCalendarDay;
 import project.schedule.calendar.TutoringHistory;
 import project.schedule.classes.StudentSchedule;
 import project.studyGuide.StudyGuide;
@@ -11,6 +13,11 @@ import project.user.Teacher;
 import project.user.Tutor;
 import com.google.gson.Gson;
 
+/**
+ * 
+ * @author schulace
+ * note: deserialize this before requests.
+ */
 public class userFactory
 {
 	public static ArrayList<Student> studentList = new ArrayList<Student>();
@@ -39,6 +46,64 @@ public class userFactory
 		}
 	}
 	
+	public static void serializeStudentList()
+	{
+		Gson g = new Gson();
+		for (Student s: studentList)
+		{
+			s.prepForJson();
+			String w = g.toJson(s);
+			Mongoconnect con = new Mongoconnect();
+			con.insertToDb(w, "studentCollection");
+		}
+		studentList = new ArrayList<Student>();
+	}
+	
+	public static void deserializeStudentList()
+	{
+		Mongoconnect connection = new Mongoconnect();
+		ArrayList<String> jsons = connection.getCollection("studentCollection");
+		Gson g = new Gson();
+		for(String fuzzyStudent: jsons)
+		{
+			Student stu = g.fromJson(fuzzyStudent, Student.class);
+			stu.getCalendar().setStartDate(Reference.startDate);
+			stu.getCalendar().setEndDate(Reference.endDate);
+			stu.getCalendar().setDaysOff(Reference.setAndGetBreakDays());
+			stu.getCalendar().refreshCalendar();
+		}
+	}
+	
+	public static void serializeTutorList()
+	{
+		Gson g = new Gson();
+		for(Tutor t: tutorList)
+		{
+			t.prepForJson();
+			String s = g.toJson(t);
+			Mongoconnect con = new Mongoconnect();
+			con.insertToDb(s, "tutorCollection");
+		}
+		tutorList = new ArrayList<Tutor>();
+	}
+	
+	public static void deserializeTutorList() //TODO requests for tutors + setting that up properly.
+	{
+		Mongoconnect connection = new Mongoconnect();
+		ArrayList<String> jsons = connection.getCollection("studentCollection");
+		Gson g = new Gson();
+		for(String s:jsons)
+		{
+			Tutor t = g.fromJson(s, Tutor.class);
+			t.getCalendar().daysOff = Reference.setAndGetBreakDays();
+			t.getCalendar().endDate = Reference.endDate;
+			t.getCalendar().startDate = Reference.startDate;
+			t.getCalendar().refreshCalendar();
+			t.Override(new ArrayList<Request>());
+		}
+	}
+	
+	@Deprecated
 	public static void addStudent(String jsonIn)
 	{
 		Gson gs = new Gson();

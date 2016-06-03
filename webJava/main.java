@@ -26,7 +26,7 @@ public class main extends HttpServlet
     public main()
     {
         super();
-        // TODO Auto-generated constructor stub
+        // 
     }
     
     @Override
@@ -40,7 +40,7 @@ public class main extends HttpServlet
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		// TODO Auto-generated method stub
+		// 
 		PrintWriter page = response.getWriter();
 		
 		page.append(test_schedules.getStudent1Schedule().toHTML());
