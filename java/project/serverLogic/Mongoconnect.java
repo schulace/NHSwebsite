@@ -19,10 +19,11 @@ import java.util.ArrayList;
 
 	Methods: 
 	getDbInfo(), returns String dbinfo;
-	insertToDb(), returns nothing;
-	insertToDb(String json), returns nothing;
+	insertToDb(String collection), returns nothing;
+	insertToDb(String json, String collection), returns nothing;
 	getUserCount(), returns int count;
-	getFromDb(String field, String value), returns String json;
+	getFromDb(String field, String value, String collection), returns String json;
+	getCollection(String collection), returns ArrayList<String> of all documents in collection in json
  */
 
 public class Mongoconnect
@@ -74,16 +75,27 @@ public class Mongoconnect
 		return database;
 	}
 	
-	//get db info, probably never gonna be used, might commend out
-	public String getDbInfo(){
-		MongoClient mongoClient = new MongoClient(host); //connects to client
-		MongoDatabase database = mongoClient.getDatabase(dbname);//gets db called mydb
-		String info = database.getName();//just make a string with the name of the db
-		info += " , collections are ";
-		MongoIterable<String> fuckyou = database.listCollectionNames();
-		info += fuckyou.first();
-		return info;//return
-	}
+	
+	///YOU HAVE ENTERED THE DANGER ZONE:
+	
+	//THIS IS CODE THAT HAS BEEN WORKED ON BY TWO PEOPLE WHO DID NOT TALK TO EACH OTHER ABOUT WTF THEY'RE DOING
+	//AND NOW IT'S A GRAVEYARD FOR CODE THAT COULD HAVE BEEN
+	//MIGHT FIX LATER BUT TBH WE PROBABLY DON'T NEED IT
+	//SO PROB NOT
+	
+	
+//	//get db info, probably never gonna be used, might commend out
+//	public String getDbInfo(){
+//		MongoClient mongoClient = new MongoClient(host); //connects to client
+//		MongoDatabase database = mongoClient.getDatabase(dbname);//gets db called mydb
+//		String info = database.getName();//just make a string with the name of the db
+//		info += " , collections are ";
+//		MongoIterable<String> fuckyou = database.listCollectionNames();
+//		info += fuckyou.first();
+//		return info;//return
+//	}
+	
+	
 	
 	//send data to database, test method using ServerStart.getTestJson()
 	public void insertToDb(String collection){
@@ -125,7 +137,7 @@ public class Mongoconnect
 	{
 		MongoDatabase database = getConnection();//retrieve a collection
 		MongoCollection<Document> colls = database.getCollection(collection);
-		ArrayList<String> allJSON = null;
+		ArrayList<String> allJSON = new ArrayList<String>();
 		for (Document cur : colls.find()) {
 		    allJSON.add(cur.toJson());
 		}
@@ -136,7 +148,7 @@ public class Mongoconnect
 	public ArrayList<String> listCollections(String collectionName){
 		MongoDatabase database = getConnection();//retrieve a collection
 		MongoIterable<String> colls = database.listCollectionNames();
-		ArrayList<String> collnames = null;
+		ArrayList<String> collnames = new ArrayList<String>();
 		for (String s : colls) {
 			collnames.add(s);
 		}
