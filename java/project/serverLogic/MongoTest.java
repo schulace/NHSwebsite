@@ -16,5 +16,6 @@ public class MongoTest
 			{
 				System.out.println(s);
 			}
+			mc.close();
 		}
 }

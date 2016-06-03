@@ -13,7 +13,6 @@ import project.user.Tutor;
 import com.google.gson.Gson;
 
 
-//TODO generate a tutoring session class, put it into schedules, and then be able to move a request into an archive + out of the list.
 public class requestManager
 {
 	private static ArrayList<Request> requestList = new ArrayList<Request>();
@@ -82,7 +81,7 @@ public class requestManager
 		{
 			String w = g.toJson(req);
 			Mongoconnect con = new Mongoconnect();
-			con.insertToDb(w); //TODO delete old ones first if necessary
+			con.insertToDb(w, "requestCollection");
 		}
 	}
 	

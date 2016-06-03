@@ -52,6 +52,14 @@ public abstract class User
 		this(new StudentSchedule(), name, grade);
 	}
 	
+	public void prepForJson()
+	{
+		this.userCalendar.cal = null;
+		this.userCalendar.daysOff = null;
+		this.userCalendar.endDate = null;
+		this.userCalendar.startDate = null;
+	}
+	
 	
 	/**
 	 * 
@@ -169,7 +177,7 @@ public abstract class User
 		return "User [name=" + name + ", grade=" + grade + "]";
 	}
 	
-	public void acceptSession() //TODO Josh talk to me about this when you know PHP
+	public void acceptSession()
 	{
 		this.confirm = true;
 	}

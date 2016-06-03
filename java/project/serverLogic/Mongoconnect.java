@@ -25,7 +25,7 @@ import java.util.ArrayList;
 	getFromDb(String field, String value), returns String json;
  */
 //TODO josh you use javadoccing for this kind of shit not just a bunch of commented lines. /** on the first line to indicate a javadoc.
-public class Mongoconnect //TODO josh what have you done. there are like 25 warnings and 20 of them are from this class because you use this.blah to access static fields.
+public class Mongoconnect
 {
 	
 	private static String host = "localhost";
@@ -110,6 +110,13 @@ public class Mongoconnect //TODO josh what have you done. there are like 25 warn
 		MongoCollection<Document> collname = getConnection(collection);//retrieve a collection
 		Document myDoc = collname.find(eq(field,value)).first();
 		return myDoc.toJson();
+	}
+
+	public ArrayList<String> getCollection(String collectionName) //TODO josh make this work. i want an arrayList of json strings that are in a collection.
+	{
+		ArrayList<String> toReturn = new ArrayList<String>();
+		MongoCollection<Document> collname = getConnection(collectionName);
+		return null;
 	}
 	
 

@@ -45,16 +45,26 @@ public class userFactory
 		Gson g = new Gson();
 		for (Student s: studentList)
 		{
+			s.prepForJson();
 			String w = g.toJson(s);
 			Mongoconnect con = new Mongoconnect();
-			con.insertToDb(w); //TODO delete old ones first if necessary
+			con.insertToDb(w, "studentCollection");
 		}
 	}
 	
-	public static void deserializeStudentList(String g)
+	public static void deserializeStudentList()
 	{
-		Gson s = new Gson();
-		Student t = s.fromJson(g, Student.class);
+		Mongoconnect connection = new Mongoconnect();
+		ArrayList<String> jsons = connection.getCollection("studentCollection");
+		Gson g = new Gson();
+		for(String fuzzyStudent: jsons)
+		{
+			Student stu = g.fromJson(fuzzyStudent, Student.class);
+			stu.getCalendar().setStartDate(Reference.startDate);
+			stu.getCalendar().setEndDate(Reference.endDate);
+			stu.getCalendar().setDaysOff(Reference.setAndGetBreakDays());
+			stu.getCalendar().refreshCalendar();
+		}
 	}
 	
 	public static void serializeTutorList()
@@ -65,50 +75,24 @@ public class userFactory
 			t.prepForJson();
 			String s = g.toJson(t);
 			Mongoconnect con = new Mongoconnect();
-			con.insertToDb(s); //TODO delete old ones first if necessary
+			con.insertToDb(s, "tutorCollection");
 		}
 	}
 	
-	public static void deserializeTutorList(String g)
+	public static void deserializeTutorList() //TODO requests for tutors + setting that up properly.
 	{
-		Gson s = new Gson();
-		Tutor t = s.fromJson(g, Tutor.class);
-		boolean match = false;
-		int position = 0;
-		for (int i = 0; i< tutorList.size(); i++)
+		Mongoconnect connection = new Mongoconnect();
+		ArrayList<String> jsons = connection.getCollection("studentCollection");
+		Gson g = new Gson();
+		for(String s:jsons)
 		{
-			if (tutorList.get(i).getName() == t.getName())
-			{
-				match = true;
-				position = i;
-			}
+			Tutor t = g.fromJson(s, Tutor.class);
+			t.getCalendar().daysOff = Reference.setAndGetBreakDays();
+			t.getCalendar().endDate = Reference.endDate;
+			t.getCalendar().startDate = Reference.startDate;
+			t.getCalendar().refreshCalendar();
 		}
-		if (match == false)
-		{
-			tutorList.add(t);
-		}
-		else
-		{
-				tutorList.get(position).getCalendar().daysOff = Reference.setAndGetBreakDays();
-				tutorList.get(position).getCalendar().endDate = Reference.endDate;
-				tutorList.get(position).getCalendar().startDate = Reference.startDate;
-				tutorList.get(position).getCalendar().cal = new ArrayList<GHSCalendarDay>();
-				tutorList.get(position).getCalendar().refreshCalendar();
-						
-				if(tutorList.get(position).getSchedule() != t.getSchedule())
-				{
-					tutorList.get(position).setSchedule(t.getSchedule());
-				}
-				else if(tutorList.get(position).getRequests() != t.getRequests())
-				{
-					tutorList.get(position).Override(t.getRequests());
-				}
-				else if(tutorList.get(position).getStrongClasses() != t.getStrongClasses())
-				{
-					tutorList.get(position).setStrongClasses(t.getStrongClasses());
-				}
-			}
-		}
+	}
 	
 	
 	public static void addStudent(String jsonIn)

@@ -58,10 +58,7 @@ public class Tutor extends User
 	
 	public void prepForJson()
 	{
-		this.userCalendar.cal = null;
-		this.userCalendar.daysOff = null;
-		this.userCalendar.endDate = null;
-		this.userCalendar.startDate = null;
+		super.prepForJson();
 		this.possibilities = null;
 	}
 
@@ -122,7 +119,7 @@ public class Tutor extends User
 	 * then the site will pass it the name of the student who made the request, as well as a list of which block the tutor wants to do shit.
 	 * this sets the request filled to true, and then runs update on requestManager
 	 */
-	public void fillRequest(String studentName, ArrayList<int[]> blocks) //TODO explain to marshall + josh how I think this is going to work
+	public void fillRequest(String studentName, ArrayList<int[]> blocks)
 	{
 		Request req = requestManager.getRequest(studentName);
 		if(req != null)
