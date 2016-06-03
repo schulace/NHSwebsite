@@ -22,8 +22,7 @@ import java.util.ArrayList;
 	getUserCount(), returns int count;
 	getFromDb(String field, String value), returns String json;
  */
-//TODO josh you use javadoccing for this kind of shit not just a bunch of commented lines. /** on the first line to indicate a javadoc.
-public class Mongoconnect //TODO josh what have you done. there are like 25 warnings and 20 of them are from this class because you use this.blah to access static fields.
+public class Mongoconnect 
 {
 	
 	private static String host = "localhost";
@@ -33,41 +32,44 @@ public class Mongoconnect //TODO josh what have you done. there are like 25 warn
 	
 	public Mongoconnect(){
 		super();
-		checkCollection();
+		//checkCollection();
 	}
 	
 	public Mongoconnect(String calledcoll){
 		usedcoll = calledcoll;//testdb
-		checkCollection();
+		//checkCollection();
 	}
 	
 	public Mongoconnect(String calledcoll, String db){
 		dbname = db;//defualtdb
 		usedcoll = calledcoll;//testdb
-		checkCollection();
+		//checkCollection();
 	}
 	
 	public Mongoconnect(String calledcoll, String db, String location){
 		host = location;//default host
 		dbname = db;//defualtdb
 		usedcoll = calledcoll;//testdb
-		checkCollection();
+		//checkCollection();
 	}
 	
-	public void checkCollection(){
-		Boolean isin = false;
-		for (int i = 0;i<collectionlist.size();i++){
-			if (usedcoll ==  collectionlist.get(i)){
-				 isin = true;
-			}
-		}
-		collectionlist.add(usedcoll);
-	}
+//	public void checkCollection(){
+//		Boolean isin = false;
+//		for (int i = 0;i<collectionlist.size();i++){
+//			if (usedcoll ==  collectionlist.get(i)){
+//				 isin = true;
+//			}
+//		}
+//		collectionlist.add(usedcoll);
+//	} 
+	
+	//TODO make this shit work
 	
 	public MongoCollection<Document> getConnection(){//sets up initial connection
 		MongoClient mongoClient = new MongoClient(host); //connects to client on localhost
 		MongoDatabase database = mongoClient.getDatabase(dbname);//gets db called mydb
 		MongoCollection<Document> collection = database.getCollection(usedcoll);//replace with not tes
+		mongoClient.close();
 		return collection;
 	}
 	
@@ -75,6 +77,7 @@ public class Mongoconnect //TODO josh what have you done. there are like 25 warn
 		MongoClient mongoClient = new MongoClient(host); //connects to client on localhost
 		MongoDatabase database = mongoClient.getDatabase(dbname);//gets db called mydb
 		String info = database.getName();//just make a string with the name of the db
+		mongoClient.close();
 		return info;//return
 	}
 	
