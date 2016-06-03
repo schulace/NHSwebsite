@@ -68,7 +68,7 @@ public class ScheduleSubmit extends HttpServlet {
 		}
 		StudentSchedule sched = new StudentSchedule(classes); //creates a student schedule.
 		System.out.println("\n"+sched);
-		
+		response.getWriter().append(sched.toPrettierHTML());
 		
 	}
 	
