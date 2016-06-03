@@ -23,6 +23,9 @@ public class Tutor extends User
 	
 
 	private ArrayList<TutorReview> reviews;
+	/**
+	 * @deprecated
+	 */
 	private ArrayList<StudyGuide> Guides;
 	private ArrayList<Request> possibilities = new ArrayList<Request>();
 	
@@ -37,6 +40,12 @@ public class Tutor extends User
 		super(name, grade);
 	}
 	
+	public void Override(ArrayList<Request> s)
+	{
+		this.possibilities = null;
+		this.possibilities = (ArrayList<Request>) s.clone();
+	}
+	
 	public Tutor(StudentSchedule sc, String name, int gr)
 	{
 		super(sc,name,gr);
@@ -45,6 +54,15 @@ public class Tutor extends User
 	public ArrayList<SchoolClass> getStrongClasses()
 	{
 		return strongClasses;
+	}
+	
+	public void prepForJson()
+	{
+		this.userCalendar.cal = null;
+		this.userCalendar.daysOff = null;
+		this.userCalendar.endDate = null;
+		this.userCalendar.startDate = null;
+		this.possibilities = null;
 	}
 
 	public void setStrongClasses(ArrayList<SchoolClass> strongClasses)
