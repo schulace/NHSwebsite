@@ -85,11 +85,16 @@ public class requestManager
 		}
 	}
 	
-	public static void deserializeRequestList(String g)
+	public static void deserializeRequestList()
 	{
-		Gson s = new Gson();
-		Request t = s.fromJson(g, Request.class);
-		addRequest(t);
+		Mongoconnect connection = new Mongoconnect();
+		ArrayList<String> jsons = connection.getCollection("studentCollection");
+		Gson g = new Gson();
+		for(String j: jsons)
+		{
+			Request req = g.fromJson(j, Request.class);
+			addRequest(req);
+		}
 	}	
 	
 	/**

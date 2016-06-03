@@ -20,7 +20,28 @@ public class ServerStart
 	
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		objTest();
+		
+	}
+	
+	public static void testSerialization() //TODO i need josh's DB methods to work for this to do anything.
+	{
+		Student st = test_user.Idontknow;
+		Tutor t = test_user.newTut;
+		Request r = testRequests.req;
+		requestManager.addRequest(r);
+		userFactory.serializeStudentList();
+		userFactory.serializeTutorList();
+		requestManager.serializeRequestList();
+		userFactory.deserializeStudentList();
+		userFactory.deserializeTutorList();
+		requestManager.deserializeRequestList();
+		int[][] wantedBlocksArray = {{1,5},{2,4},{3,4}};
+		ArrayList<int[]> wantedBlocks = new ArrayList<int[]>();
+		Collections.addAll(wantedBlocks, wantedBlocksArray);
+		System.out.println(requestManager.getRequestList());
+		t.fillRequest(st.getName(),wantedBlocks);
+		System.out.println(requestManager.getRequestList());
+		System.out.println(t.getCalendar());
 	}
 	
 	public static void testSchedule()

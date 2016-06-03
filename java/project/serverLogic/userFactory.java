@@ -2,6 +2,7 @@ package project.serverLogic;
 
 import java.util.ArrayList;
 
+import project.requests.Request;
 import project.schedule.calendar.GHSCalendarDay;
 import project.schedule.calendar.TutoringHistory;
 import project.schedule.classes.StudentSchedule;
@@ -12,6 +13,11 @@ import project.user.Teacher;
 import project.user.Tutor;
 import com.google.gson.Gson;
 
+/**
+ * 
+ * @author schulace
+ * note: deserialize this before requests.
+ */
 public class userFactory
 {
 	public static ArrayList<Student> studentList = new ArrayList<Student>();
@@ -50,6 +56,7 @@ public class userFactory
 			Mongoconnect con = new Mongoconnect();
 			con.insertToDb(w, "studentCollection");
 		}
+		studentList = new ArrayList<Student>();
 	}
 	
 	public static void deserializeStudentList()
@@ -77,6 +84,7 @@ public class userFactory
 			Mongoconnect con = new Mongoconnect();
 			con.insertToDb(s, "tutorCollection");
 		}
+		tutorList = new ArrayList<Tutor>();
 	}
 	
 	public static void deserializeTutorList() //TODO requests for tutors + setting that up properly.
@@ -91,10 +99,11 @@ public class userFactory
 			t.getCalendar().endDate = Reference.endDate;
 			t.getCalendar().startDate = Reference.startDate;
 			t.getCalendar().refreshCalendar();
+			t.Override(new ArrayList<Request>());
 		}
 	}
 	
-	
+	@Deprecated
 	public static void addStudent(String jsonIn)
 	{
 		Gson gs = new Gson();
