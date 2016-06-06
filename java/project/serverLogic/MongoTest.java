@@ -9,13 +9,9 @@ public class MongoTest
 
 		public static void main(String[] args)
 		{
-			MongoClient mc = new MongoClient(" 24.38.233.137", 27017);
-			MongoDatabase db = mc.getDatabase("mydb");
-			MongoIterable<String> z = db.listCollectionNames();
-			for(String s:z)
-			{
-				System.out.println(s);
-			}
-			mc.close();
+			Mongoconnect conn = new Mongoconnect();
+			conn.setDbname("NHS");
+			System.out.println(conn.listCollections());
+			conn.close();
 		}
 }

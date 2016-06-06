@@ -16,6 +16,8 @@ import project.schedule.classes.LetterDay;
 import project.schedule.classes.SchoolClass;
 import project.schedule.classes.StudentSchedule;
 import project.schedule.classes.Subject;
+import project.serverLogic.userFactory;
+import project.user.Student;
 import project.user.Teacher;
 
 /**
@@ -78,7 +80,7 @@ public class ScheduleSubmit extends HttpServlet {
 						match = true;
 						theyDoneFuckedUp(request, response, "2 classes with the same name");
 					}
-					else if (isArrayInOtherArray(classes.get(i).getDays(), c.getDays()) && ((classes.get(i).getBlock()) == c.getBlock()))  
+					else if (isArrayParamInOtherArray(classes.get(i).getDays(), c.getDays()) && ((classes.get(i).getBlock()) == c.getBlock()))  
 					{
 						match = true;
 						theyDoneFuckedUp(request, response, "2 classes scheduled in the same block");
@@ -105,10 +107,13 @@ public class ScheduleSubmit extends HttpServlet {
 			StudentSchedule sched = new StudentSchedule(classes); //creates a student schedule.
 			System.out.println("\n"+sched);
 			response.getWriter().append(sched.toPrettierHTML());
+			userFactory.addStudent(new Student(sched, "test_user", Integer.parseInt(request.getParameter("year"))));
+			userFactory.serializeStudentList();
+			
 		}
 	}
 	
-	private boolean isArrayInOtherArray(LetterDay[] a, LetterDay[] b)
+	private boolean isArrayParamInOtherArray(LetterDay[] a, LetterDay[] b)
 	{
 		for(LetterDay dA: a)
 		{
@@ -126,7 +131,8 @@ public class ScheduleSubmit extends HttpServlet {
 	private void theyDoneFuckedUp (HttpServletRequest request, HttpServletResponse response, String message) throws ServletException, IOException 
 	{
 		System.err.println("Error: " + message);
-		String redirectURL = "userInfoEntry.jsp"; //TODO change this once we have a domian name for the website
+		String redirectURL = "userInfoEntry.jsp";
+		response.sendError(0, message);
 		response.sendRedirect(redirectURL);
 	}
 	private int getNumberOfClasses(HttpServletRequest request)

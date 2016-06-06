@@ -49,14 +49,16 @@ public class userFactory
 	public static void serializeStudentList()
 	{
 		Gson g = new Gson();
+		Mongoconnect con = new Mongoconnect();
 		for (Student s: studentList)
 		{
 			s.prepForJson();
 			String w = g.toJson(s);
-			Mongoconnect con = new Mongoconnect();
-			con.insertToDb(w, "studentCollection");
+			System.out.println(w);
+			con.insertToDb("students"); //TODO add the string back
 		}
 		studentList = new ArrayList<Student>();
+		con.close();
 	}
 	
 	public static void deserializeStudentList()

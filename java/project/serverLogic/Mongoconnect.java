@@ -6,7 +6,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoIterable;
 
 import org.bson.*;
-import static com.mongodb.client.model.Filters.*;
+import   com.mongodb.client.model.Filters.*;
 
 import java.util.ArrayList;
 
@@ -29,38 +29,71 @@ import java.util.ArrayList;
 public class Mongoconnect
 {
 	
-	private static String host = "localhost";
-	private static String dbname = "mydb";
-	private static String usedcoll = "test1";
-	public static ArrayList<String> collectionlist = new ArrayList<String>();
+	private  String host = "localhost";
+	private  String dbname = "mydb";
+	private  String usedcoll = "test1";
+	public MongoClient client;
+	public  ArrayList<String> collectionlist = new ArrayList<String>();
 	
 	public Mongoconnect(){
 		super();
 		checkCollection();
 	}
 	
-	public Mongoconnect(String calledcoll){
-		usedcoll = calledcoll;//testdb
-		checkCollection();
-	}
 	
-	public Mongoconnect(String calledcoll, String db){
-		dbname = db;//defualtdb
-		usedcoll = calledcoll;//testdb
-		checkCollection();
-	}
 	
-	public Mongoconnect(String calledcoll, String db, String location){
-		host = location;//default host
-		dbname = db;//defualtdb
-		usedcoll = calledcoll;//testdb
-		checkCollection();
+	public String getHost() {
+		return host;
 	}
-	
+
+
+
+	public   void setHost(String host) {
+		this.host = host;
+	}
+
+
+
+	public   String getDbname() {
+		return dbname;
+	}
+
+
+
+	public   void setDbname(String dbname) {
+		this.dbname = dbname;
+	}
+
+
+
+	public   String getUsedcoll() {
+		return usedcoll;
+	}
+
+
+
+	public   void setUsedcoll(String usedcoll) {
+		this.usedcoll = usedcoll;
+	}
+
+
+
+	public   ArrayList<String> getCollectionlist() {
+		return collectionlist;
+	}
+
+
+
+	public void setCollectionlist(ArrayList<String> collectionlist) {
+		this.collectionlist = collectionlist;
+	}
+
+
+
 	public void checkCollection(){
 		Boolean isin = false;
 		for (int i = 0;i<collectionlist.size();i++){
-			if (usedcoll ==  collectionlist.get(i)){
+			if (usedcoll.equals(collectionlist.get(i))){
 				 isin = true;
 			}
 		}
@@ -69,8 +102,8 @@ public class Mongoconnect
 	
 	//sets up initial connection
 	public MongoDatabase getConnection(){
-		MongoClient mongoClient = new MongoClient(host); //connects to client on localhost
-		MongoDatabase database = mongoClient.getDatabase(dbname);//gets db called mydb
+		this.client = new MongoClient(host); //connects to client on localhost
+		MongoDatabase database = this.client.getDatabase(dbname);//gets db called mydb
 		//MongoCollection<Document> collection = database.getCollection(collection2);//replace with not tes
 		return database;
 	}
@@ -119,11 +152,7 @@ public class Mongoconnect
 		long usercount = coll.count();
 		return usercount;
 	}
-	
-	//Return collection list. TODO: Get rid of this I think
-	public ArrayList<String> getCollectionList(){
-		return collectionlist;
-	}
+
 	
 	//Get specified document from collection. For example, getfromdb(username, john);
 	public String getFromDb(String field, String value, String collection){
@@ -144,12 +173,19 @@ public class Mongoconnect
 		return allJSON;
 	}
 	
+	public void close()
+	{
+		client.close();
+	}
 	
-	public ArrayList<String> listCollections(String collectionName){
+	
+	public ArrayList<String> listCollections()
+	{
 		MongoDatabase database = getConnection();//retrieve a collection
 		MongoIterable<String> colls = database.listCollectionNames();
 		ArrayList<String> collnames = new ArrayList<String>();
-		for (String s : colls) {
+		for (String s : colls)
+		{
 			collnames.add(s);
 		}
 		return collnames;
