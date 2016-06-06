@@ -105,12 +105,30 @@ public class ScheduleSubmit extends HttpServlet {
 		if(!match)
 		{
 			StudentSchedule sched = new StudentSchedule(classes); //creates a student schedule.
-			System.out.println("\n"+sched);
-			response.getWriter().append(sched.toPrettierHTML());
-			userFactory.addStudent(new Student(sched, "test_user", Integer.parseInt(request.getParameter("year"))));
-			userFactory.serializeStudentList();
+			if(notIsArrayEmpty(sched.getBlockSchedule()))
+			{
+				System.out.println("\n"+sched);
+				response.getWriter().append(sched.toPrettierHTML());
+				userFactory.addStudent(new Student(sched, request.getParameter("email"), Integer.parseInt(request.getParameter("year"))));
+				userFactory.serializeStudentList();
+			}
 			
 		}
+	}
+	
+	private boolean notIsArrayEmpty(SchoolClass[][] a)
+	{
+		for(int x = 0; x < 8; x ++)
+		{
+			for(int y = 0; y <6; y ++)
+			{
+				if(!(a[x][y] == null))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 	private boolean isArrayParamInOtherArray(LetterDay[] a, LetterDay[] b)

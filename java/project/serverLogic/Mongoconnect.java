@@ -30,7 +30,7 @@ public class Mongoconnect
 {
 	
 	private  String host = "localhost";
-	private  String dbname = "mydb";
+	private  String dbname = "NHS";
 	private  String usedcoll = "test1";
 	public MongoClient client;
 	public  ArrayList<String> collectionlist = new ArrayList<String>();

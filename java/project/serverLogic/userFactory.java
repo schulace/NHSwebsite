@@ -55,7 +55,7 @@ public class userFactory
 			s.prepForJson();
 			String w = g.toJson(s);
 			System.out.println(w);
-			con.insertToDb("students"); //TODO add the string back
+			con.insertToDb(w,"students"); //TODO add the string back
 		}
 		studentList = new ArrayList<Student>();
 		con.close();
