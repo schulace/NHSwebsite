@@ -109,6 +109,7 @@ public class ScheduleSubmit extends HttpServlet {
 			{
 				System.out.println("\n"+sched);
 				response.getWriter().append(sched.toPrettierHTML());
+				userFactory.deserializeStudentList();
 				userFactory.addStudent(new Student(sched, request.getParameter("email"), Integer.parseInt(request.getParameter("year"))));
 				userFactory.serializeStudentList();
 			}

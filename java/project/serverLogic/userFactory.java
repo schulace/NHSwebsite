@@ -64,7 +64,7 @@ public class userFactory
 	public static void deserializeStudentList()
 	{
 		Mongoconnect connection = new Mongoconnect();
-		ArrayList<String> jsons = connection.getCollection("studentCollection");
+		ArrayList<String> jsons = connection.getCollection("students");
 		Gson g = new Gson();
 		for(String fuzzyStudent: jsons)
 		{
@@ -73,6 +73,7 @@ public class userFactory
 			stu.getCalendar().setEndDate(Reference.endDate);
 			stu.getCalendar().setDaysOff(Reference.setAndGetBreakDays());
 			stu.getCalendar().refreshCalendar();
+			addStudent(stu);
 		}
 	}
 	
@@ -84,7 +85,7 @@ public class userFactory
 			t.prepForJson();
 			String s = g.toJson(t);
 			Mongoconnect con = new Mongoconnect();
-			con.insertToDb(s, "tutorCollection");
+			con.insertToDb(s, "tutors");
 		}
 		tutorList = new ArrayList<Tutor>();
 	}
@@ -118,10 +119,16 @@ public class userFactory
 			}
 		}
 	}
-	
-	//TODO only for testing. delete later
+
 	public static void addStudent(Student stIn)
 	{
+		for(Student st:studentList)
+		{
+			if(st.getName().equals(stIn.getName()))
+			{
+				return; //stops this method from running if it finds this student already in the list.
+			}
+		}
 		studentList.add(stIn);
 	}
 	//TODO only for testing. delete later
