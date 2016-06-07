@@ -6,7 +6,7 @@ import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoIterable;
 
 import org.bson.*;
-import   com.mongodb.client.model.Filters.*;
+import static com.mongodb.client.model.Filters.*;
 
 import java.util.ArrayList;
 
@@ -39,50 +39,34 @@ public class Mongoconnect
 		super();
 		checkCollection();
 	}
-	
-	
-	
+
 	public String getHost() {
 		return host;
 	}
 
-
-
-	public   void setHost(String host) {
+	public void setHost(String host) {
 		this.host = host;
 	}
 
-
-
-	public   String getDbname() {
+	public String getDbname() {
 		return dbname;
 	}
 
-
-
-	public   void setDbname(String dbname) {
+	public void setDbname(String dbname) {
 		this.dbname = dbname;
 	}
 
-
-
-	public   String getUsedcoll() {
+	public String getUsedcoll() {
 		return usedcoll;
 	}
 
-
-
-	public   void setUsedcoll(String usedcoll) {
+	public void setUsedcoll(String usedcoll) {
 		this.usedcoll = usedcoll;
 	}
 
-
-
-	public   ArrayList<String> getCollectionlist() {
+	public ArrayList<String> getCollectionlist() {
 		return collectionlist;
 	}
-
-
 
 	public void setCollectionlist(ArrayList<String> collectionlist) {
 		this.collectionlist = collectionlist;
