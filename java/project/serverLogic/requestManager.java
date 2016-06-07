@@ -169,4 +169,9 @@ public class requestManager
 		return s;
 	}
 	
+	public static String getGoogleSignInAuth()
+	{
+		return "<div class=\"g-signin2\" data-onsuccess=\"onSignIn\" style=\"transform: matrix(1, -0.3, 0, 1, 0, 0); position: absolute;\"></div>";
+	}
+	
 }

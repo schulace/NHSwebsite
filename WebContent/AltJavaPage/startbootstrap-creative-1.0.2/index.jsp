@@ -1,3 +1,6 @@
+<%@page import="project.serverLogic.requestManager"%>
+<%@page import="test_data.test_schedules"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -92,7 +95,7 @@
                     <hr class="light">
                     <p class="text-faded">If you are struggling with a subject, but don't like how your teacher teaches, sign up to recieve free tuitoring! If you are a National Honors Society student who wants to recieve volunteering hours, sign up!</p>
                     <script src="https://apis.google.com/js/platform.js" async defer></script>
-  					<div class="g-signin2" data-onsuccess="onSignIn" style=""></div>
+  					<%=requestManager.getGoogleSignInAuth() %>
                 </div>
             </div>
         </div>
