@@ -169,4 +169,10 @@ public class requestManager
 		return s;
 	}
 	
+	public static String getGoogleSignInAuth()
+	{
+		double degrees = Math.random()*5;
+		return "<div class=\"g-signin2\" data-onsuccess=\"onSignIn\" style=\"transform: rotate("+degrees+"deg); position: absolute; margin-left: auto ; margin-right: auto ;\"></div>";
+	}
+	
 }
