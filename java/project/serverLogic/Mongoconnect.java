@@ -37,7 +37,7 @@ public class Mongoconnect
 	
 	public Mongoconnect(){
 		super();
-		checkCollection();
+		//checkCollection();
 	}
 
 	public String getHost() {
