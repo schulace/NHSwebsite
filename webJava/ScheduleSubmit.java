@@ -112,6 +112,7 @@ public class ScheduleSubmit extends HttpServlet {
 				userFactory.deserializeStudentList();
 				userFactory.addStudent(new Student(sched, request.getParameter("email"), Integer.parseInt(request.getParameter("year"))));
 				userFactory.serializeStudentList();
+				response.sendRedirect("AltJavaPage/startbootstrap-sb-admin-2-1.0.8/pages/HomePage.jsp");
 			}
 			
 		}

@@ -75,6 +75,7 @@ public class userFactory
 			stu.getCalendar().refreshCalendar();
 			addStudent(stu);
 		}
+		connection.close();
 	}
 	
 	public static void serializeTutorList()

@@ -107,7 +107,7 @@ public class StudentSchedule
 	
 	public String toPrettierHTML()
 	{
-		String s = "<table><tr><td></td><td>A</td><td>B</td><td>C</td><td>D</td><td>E</td><td>F</td><td>G</td><td>H</td></tr>";
+		String s = "<thead><tr><th></th><th>A</th><th>B</th><th>C</th><th>D</th><th>E</th><th>F</th><th>G</th><th>H</th></tr></thead><tbody>";
 		for(int x = 0; x < 6; x ++)
 		{
 			s += "<tr><td>" + (x+1) + "</td>";
@@ -127,7 +127,7 @@ public class StudentSchedule
 			}
 			s += "</tr>";
 		}
-		s += "</table>";
+		s += "</tbody>";
 		return s;
 	}
 	
