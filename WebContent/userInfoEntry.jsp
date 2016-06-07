@@ -100,7 +100,26 @@ function classFunction()
 
 <button onclick="classFunction()">add class</button> <!--black magic javascript function to generate form fields to input classes. it works.-->
 <form action="ScheduleSubmit" method="post">
-	email: <input type="text" name="email"></input><br>
+	<%
+		String email = "";
+		Cookie[] cookies = request.getCookies();
+		if(cookies != null)
+		{
+			for (Cookie cookie : cookies)
+			{
+                if (cookie.getName().equals("NHSLoginEmail"))
+                {
+                	email = cookie.getValue();
+                }
+            }
+        }
+		else
+		{
+			System.out.println("no cookies were found");
+		}
+		
+	%>
+	email: <input type="text" name="email" value=<%=email %>></input><br>
 	year:
 	<select name="year">
 		<option value="9">9</option>

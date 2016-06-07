@@ -379,8 +379,30 @@
               <div class="panel-body">
                 <div class="table-responsive">
                   <table class="table table-striped table-bordered table-hover">
-                  	<% userFactory.deserializeStudentList(); %>
-                    <%= userFactory.studentList.get(0).getCalendar().getStudentSchedule().toPrettierHTML() %>
+                  	<% userFactory.deserializeStudentList(false);
+                  	String email = "";
+            		Cookie[] cookies = request.getCookies();
+            		if(cookies != null)
+            		{
+            			for (Cookie cookie : cookies)
+            			{
+                            if (cookie.getName().equals("NHSLoginEmail"))
+                            {
+                            	email = cookie.getValue();
+                            }
+                        }
+                    }
+            		String userSchedTable = "no schedule data";
+            		try
+            		{
+            			userSchedTable = userFactory.getStudentByName(email).getCalendar().getStudentSchedule().toPrettierHTML();
+            		}
+            		catch(Exception e)
+            		{
+            			userSchedTable = "no schedule data";
+            		}
+                  	%>
+                    <%= userSchedTable %>
                     <% userFactory.serializeStudentList(); %>
                   </table>
                 </div>

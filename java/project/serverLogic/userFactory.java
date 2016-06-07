@@ -46,6 +46,18 @@ public class userFactory
 		}
 	}
 	
+	public static Student getStudentByName(String email)
+	{
+		for(Student s:studentList)
+		{
+			if(s.getName().equals(email))
+			{
+				return s;
+			}
+		}
+		return null;
+	}
+	
 	public static void serializeStudentList()
 	{
 		Gson g = new Gson();
@@ -61,7 +73,7 @@ public class userFactory
 		con.close();
 	}
 	
-	public static void deserializeStudentList()
+	public static void deserializeStudentList(boolean thorough)
 	{
 		Mongoconnect connection = new Mongoconnect();
 		ArrayList<String> jsons = connection.getCollection("students");
@@ -69,13 +81,32 @@ public class userFactory
 		for(String fuzzyStudent: jsons)
 		{
 			Student stu = g.fromJson(fuzzyStudent, Student.class);
+			if(thorough)
+			{
+				refreshCalendars();
+			}
+			addStudent(stu);
+		}
+		connection.close();
+	}
+	
+	public static void refreshCalendars()
+	{
+		for(Student stu:studentList)
+		{
 			stu.getCalendar().setStartDate(Reference.startDate);
 			stu.getCalendar().setEndDate(Reference.endDate);
 			stu.getCalendar().setDaysOff(Reference.setAndGetBreakDays());
 			stu.getCalendar().refreshCalendar();
-			addStudent(stu);
 		}
-		connection.close();
+		
+		for(Tutor tut:tutorList)
+		{
+			tut.getCalendar().setStartDate(Reference.startDate);
+			tut.getCalendar().setEndDate(Reference.endDate);
+			tut.getCalendar().setDaysOff(Reference.setAndGetBreakDays());
+			tut.getCalendar().refreshCalendar();
+		}
 	}
 	
 	public static void serializeTutorList()
@@ -175,7 +206,8 @@ public class userFactory
 		}
 	}
 	
-	public static void addTutor(String studentID, int grade){
+	public static void addTutor(String studentID, int grade)
+	{
 		Tutor toAdd = new Tutor(studentID, grade);
 		boolean inList = false;
 		for(Tutor tutor:tutorList)

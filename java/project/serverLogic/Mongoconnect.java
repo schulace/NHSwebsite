@@ -35,8 +35,9 @@ public class Mongoconnect
 	public MongoClient client;
 	public  ArrayList<String> collectionlist = new ArrayList<String>();
 	
-	public Mongoconnect(){
-		super();
+	public Mongoconnect()
+	{
+		this.getConnection();
 		//checkCollection();
 	}
 
