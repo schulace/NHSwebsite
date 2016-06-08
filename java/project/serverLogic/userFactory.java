@@ -154,11 +154,11 @@ public class userFactory
 
 	public static void addStudent(Student stIn)
 	{
-		for(Student st:studentList)
+		for(int x = 0; x < studentList.size(); x ++)
 		{
-			if(st.getName().equals(stIn.getName()))
+			if(studentList.get(x).getName().equals(stIn.getName()))
 			{
-				return; //stops this method from running if it finds this student already in the list.
+				studentList.remove(x);
 			}
 		}
 		studentList.add(stIn);

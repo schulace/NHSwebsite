@@ -32,7 +32,7 @@ public class ServerStart
 		userFactory.serializeStudentList();
 		userFactory.serializeTutorList();
 		requestManager.serializeRequestList();
-		userFactory.deserializeStudentList();
+		userFactory.deserializeStudentList(false);
 		userFactory.deserializeTutorList();
 		requestManager.deserializeRequestList();
 		int[][] wantedBlocksArray = {{1,5},{2,4},{3,4}};

@@ -8,6 +8,7 @@
 </head>
 <body>
 <%
+if(request.getCookies() != null)
  for(Cookie c:request.getCookies())
 {
 	c.setMaxAge(0);

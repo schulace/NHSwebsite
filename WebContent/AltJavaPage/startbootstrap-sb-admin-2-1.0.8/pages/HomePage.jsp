@@ -253,7 +253,7 @@
               <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
               </li>
               <li class="divider"></li>
-              <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+              <li><a href="POClogin.jsp"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
               </li>
             </ul>
             <!-- /.dropdown-user -->
@@ -403,11 +403,14 @@
             		}
                   	%>
                     <%= userSchedTable %>
-                    <% userFactory.serializeStudentList(); %>
                   </table>
                 </div>
                 <!-- /.table-responsive -->
                 <button type="button" class="btn btn-primary btn-lg btn-block">Request Help!</button>
+                <br>
+                <form action="../../../userInfoEntry.jsp" method="post">
+                 <input type="submit" class="btn btn-primary btn-lg btn-block" value="re-enter schedule">
+                 </form>
                 <br>
                 <div class="row">
                   <div class="col-lg-6">
