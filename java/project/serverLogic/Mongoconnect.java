@@ -24,6 +24,7 @@ import java.util.ArrayList;
 	getUserCount(), returns int count;
 	getFromDb(String field, String value, String collection), returns String json;
 	getCollection(String collection), returns ArrayList<String> of all documents in collection in json
+	deleteDocument(String collection, String value, String equals), Removes a document that has a "value" that equals "equals"
  */
 
 public class Mongoconnect
@@ -174,6 +175,12 @@ public class Mongoconnect
 			collnames.add(s);
 		}
 		return collnames;
+	}
+	
+	public void deleteDocument(String collection, String value, String equals){
+		MongoDatabase database = getConnection();//retrieve a collection
+		MongoCollection<Document> colls = database.getCollection(collection);
+		colls.deleteOne(eq(value, equals));
 	}
 	
 
