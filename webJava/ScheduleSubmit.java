@@ -48,25 +48,25 @@ public class ScheduleSubmit extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
-		Map<String, String[]> m = request.getParameterMap(); //for which blocks of they day we have
+		Map<String, String[]> parameterMap = request.getParameterMap(); //for which blocks of they day we have
 		ArrayList<SchoolClass> classes = new ArrayList<SchoolClass>(); //eventually passed into a schedule constructor
 		boolean match = false; //used for error checking
 		for(int x = 1; x <= getNumberOfClasses(request); x ++)
 		{
-			String s = Integer.toString(x);
-			String[] ar = m.get(s); //gets a string array of numbers representing which days of the schedule the class meets
-			if (ar == null) //error checking for people not checking any days for their classes
+			String strLoopNumber = Integer.toString(x);
+			String[] paramsArr = parameterMap.get(strLoopNumber); //gets a string array of numbers representing which days of the schedule the class meets
+			if (paramsArr == null) //error checking for people not checking any days for their classes
 			{
-				//TODO use AJAX to push a pop-up warning to the user
+				return;
 			}
 			
-			else if(ar != null) //errors if not this (deals with retards not checking any days.
+			else if(paramsArr != null) //errors if not this (deals with retards not checking any days.
 			{
-				LetterDay[] days = new LetterDay[ar.length]; //new letterday array of same size as number of boxes ticked for the class.
-				for(int y = 0; y < ar.length; y ++)
+				LetterDay[] days = new LetterDay[paramsArr.length]; //new letterday array of same size as number of boxes ticked for the class.
+				for(int y = 0; y < paramsArr.length; y ++)
 				{
 					LetterDay d2 = LetterDay.A;
-					d2 = d2.getDayFromInt(Integer.parseInt(ar[y])); //takes the string number of the block, parses it to an integer, then gets a letterday from it + puts it in the day array.
+					d2 = d2.getDayFromInt(Integer.parseInt(paramsArr[y])); //takes the string number of the block, parses it to an integer, then gets a letterday from it + puts it in the day array.
 					days[y] = d2;
 				}
 				//i swear the below line works. it just parses the stuff that's not hard.
@@ -152,7 +152,7 @@ public class ScheduleSubmit extends HttpServlet {
 	{
 		System.err.println("Error: " + message);
 		String redirectURL = "userInfoEntry.jsp";
-		response.sendError(0, message);
+//		response.sendError(0, message);
 		response.sendRedirect(redirectURL);
 	}
 	private int getNumberOfClasses(HttpServletRequest request)

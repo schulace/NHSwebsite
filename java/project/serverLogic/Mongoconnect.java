@@ -38,6 +38,7 @@ public class Mongoconnect
 	public Mongoconnect()
 	{
 		this.getConnection();
+		System.out.println(Reference.ANSI_RED + "[MONGOCONNECT] mongo connect object initialized" + Reference.ANSI_RESET);
 		//checkCollection();
 	}
 
@@ -117,22 +118,23 @@ public class Mongoconnect
 	
 	//send data to database, test method using ServerStart.getTestJson()
 	public void insertToDb(String collection){
-		MongoDatabase database = getConnection();
+		MongoDatabase database = this.client.getDatabase(dbname);
 		MongoCollection<Document> coll = database.getCollection(collection);//replace with not tes
 		Document parsedjson = Document.parse(ServerStart.getTestJson()); //REPLACE THIS WITH NOT TEST METHOD, create new document from JSON string
 		coll.insertOne(parsedjson); //insert document into collection
 	}
 	
 	public void insertToDb(String json, String collection){//send data to database
-		MongoDatabase database = getConnection();
+		MongoDatabase database = this.client.getDatabase(dbname);
 		MongoCollection<Document> coll = database.getCollection(collection);//replace with not tes
 		Document parsedjson = Document.parse(json); //create new document from JSON string
 		coll.insertOne(parsedjson); //insert document into collection
+		System.out.println("[MONGOCONNECT] inserted string to database.");
 	}
 	
 	//Gets the number of users in a db
 	public long getUserCount(String collection){
-		MongoDatabase database = getConnection();//retrieve a collection
+		MongoDatabase database = this.client.getDatabase(dbname);//retrieve a collection
 		MongoCollection<Document> coll = database.getCollection(collection);//replace with not tes
 		long usercount = coll.count();
 		return usercount;
@@ -141,7 +143,7 @@ public class Mongoconnect
 	
 	//Get specified document from collection. For example, getfromdb(username, john);
 	public String getFromDb(String field, String value, String collection){
-		MongoDatabase database = getConnection();//retrieve a collection
+		MongoDatabase database = this.client.getDatabase(dbname);//retrieve a collection
 		MongoCollection<Document> coll = database.getCollection(collection);
 		Document myDoc = coll.find(eq(field,value)).first();
 		return myDoc.toJson();
@@ -149,7 +151,7 @@ public class Mongoconnect
 
 	public ArrayList<String> getCollection(String collection) 
 	{
-		MongoDatabase database = getConnection();//retrieve a collection
+		MongoDatabase database = this.client.getDatabase(dbname);//retrieve a collection
 		MongoCollection<Document> colls = database.getCollection(collection);
 		ArrayList<String> allJSON = new ArrayList<String>();
 		for (Document cur : colls.find()) {
@@ -161,12 +163,13 @@ public class Mongoconnect
 	public void close()
 	{
 		client.close();
+		System.out.println("[MONGOCONNECT] mongo connection closed");
 	}
 	
 	
 	public ArrayList<String> listCollections()
 	{
-		MongoDatabase database = getConnection();//retrieve a collection
+		MongoDatabase database = this.client.getDatabase(dbname);//retrieve a collection
 		MongoIterable<String> colls = database.listCollectionNames();
 		ArrayList<String> collnames = new ArrayList<String>();
 		for (String s : colls)
@@ -174,6 +177,11 @@ public class Mongoconnect
 			collnames.add(s);
 		}
 		return collnames;
+	}
+	
+	public void deleteStuff(String searchParam, String match)
+	{
+		
 	}
 	
 
