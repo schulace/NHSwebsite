@@ -8,7 +8,6 @@ import project.studyGuide.TutorReview;
 
 public class Administrator extends User
 {
-	private String name;
 	private String school;
 	private ArrayList<StudyGuide> profaneStudyGuides;
 	private ArrayList<Tutor> badboyzbadboyz;

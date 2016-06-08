@@ -67,6 +67,7 @@ public class userFactory
 			s.prepForJson();
 			String w = g.toJson(s);
 			System.out.println(w);
+			con.deleteDocument("students", "name", s.getName());
 			con.insertToDb(w,"students"); //TODO add the string back
 		}
 		studentList = new ArrayList<Student>();

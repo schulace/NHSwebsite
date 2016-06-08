@@ -20,6 +20,19 @@ public class ServerStart
 	
 	public static void main(String[] args) throws FileNotFoundException
 	{
+		Student st = test_user.Idontknow;
+		Tutor t = test_user.newTut;
+		Request r = testRequests.req;
+		t.prepForJson();
+		st.prepForJson();
+		userFactory.addStudent(st);
+		userFactory.addTutor(t);
+		requestManager.requestList = new ArrayList<Request>();
+		requestManager.addRequest(r);
+		System.out.println(requestManager.requestList.size());
+		Gson g = new Gson();
+		System.out.println(r.toString());
+//		System.out.println(g.toJson(r));
 		
 	}
 	

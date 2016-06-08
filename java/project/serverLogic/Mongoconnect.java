@@ -183,7 +183,7 @@ public class Mongoconnect
 	public void deleteDocument(String collection, String value, String equals){
 		MongoDatabase database = getConnection();//retrieve a collection
 		MongoCollection<Document> colls = database.getCollection(collection);
-		colls.deleteOne(eq(value, equals));
+		colls.deleteMany(eq(value, equals));
 	}
 	
 

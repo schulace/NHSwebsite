@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 
 public class requestManager
 {
-	private static ArrayList<Request> requestList = new ArrayList<Request>();
+	public static ArrayList<Request> requestList = new ArrayList<Request>();
 	
 	public static ArrayList<Request> getRequestList()
 	{
@@ -77,12 +77,14 @@ public class requestManager
 	public static void serializeRequestList()
 	{
 		Gson g = new Gson();
+		Mongoconnect con = new Mongoconnect();
 		for (Request req: requestList)
 		{
+			req.getRequestor().prepForJson();
 			String w = g.toJson(req);
-			Mongoconnect con = new Mongoconnect();
 			con.insertToDb(w, "requestCollection");
 		}
+		con.close();
 	}
 	
 	public static void deserializeRequestList()

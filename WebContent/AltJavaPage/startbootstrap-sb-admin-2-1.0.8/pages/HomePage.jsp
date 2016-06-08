@@ -406,7 +406,7 @@
                   </table>
                 </div>
                 <!-- /.table-responsive -->
-                <button type="button" class="btn btn-primary btn-lg btn-block">Request Help!</button>
+                <a href="HelpRequest.jsp"><button type="button" class="btn btn-primary btn-lg btn-block">Request Help!</button></a>
                 <br>
                 <form action="../../../userInfoEntry.jsp" method="post">
                  <input type="submit" class="btn btn-primary btn-lg btn-block" value="re-enter schedule">
