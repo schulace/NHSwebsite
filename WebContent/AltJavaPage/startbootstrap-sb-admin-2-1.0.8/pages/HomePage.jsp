@@ -64,6 +64,7 @@
                   <table class="table table-striped table-bordered table-hover">
                   	<% userFactory.deserializeStudentList(false);
                   	userFactory.deserializeTutorList(false);
+                  	userFactory.deserializeTutorList(false);
                   	String email = "";
             		Cookie[] cookies = request.getCookies();
             		if(cookies != null)
@@ -90,13 +91,15 @@
             			}
             			catch(Exception e1)
             			{
-                    		userSchedTable = "an error has occurred.";
+            				userSchedTable = userFactory.getTeacherByName(email).getCalendar().getStudentSchedule().toPrettierHTML();
             			}
             			isStudent = false;
             		}
             		
             		userFactory.serializeStudentList();
             		userFactory.serializeTutorList();
+            		userFactory.serializeTeacherList();
+
                   	%>
                     <%= userSchedTable %>
                     
