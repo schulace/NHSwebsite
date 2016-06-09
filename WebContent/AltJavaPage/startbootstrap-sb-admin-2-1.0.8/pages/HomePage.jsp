@@ -64,7 +64,7 @@
                   <table class="table table-striped table-bordered table-hover">
                   	<% userFactory.deserializeStudentList(false);
                   	userFactory.deserializeTutorList(false);
-                  	userFactory.deserializeTutorList(false);
+                  	userFactory.deserializeTeacherList(false);
                   	String email = "";
             		Cookie[] cookies = request.getCookies();
             		if(cookies != null)
