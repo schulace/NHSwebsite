@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import project.serverLogic.userFactory;
 import project.user.Student;
+import project.user.Tutor;
 
 /**
  * Servlet implementation class loginDirect
@@ -67,9 +68,19 @@ public class loginDirect extends HttpServlet {
 //		}
 		boolean userInDB = false;
 		userFactory.deserializeStudentList(false);
+		userFactory.deserializeTutorList(false);
 		for(Student st:userFactory.studentList)
 		{
 			if(st.getName().equals(userEmail))
+			{
+				userInDB = true;
+				break;
+			}
+		}
+		
+		for(Tutor tut:userFactory.tutorList)
+		{
+			if(tut.getName().equals(userEmail))
 			{
 				userInDB = true;
 				break;

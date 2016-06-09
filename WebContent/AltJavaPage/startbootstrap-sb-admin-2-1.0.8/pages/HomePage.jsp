@@ -63,6 +63,7 @@
                 <div class="table-responsive">
                   <table class="table table-striped table-bordered table-hover">
                   	<% userFactory.deserializeStudentList(false);
+                  	userFactory.deserializeTutorList(false);
                   	String email = "";
             		Cookie[] cookies = request.getCookies();
             		if(cookies != null)
@@ -76,20 +77,47 @@
                         }
                     }
             		String userSchedTable = "no schedule data";
+            		boolean isStudent = true;
             		try
             		{
             			userSchedTable = userFactory.getStudentByName(email).getCalendar().getStudentSchedule().toPrettierHTML();
             		}
             		catch(Exception e)
             		{
-            			userSchedTable = "no schedule data";
+            			try
+            			{
+            				userSchedTable = userFactory.getTutorByName(email).getCalendar().getStudentSchedule().toPrettierHTML();
+            			}
+            			catch(Exception e1)
+            			{
+                    		userSchedTable = "an error has occurred.";
+            			}
+            			isStudent = false;
             		}
+            		
+            		userFactory.serializeStudentList();
+            		userFactory.serializeTutorList();
                   	%>
                     <%= userSchedTable %>
+                    
+                    
                   </table>
                 </div>
-                <!-- /.table-responsive -->
-                <a href="HelpRequest.jsp"><button type="button" class="btn btn-primary btn-lg btn-block">Request Help!</button></a>
+                <%
+                String reqButtonHref = "";
+                String reqButtonText = "";
+                if(isStudent)
+                {
+                	reqButtonHref = "HelpRequest.jsp";
+                	reqButtonText = "Request Help!";
+                }
+                else
+                {
+                	reqButtonHref = "viewHelpRequests.jsp";
+                	reqButtonText = "see available requests for help";
+                }
+                %>
+                <a href=<%=reqButtonHref %>><button type="button" class="btn btn-primary btn-lg btn-block"><%=reqButtonText%></button></a>
                 <br>
                 <form action="../../../userInfoEntry.jsp" method="post">
                  <input type="submit" class="btn btn-primary btn-lg btn-block" value="re-enter schedule">

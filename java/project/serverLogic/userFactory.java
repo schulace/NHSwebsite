@@ -58,6 +58,18 @@ public class userFactory
 		return null;
 	}
 	
+	public static Tutor getTutorByName(String email)
+	{
+		for(Tutor tut:tutorList)
+		{
+			if(tut.getName().equals(email))
+			{
+				return tut;
+			}
+		}
+		return null;
+	}
+	
 	public static void serializeStudentList()
 	{
 		Gson g = new Gson();
@@ -104,10 +116,10 @@ public class userFactory
 		}
 		con.close();
 	}
-	public static void deserializeTutorList(boolean thorough) //TODO requests for tutors + setting that up properly.
+	public static void deserializeTutorList(boolean thorough)
 	{
 		Mongoconnect con = new Mongoconnect();
-		ArrayList<String> jsons = con.getCollection("studentCollection");
+		ArrayList<String> jsons = con.getCollection("tutors");
 		Gson g = new Gson();
 		for(String jsonTutor:jsons)
 		{

@@ -20,19 +20,21 @@ public class ServerStart
 	
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		Student st = test_user.Idontknow;
-		Tutor t = test_user.newTut;
-		Request r = testRequests.req;
-		st.prepForJson();
-		t.prepForJson();
-		userFactory.addStudent(st);
-		userFactory.addTutor(t);
-		System.out.println(r);
-		requestManager.addRequest(r);
-		System.out.println(requestManager.requestList.size());
-		Gson g = new Gson();
-		System.out.println(r.toString());
-		System.out.println(g.toJson(r));
+		userFactory.deserializeStudentList(false);
+      	userFactory.deserializeTutorList(false);
+      	String email = "asdf@asdf.com";
+      	String userSchedTable = "no schedule data";
+		try
+		{
+			userSchedTable = userFactory.getStudentByName(email).getCalendar().getStudentSchedule().toPrettierHTML();
+		}
+		catch(Exception e)
+		{
+			userSchedTable = userFactory.getTutorByName(email).getCalendar().getStudentSchedule().toPrettierHTML();
+		}
+		userFactory.serializeStudentList();
+		userFactory.serializeTutorList();
+		System.out.println(userSchedTable);
 		
 	}
 	
@@ -46,7 +48,7 @@ public class ServerStart
 		userFactory.serializeTutorList();
 		requestManager.serializeRequestList();
 		userFactory.deserializeStudentList(false);
-		userFactory.deserializeTutorList();
+		userFactory.deserializeTutorList(false);
 		requestManager.deserializeRequestList();
 		int[][] wantedBlocksArray = {{1,5},{2,4},{3,4}};
 		ArrayList<int[]> wantedBlocks = new ArrayList<int[]>();
