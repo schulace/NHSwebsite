@@ -11,6 +11,7 @@ import project.schedule.classes.TutoringSession;
 import project.user.Teacher;
 import project.user.Tutor;
 import com.google.gson.Gson;
+import com.sun.msv.grammar.util.PossibleNamesCollector;
 
 
 public class requestManager
@@ -39,7 +40,6 @@ public class requestManager
 			if(pos.commonBlocks.size() >= 3 && t.getStrongClasses().contains(req.getSubject())) //only considers the request as valid if they can meet at least 3 times per cycle.
 			{
 				req.addPossibleFill(pos);
-				t.addRequest(req);
 			}
 		}
 		if(req.getTutPossibilities().size() > 0)
@@ -55,11 +55,27 @@ public class requestManager
 				if(pos.commonBlocks.size() >= 3) //only considers the request as valid if they can meet at least 3 times per cycle.
 				{
 					req.addPossibleFill(pos);
-					t.addRequest(req);
 				}
 			}
 			requestList.add(req);
 		}
+	}
+	
+	public static ArrayList<Request> getRequestPosForTutor(String tutorName)
+	{
+		ArrayList<Request> possibilities = new ArrayList<Request>();
+		for(Request req:requestList)
+		{
+			for(TutorPossibility pos:req.getTutPossibilities())
+			{
+				if(pos.tut.getName().equals(tutorName))
+				{
+					possibilities.add(req);
+					break;
+				}
+			}
+		}
+		return possibilities;
 	}
 	
 	public static Request getRequest(String name)

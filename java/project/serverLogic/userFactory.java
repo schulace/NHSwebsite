@@ -135,7 +135,6 @@ public class userFactory
 			t.getCalendar().endDate = Reference.endDate;
 			t.getCalendar().startDate = Reference.startDate;
 			t.getCalendar().refreshCalendar();
-			t.Override(new ArrayList<Request>());
 		}
 	}
 	

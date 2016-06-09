@@ -23,16 +23,16 @@ public class ServerStart
 		Student st = test_user.Idontknow;
 		Tutor t = test_user.newTut;
 		Request r = testRequests.req;
-		t.prepForJson();
 		st.prepForJson();
+		t.prepForJson();
 		userFactory.addStudent(st);
 		userFactory.addTutor(t);
-		requestManager.requestList = new ArrayList<Request>();
+		System.out.println(r);
 		requestManager.addRequest(r);
 		System.out.println(requestManager.requestList.size());
 		Gson g = new Gson();
 		System.out.println(r.toString());
-//		System.out.println(g.toJson(r));
+		System.out.println(g.toJson(r));
 		
 	}
 	

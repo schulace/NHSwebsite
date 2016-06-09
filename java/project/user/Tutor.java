@@ -27,7 +27,6 @@ public class Tutor extends User
 	 * @deprecated
 	 */
 	private ArrayList<StudyGuide> Guides;
-	private ArrayList<Request> possibilities = new ArrayList<Request>();
 	
 	/**
 	 * calls super constructor
@@ -40,11 +39,7 @@ public class Tutor extends User
 		super(name, grade);
 	}
 	
-	public void Override(ArrayList<Request> s)
-	{
-		this.possibilities = null;
-		this.possibilities = (ArrayList<Request>) s.clone();
-	}
+	
 	
 	public Tutor(StudentSchedule sc, String name, int gr)
 	{
@@ -54,12 +49,6 @@ public class Tutor extends User
 	public ArrayList<SchoolClass> getStrongClasses()
 	{
 		return strongClasses;
-	}
-	
-	public void prepForJson()
-	{
-		super.prepForJson();
-		this.possibilities = null;
 	}
 
 	public void setStrongClasses(ArrayList<SchoolClass> strongClasses)
@@ -101,16 +90,7 @@ public class Tutor extends User
 		userFactory.removeTutor(this);
 	}
 	
-	
-	public void addRequest(Request reqIn)
-	{
-		this.possibilities.add(reqIn);
-	}
-	
-	public ArrayList<Request> getRequests()
-	{
-		return this.possibilities;
-	}
+
 	/**
 	 * @param studentName name (email) of student to be tutored
 	 * @param blocks blocks that the tutor chooses to teach the kid
