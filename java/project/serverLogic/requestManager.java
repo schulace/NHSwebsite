@@ -98,6 +98,7 @@ public class requestManager
 		{
 			req.getRequestor().prepForJson();
 			String w = g.toJson(req);
+			con.deleteDocument("requestCollection", "requestor.name", req.getRequestor().getName());
 			con.insertToDb(w, "requestCollection");
 		}
 		con.close();
@@ -105,14 +106,15 @@ public class requestManager
 	
 	public static void deserializeRequestList()
 	{
-		Mongoconnect connection = new Mongoconnect();
-		ArrayList<String> jsons = connection.getCollection("studentCollection");
+		Mongoconnect con = new Mongoconnect();
+		ArrayList<String> jsons = con.getCollection("requestCollection");
 		Gson g = new Gson();
 		for(String j: jsons)
 		{
 			Request req = g.fromJson(j, Request.class);
 			addRequest(req);
 		}
+		con.close();
 	}	
 	
 	/**

@@ -65,19 +65,33 @@ public class userFactory
 		for (Student s: studentList)
 		{
 			s.prepForJson();
-			String w = g.toJson(s);
-			System.out.println(w);
+			String jsonStudent = g.toJson(s);
 			con.deleteDocument("students", "name", s.getName());
-			con.insertToDb(w,"students"); //TODO add the string back
+			con.insertToDb(jsonStudent,"students"); //TODO add the string back
 		}
 		studentList = new ArrayList<Student>();
 		con.close();
 	}
 	
+	public static void serializeTutorList()
+	{
+		Gson g = new Gson();
+		Mongoconnect con = new Mongoconnect();
+		for(Tutor tutor: tutorList)
+		{
+			tutor.prepForJson();
+			String jsonTutor = g.toJson(tutor);
+			con.deleteDocument("tutors", "name", tutor.getName());
+			con.insertToDb(jsonTutor, "tutors");
+		}
+		tutorList = new ArrayList<Tutor>();
+		con.close();
+	}
+	
 	public static void deserializeStudentList(boolean thorough)
 	{
-		Mongoconnect connection = new Mongoconnect();
-		ArrayList<String> jsons = connection.getCollection("students");
+		Mongoconnect con = new Mongoconnect();
+		ArrayList<String> jsons = con.getCollection("students");
 		Gson g = new Gson();
 		for(String fuzzyStudent: jsons)
 		{
@@ -88,7 +102,23 @@ public class userFactory
 			}
 			addStudent(stu);
 		}
-		connection.close();
+		con.close();
+	}
+	public static void deserializeTutorList(boolean thorough) //TODO requests for tutors + setting that up properly.
+	{
+		Mongoconnect con = new Mongoconnect();
+		ArrayList<String> jsons = con.getCollection("studentCollection");
+		Gson g = new Gson();
+		for(String jsonTutor:jsons)
+		{
+			Tutor t = g.fromJson(jsonTutor, Tutor.class);
+			if(thorough)
+			{
+				refreshCalendars();
+			}
+			addTutor(t);
+		}
+		con.close();
 	}
 	
 	public static void refreshCalendars()
@@ -110,33 +140,9 @@ public class userFactory
 		}
 	}
 	
-	public static void serializeTutorList()
-	{
-		Gson g = new Gson();
-		for(Tutor t: tutorList)
-		{
-			t.prepForJson();
-			String s = g.toJson(t);
-			Mongoconnect con = new Mongoconnect();
-			con.insertToDb(s, "tutors");
-		}
-		tutorList = new ArrayList<Tutor>();
-	}
 	
-	public static void deserializeTutorList() //TODO requests for tutors + setting that up properly.
-	{
-		Mongoconnect connection = new Mongoconnect();
-		ArrayList<String> jsons = connection.getCollection("studentCollection");
-		Gson g = new Gson();
-		for(String s:jsons)
-		{
-			Tutor t = g.fromJson(s, Tutor.class);
-			t.getCalendar().daysOff = Reference.setAndGetBreakDays();
-			t.getCalendar().endDate = Reference.endDate;
-			t.getCalendar().startDate = Reference.startDate;
-			t.getCalendar().refreshCalendar();
-		}
-	}
+	
+	
 	
 	@Deprecated
 	public static void addStudent(String jsonIn)

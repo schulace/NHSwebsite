@@ -13,7 +13,7 @@
 </head>
 <body>
 	<p>select the area that you need the most help in</p>
-	<form method="post" action="helpRequest">
+	<form method="post" action="../../../helpRequest">
 		<select name="subject">
 		<%
 		String formOut = "";

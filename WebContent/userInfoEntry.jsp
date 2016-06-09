@@ -119,7 +119,8 @@ function classFunction()
 		}
 		
 	%>
-	email: <input type="text" name="email" value=<%=email %>></input><br>
+	I am a tutor: <input type="checkbox" name="tutor" value="false"><br>
+	email: <input type="text" name="email" value=<%=email%>></input><br>
 	year:
 	<select name="year">
 		<option value="9">9</option>

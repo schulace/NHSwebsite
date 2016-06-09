@@ -44,7 +44,7 @@ public class helpRequest extends HttpServlet {
 	{
 		Subject s = Subject.valueOf(request.getParameter("subject"));
 		userFactory.deserializeStudentList(false);
-		userFactory.deserializeTutorList(); //TODO george make sure this thing works OK
+		userFactory.deserializeTutorList(false); //TODO george make sure this thing works OK
 		requestManager.deserializeRequestList();
 		String HRscriptletemail = "";
 		Cookie[] cookies = request.getCookies();

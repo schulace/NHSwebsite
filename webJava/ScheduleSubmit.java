@@ -19,6 +19,7 @@ import project.schedule.classes.Subject;
 import project.serverLogic.userFactory;
 import project.user.Student;
 import project.user.Teacher;
+import project.user.Tutor;
 
 /**
  * Servlet implementation class ScheduleSubmit
@@ -107,11 +108,19 @@ public class ScheduleSubmit extends HttpServlet {
 			StudentSchedule sched = new StudentSchedule(classes); //creates a student schedule.
 			if(notIsArrayEmpty(sched.getBlockSchedule()))
 			{
-				System.out.println("\n"+sched);
-				response.getWriter().append(sched.toPrettierHTML());
-				userFactory.deserializeStudentList(false);
-				userFactory.addStudent(new Student(sched, request.getParameter("email"), Integer.parseInt(request.getParameter("year"))));
-				userFactory.serializeStudentList();
+				if(request.getParameter("tutor").length() < 1)
+				{
+					userFactory.deserializeStudentList(false);
+					userFactory.addStudent(new Student(sched, request.getParameter("email"), Integer.parseInt(request.getParameter("year"))));
+					userFactory.serializeStudentList();
+				}
+				else
+				{
+					userFactory.deserializeTutorList(false);
+					userFactory.addTutor(new Tutor(sched, request.getParameter("email"), Integer.parseInt(request.getParameter("year"))));
+					userFactory.serializeTutorList();
+				}
+				
 				response.sendRedirect("AltJavaPage/startbootstrap-sb-admin-2-1.0.8/pages/HomePage.jsp");
 			}
 			
@@ -163,6 +172,6 @@ public class ScheduleSubmit extends HttpServlet {
 		{
 			stList.add(stuff.nextElement());
 		}
-		return (stList.size()-2)/4;	
+		return (stList.size()-3)/4;	
 	}
 }
