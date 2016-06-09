@@ -37,6 +37,18 @@ public class Request
 		
 	}
 	
+	public ArrayList<int[]> getCommonBlocks(String tutorName)
+	{
+		for(TutorPossibility tutPos:tutPossibilities)
+		{
+			if(tutPos.tut.getName().equals(tutorName))
+			{
+				return tutPos.commonBlocks;
+			}
+		}
+		return null;
+	}
+	
 	/**
 	 * 
 	 * @param pos a tutorPosibility

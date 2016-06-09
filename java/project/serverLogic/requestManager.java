@@ -4,14 +4,11 @@ import java.util.ArrayList;
 import project.requests.Request;
 import project.requests.TutorPossibility;
 import project.schedule.classes.LetterDay;
-import project.schedule.classes.SchoolClass;
 import project.schedule.classes.StudentSchedule;
-import project.schedule.classes.Subject;
 import project.schedule.classes.TutoringSession;
 import project.user.Teacher;
 import project.user.Tutor;
 import com.google.gson.Gson;
-import com.sun.msv.grammar.util.PossibleNamesCollector;
 
 
 public class requestManager
