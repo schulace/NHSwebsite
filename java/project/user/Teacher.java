@@ -7,14 +7,19 @@
 
 package project.user;
 
+import project.schedule.calendar.GHSCalendar;
 import project.schedule.classes.StudentSchedule;
+import project.schedule.classes.Year;
+import project.serverLogic.Reference;
 import project.serverLogic.userFactory;
 
-public class Teacher extends User
+public class Teacher
 { //we may not even need this, but its nice to have (just in case)
 	private String name;
 	private String school;
-	
+	private GHSCalendar userCalendar;
+	private Year grade;
+
 	/**
 	 * basic constructor 
 	 * @param n
@@ -22,19 +27,27 @@ public class Teacher extends User
 	 * @param g
 	 */
 	
-	public Teacher(String name, StudentSchedule Schedule)
+	public Teacher(String n, StudentSchedule Schedule)
 	{
-		super(name,Schedule);
+		this.userCalendar = new GHSCalendar(Reference.startDate, Reference.endDate, Schedule, Reference.breakDays);
+		this.name = n;
+	}
+	
+	public Teacher(StudentSchedule Schedule, String name,  Year year)
+	{
+		this.userCalendar = new GHSCalendar(Reference.startDate, Reference.endDate, Schedule, Reference.breakDays);
+		this.name = name;
+		this.grade = year;
 	}
 	
 	public Teacher(String name, String s){
-		super(name);
+		this(new StudentSchedule(), name, Year.Unknown);
 		this.school = s;
 	}
-	
-	public Teacher(String n)
+		
+	public Teacher(String name)
 	{
-		super(n);
+		this(new StudentSchedule(), name, Year.Unknown);
 	}
 	
 	public void prepForJson()
