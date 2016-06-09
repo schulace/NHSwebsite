@@ -47,9 +47,23 @@ public boolean isBlockInArrayList(int day, int block, ArrayList<int[]> blocks)
 	return false;
 }
 
+public String getStrFromCookies(Cookie[] cookies)
+{
+	if(cookies != null)
+	{
+		for(Cookie c : cookies)
+		{
+			if(c.getName().equals("availableTutoringSessions"))
+			{
+				return c.getValue();
+			}
+		}
+	}
+	return null;
+}
+
 %>
 <%
-//focus. here, we fill requests. need to grab request list, figure out what requests have a possibility for this dude, allow the dude to pick when, then fill it, generate a class
 String email = null;
 String formTables = "";
 Cookie[] cookies = request.getCookies();
@@ -76,6 +90,8 @@ if(email != null);
 		formTables += genSchedule(possibilities.get(x).getAvailableBlocks(), x);
 	}
 	
+	response.addCookie(new Cookie("availableTutoringSessions", formTables));
+	
 	userFactory.serializeStudentList();
 	userFactory.serializeTutorList();
 	requestManager.serializeRequestList();
@@ -87,7 +103,7 @@ if(email != null);
 %>
 
 <form>
-	<%=formTables%>
+	<%=getStrFromCookies(request.getCookies())%>
 
 </form>
 
