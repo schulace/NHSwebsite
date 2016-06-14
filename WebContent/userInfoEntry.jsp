@@ -119,7 +119,8 @@ function classFunction()
 		}
 		
 	%>
-	I am a tutor: <input type="checkbox" name="tutor" value="false"><br>
+	I am a tutor: <input type="checkbox" name="tutor" value="false"><br> <%//I dont think these actually do anything????? %>
+	I am a teacher: <input type="checkbox" name="teacher" value="false"><br>
 	email: <input type="text" name="email" value=<%=email%>></input><br>
 	year:
 	<select name="year">
@@ -127,6 +128,7 @@ function classFunction()
 		<option value="10">10</option>
 		<option value="11">11</option>
 		<option value="12">12</option>
+		
 	</select>
 	
 	<fieldset id="formClasses">

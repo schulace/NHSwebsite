@@ -7,13 +7,19 @@
 
 package project.user;
 
+import project.schedule.calendar.GHSCalendar;
+import project.schedule.classes.StudentSchedule;
+import project.schedule.classes.Year;
+import project.serverLogic.Reference;
 import project.serverLogic.userFactory;
 
 public class Teacher
 { //we may not even need this, but its nice to have (just in case)
 	private String name;
 	private String school;
-	
+	private GHSCalendar userCalendar;
+	private Year grade;
+
 	/**
 	 * basic constructor 
 	 * @param n
@@ -21,25 +27,45 @@ public class Teacher
 	 * @param g
 	 */
 	
-	public Teacher(String n, String school)
+	public Teacher(String n, StudentSchedule Schedule)
 	{
+		this.userCalendar = new GHSCalendar(Reference.startDate, Reference.endDate, Schedule, Reference.breakDays);
 		this.name = n;
-		this.school = school;
 	}
 	
-	public Teacher(String n)
+	public Teacher(StudentSchedule Schedule, String name,  Year year)
 	{
-		this.name = n;
+		this.userCalendar = new GHSCalendar(Reference.startDate, Reference.endDate, Schedule, Reference.breakDays);
+		this.name = name;
+		this.grade = year;
+	}
+	
+	public Teacher(String name, String s){
+		this(new StudentSchedule(), name, Year.Unknown);
+		this.school = s;
+	}
+		
+	public Teacher(String name)
+	{
+		this(new StudentSchedule(), name, Year.Unknown);
+	}
+	
+	public void prepForJson()
+	{
+		this.userCalendar.cal = null;
+		this.userCalendar.daysOff = null;
+		this.userCalendar.endDate = null;
+		this.userCalendar.startDate = null;
 	}
 	
 	/**
 	 * no parameter constructor (mainly for testing)
 	 */
 	
-	public Teacher()
-	{
-		this("test_teacher", "GHS");
-	}
+	//public Teacher()
+	//{
+	//	this("test_teacher", "GHS");
+	//}
 	
 	/**
 	 * allows the teacher to rate a tutor

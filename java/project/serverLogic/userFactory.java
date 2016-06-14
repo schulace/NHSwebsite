@@ -58,6 +58,18 @@ public class userFactory
 		return null;
 	}
 	
+	public static Teacher getTeacherByName(String email)
+	{
+		for(Teacher s:teacherList)
+		{
+			if(s.getName().equals(email))
+			{
+				return s;
+			}
+		}
+		return null;
+	}
+	
 	public static Tutor getTutorByName(String email)
 	{
 		for(Tutor tut:tutorList)
@@ -100,6 +112,37 @@ public class userFactory
 		con.close();
 	}
 	
+	public static void serializeTeacherList()
+	{
+		Gson g = new Gson();
+		Mongoconnect con = new Mongoconnect();
+		for(Teacher teacher: teacherList)
+		{
+			teacher.prepForJson();
+			String jsonTutor = g.toJson(teacher);
+			con.deleteDocument("tutors", "name", teacher.getName());
+			con.insertToDb(jsonTutor, "teachers");
+		}
+		teacherList = new ArrayList<Teacher>();
+		con.close();
+	}
+	
+	public static void deserializeTeacherList(boolean thorough)
+	{
+		Mongoconnect con = new Mongoconnect();
+		ArrayList<String> jsons = con.getCollection("teachers");
+		Gson g = new Gson();
+		for(String fuzzyTeachers: jsons)
+		{
+			Teacher tea = g.fromJson(fuzzyTeachers, Teacher.class);
+			if(thorough)
+			{
+				refreshCalendars();
+			}
+			addTeacher(tea);
+		}
+		con.close();
+	}
 	public static void deserializeStudentList(boolean thorough)
 	{
 		Mongoconnect con = new Mongoconnect();
@@ -180,6 +223,18 @@ public class userFactory
 			}
 		}
 		studentList.add(stIn);
+	}
+	
+	public static void addTeacher(Teacher stIn)
+	{
+		for(int x = 0; x < teacherList.size(); x ++)
+		{
+			if(teacherList.get(x).getName().equals(stIn.getName()))
+			{
+				teacherList.remove(x);
+			}
+		}
+		teacherList.add(stIn);
 	}
 	//TODO only for testing. delete later
 	public static void addTutor(Tutor tutIn)
