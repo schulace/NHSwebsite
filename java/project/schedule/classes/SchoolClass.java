@@ -10,7 +10,6 @@ public class SchoolClass
 	private Subject subject;
 	private LetterDay[] days;
 	private int block;
-	private Teacher prof;
 	
 	public SchoolClass(String name, Subject subject, LetterDay[] days, int block, Teacher teacher)
 	{
@@ -18,16 +17,6 @@ public class SchoolClass
 		this.setSubject(subject);
 		this.setDays(days);
 		this.setBlock(block);
-		this.setProf(teacher);
-	}
-
-	public Teacher getProf()
-	{
-		return prof;
-	}
-
-	public void setProf(Teacher prof) {
-		this.prof = prof;
 	}
 
 	public String getName()

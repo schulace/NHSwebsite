@@ -37,6 +37,11 @@ public abstract class User
 		this.grade = year;
 	}
 
+	public User(String name, StudentSchedule Schedule)
+	{
+		this.userCalendar = new GHSCalendar(Reference.startDate, Reference.endDate, Schedule, Reference.breakDays);
+		this.name = name;
+	}
 
 	/**
 	 * 
