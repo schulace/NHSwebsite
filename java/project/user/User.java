@@ -1,55 +1,101 @@
 package project.user;
 
 
-import java.util.Date;
-
-import project.schedule.Schedule;
-import project.schedule.ScheduleHistory;
+import java.util.ArrayList;
+import project.schedule.calendar.GHSCalendar;
+import project.schedule.calendar.TutoringHistory;
+import project.schedule.classes.SchoolClass;
+import project.schedule.classes.StudentSchedule;
 import project.schedule.classes.Year;
+import project.serverLogic.Reference;
 
+/**
+ * @author schulace
+ * abstract class for user. extended by student and tutor.
+ * contains a school calendar, name, date of birth, grade, gender.
+ */
 public abstract class User
 {
-	protected Schedule schedule;
+	protected GHSCalendar userCalendar;
 	protected String name;
-	protected Date dob;
-	protected String school;
 	protected Year grade;
-	protected Gender gender;
-	protected ScheduleHistory history;
+	protected TutoringHistory history;
+	private boolean confirm = false;
 	
-	public User(Schedule Schedule, String name, Date dob, String school, Year year, Gender gender)
+	
+	
+	/**
+	 * 
+	 * @param Schedule type: StudentSchedule
+	 * @param name type: String
+	 * @param year	type: Year (enum)
+	 */
+	public User(StudentSchedule Schedule, String name,  Year year)
 	{
-		this.schedule = Schedule;
+		this.userCalendar = new GHSCalendar(Reference.startDate, Reference.endDate, Schedule, Reference.breakDays);
 		this.name = name;
-		this.dob = dob;
 		this.grade = year;
-		this.gender = gender;
 	}
-	
+
+	public User(String name, StudentSchedule Schedule)
+	{
+		this.userCalendar = new GHSCalendar(Reference.startDate, Reference.endDate, Schedule, Reference.breakDays);
+		this.name = name;
+	}
+
+	/**
+	 * 
+	 * @param name the name of the student to create
+	 */
 	public User(String name)
 	{
-		this(new Schedule(), name, null, "Greenwich High School", null, null);
+		this(new StudentSchedule(), name, Year.Unknown);
 	}
 	
-	public User(String name, int year, int month, int date, int grade, String gender)
+	public User(String name, int grade)
 	{
-		Date d = new Date(year, month, date); //TODO error handling in case of invalid date entered
-		Gender g;
-		if(gender.equalsIgnoreCase("male"))
+		this(new StudentSchedule(), name, grade);
+	}
+	
+	public void prepForJson()
+	{
+		this.userCalendar.cal = null;
+		this.userCalendar.daysOff = null;
+		this.userCalendar.endDate = null;
+		this.userCalendar.startDate = null;
+	}
+	
+	
+	/**
+	 * 
+	 * @return arrayList of int[] that represents a student's open blocks.
+	 */
+	public ArrayList<int[]> getOpens()
+	{
+		SchoolClass[][] blockSched = this.userCalendar.studentSchedule.getBlockSchedule();
+		ArrayList<int[]> toReturn = new ArrayList<int[]>();
+		for(int x = 0; x < 8; x ++)
 		{
-			g = Gender.MALE;
+			for(int y = 0; y < 6; y++)
+			{
+				if(blockSched[x][y] == null)
+				{
+					int[] arr = {x,y};
+					toReturn.add(arr);
+				}
+			}
 		}
-		else if(gender.equalsIgnoreCase("female"))
-		{
-			g = Gender.FEMALE;
-		}
-		else
-		{
-			g = Gender.OTHER;
-		}
-		
+		return toReturn;
+	}
+	
+	/**
+	 * @param sched a student schedule
+	 * @param name student name
+	 * @param grade school grade (int between 9 and 12)
+	 */
+	public User(StudentSchedule sched, String name, int grade)
+	{		
 		Year y;
-		
 		switch(grade)
 		{
 			case 9: y = Year.Freshman;
@@ -60,74 +106,123 @@ public abstract class User
 			break;
 			case 12: y = Year.Senior;
 			break;
-			default: y = Year.Unknown; //TODO maybe make unknown for year?
+			default: y = Year.Unknown;
 		}
 			
-		this.schedule = new Schedule();
+		this.userCalendar = new GHSCalendar(Reference.startDate, Reference.endDate, sched, Reference.breakDays);
 		this.name = name;
-		this.school = "Greenwich High School";
-		this.gender = g;
-		this.dob = d;
 		this.grade = y;
+	}
+	
+	public GHSCalendar getCalendar()
+	{
+		return this.userCalendar;
+	}
+	
+	/**
+	 * @param sched student school schedule.
+	 * Generates a new calendar schedule with the school startdate, endDate, this schedule, and all days off.
+	 */
+	
+	public void setSchedule(StudentSchedule sched)
+	{
+		this.userCalendar = new GHSCalendar(Reference.startDate, Reference.endDate, sched, Reference.breakDays);
 	}
 	
 	//TODO Google acct linkage
 	
-	public Schedule getSchedule()
+	public StudentSchedule getSchedule()
 	{
-		return schedule;
+		return userCalendar.getStudentSchedule();
 	}
-	protected void setSchedule(Schedule schedule)
-	{
-		this.schedule = schedule;
-	}
+	
 	public String getName()
 	{
 		return name;
 	}
+	
 	protected void setName(String name)
 	{
 		this.name = name;
 	}
-	public Date getDob()
-	{
-		return dob;
-	}
-	protected void setDob(Date dob)
-	{
-		this.dob = dob;
-	}
-	public String getSchool()
-	{
-		return school;
-	}
-	protected void setSchool(String school)
-	{
-		this.school = school;
-	}
+	
 	public Year getGrade()
 	{
 		return grade;
+	}
+	
+	public int getGradeAsInt(){
+		String letsHopeThisWorks = ""+this.grade;
+		int intGrade = Integer.parseInt(letsHopeThisWorks);
+		return intGrade;
 	}
 	protected void setGrade(Year grade)
 	{
 		this.grade = grade;
 	}
-	public Gender getGender()
-	{
-		return gender;
-	}
-	protected void setGender(Gender gender)
-	{
-		this.gender = gender;
-	}
-	protected ScheduleHistory getHistory()
+	
+	protected TutoringHistory getHistory()
 	{
 		return history;
 	}
-	protected void setHistory(ScheduleHistory history)
+	
+	protected void setHistory(TutoringHistory history)
 	{
 		this.history = history;
 	}
 	
+	@Override
+	public String toString()
+	{
+		return "User [cal=" + userCalendar + ", name=" + name + ", grade=" + grade + ", history=" + history + "]";
+	}
+	
+	public String toStringMinusSchedule()
+	{
+		return "User [name=" + name + ", grade=" + grade + "]";
+	}
+	
+	public void acceptSession()
+	{
+		this.confirm = true;
+	}
+	
+	public void denySession()
+	{
+		this.confirm = false;
+	}
+	
+	public boolean confirmSession()
+	{
+		return this.confirm;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (userCalendar == null) {
+			if (other.userCalendar != null)
+				return false;
+		} else if (!userCalendar.equals(other.userCalendar))
+			return false;
+		if (grade != other.grade)
+			return false;
+		if (history == null) {
+			if (other.history != null)
+				return false;
+		} else if (!history.equals(other.history))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}	
 }

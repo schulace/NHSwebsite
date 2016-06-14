@@ -1,0 +1,328 @@
+/*General*/
+body, html {
+  padding: 0;
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
+}
+/*Navbar*/
+nav {
+  display: block;
+  width: 100%;
+  background-color: #1D3557;
+  max-height: 42px;
+}
+.navItems {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+  margin-left: 10px;
+}
+.navItems li {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+  text-transform: uppercase;
+  line-height: 42px;
+  padding: 0 10px;
+  margin: 0 !important;
+}
+#header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+}
+.pullRight {
+  float: right;
+  margin-right: 10px;
+}
+.userName a {
+  color: white;
+  padding: 0 10px !important;
+  line-height: 42px;
+  padding: 10px;
+}
+ .navItems > li > a {
+  line-height: 42px;
+  vertical-align: middle;
+}
+.userName {
+  cursor: pointer;
+  display: inline-block;
+  height: 42px;
+}
+.nhsDropdown {
+  background-color: black;
+  line-height: 100px !important;
+}
+.dropit .dropit-open .dropit-submenu {
+  border-radius: 2px;
+  border: 1px solid #343434
+}
+.dropit-submenu li {
+  width: 150px;
+  display: block;
+}
+.dropit > li > a {
+  height: 100%;
+  display: block;
+  padding: 0 10px;
+}
+ul.menu > li {
+  padding: 0;
+}
+ul.nhsDropdown li {
+  padding: 0 10px;
+}
+.dropit .dropit-submenu.userNameDropdown {
+  left: -71px !important;
+}
+.dropit .dropit-submenu.notificationDropdown {
+  left: -139px !important;
+}
+.navItems > li > ul > li{
+  line-height: 34px;
+  font-size: 10px;
+  border-top: 1px solid #343434;
+  transition: 0.1s ease-out;
+}
+.navItems > li > ul > li:first-of-type {
+  border-top: none;
+}
+.navItems > li > ul > li:hover {
+  background-color: #1f1f1f;
+  transition: 0.1s ease-out;
+}
+nav li {
+  transition: 0.1s ease-out;
+}
+nav li:hover {
+  background-color: #172A45;
+  transition: 0.1s ease-out;
+}
+.dropit > li {
+  max-height: 42px;
+}
+.dropdownIcon {
+  padding-right: 10px
+}
+.notificationsIcon {
+  font-size: 18px;
+  margin-right: 0 !important;
+}
+.nhsDropdownLight {
+  background-color: white;
+  border: none !important;
+  top: 10px
+}
+.nhsDropdownLight > li {
+  border-top: none !important;
+  color: black;
+}
+.dropdownHeader {
+  text-align: center;
+  background-color: #497b9d;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+  color: white !important;
+}
+.notificationList {
+  overflow: wrap;
+}
+.cornerGrowAnimation{
+  animation: cornerGrow ease-out 0.07s;
+  animation-iteration-count: 1;
+  transform-origin: 100% 0%;
+  -webkit-animation: cornerGrow ease-out 0.07s;
+  -webkit-animation-iteration-count: 1;
+  -webkit-transform-origin: 100% 0%;
+  -moz-animation: cornerGrow ease-out 0.07s;
+  -moz-animation-iteration-count: 1;
+  -moz-transform-origin: 100% 0%;
+  -o-animation: cornerGrow ease-out 0.07s;
+  -o-animation-iteration-count: 1;
+  -o-transform-origin: 100% 0%;
+  -ms-animation: cornerGrow ease-out 0.07s;
+  -ms-animation-iteration-count: 1;
+  -ms-transform-origin: 100% 0%;
+}
+
+@keyframes cornerGrow{
+  0% {
+    opacity:0;
+    transform:  scaleX(0.75) scaleY(0.75) ;
+  }
+  100% {
+    opacity:1;
+    transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+}
+
+@-moz-keyframes cornerGrow{
+  0% {
+    opacity:0;
+    -moz-transform:  scaleX(0.75) scaleY(0.75) ;
+  }
+  100% {
+    opacity:1;
+    -moz-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+}
+
+@-webkit-keyframes cornerGrow {
+  0% {
+    opacity:0;
+    -webkit-transform:  scaleX(0.75) scaleY(0.75) ;
+  }
+  100% {
+    opacity:1;
+    -webkit-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+}
+
+@-o-keyframes cornerGrow {
+  0% {
+    opacity:0;
+    -o-transform:  scaleX(0.75) scaleY(0.75) ;
+  }
+  100% {
+    opacity:1;
+    -o-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+}
+
+@-ms-keyframes cornerGrow {
+  0% {
+    opacity:0;
+    -ms-transform:  scaleX(0.75) scaleY(0.75) ;
+  }
+  100% {
+    opacity:1;
+    -ms-transform:  scaleX(1.00) scaleY(1.00) ;
+  }
+}
+
+/*Logo*/
+logo {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+#logo {
+  color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 15px;
+  letter-spacing: 2px;
+  padding: 14px 0;
+}
+.cardinal {
+      height: 24px;
+    margin: 0;
+    /* padding: 9px 9px; */
+    position: absolute;
+    left: 50%;
+    top: 9px;
+    margin-left: -21px;
+    background-size: 100%;
+}
+.logoLi {
+  padding: 0 !important;;
+}
+#menu1 {
+  margin-right: 10px;
+}
+/*Header*/
+#firstHeader {
+  height: calc(100% - 200px);
+  display: block;
+  margin-top: 42px;
+  width: 100%;
+  background-image: url("../img/tower.jpg.jpg");
+  background-size: cover;
+  background-position: center;
+}
+.largeTagline {
+  font-weight: 600;
+  text-transform: uppercase;
+  color: white;
+  font-size: 7em;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+  margin-top: 0;
+  padding-top: 0;
+}
+.smallTagline {
+  color: white;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.5);
+}
+.promoText {
+  width: 1000px;
+  height: 500px;
+  text-align: center;
+  left: 50%;
+  top: 50%;
+  margin-top: -250px;
+  margin-left: -500px;
+  position: absolute;
+}
+.flexBox {
+  display: flex;
+}
+.fullHeight {
+  height: 100%;
+}
+.innerHeader {
+  height: 100%;
+}
+.alignSelfCenter {
+  align-self: center;
+}
+/*Part1*/
+.promoIcons {
+  font-size: 2.65rem;
+  display: block;
+  text-align: center;
+  color: #497b9d;
+}
+.promoContent {
+  font-size: 0.84rem;
+}
+/*Headers*/
+.headerH1 {
+  color: white;
+  font-family: "Raleway", sans-serif;
+  font-size: 2rem;
+  margin-bottom: 0;
+  text-align: left;
+}
+.headerH2 {
+  font-size: 6rem;
+  font-family: "Raleway", sans-serif;
+  font-weight: bolder;
+  margin-top: 0;
+  color: white;
+}
+h1 {
+  font-size: 1.5rem;
+  text-align: center;
+  color: #497b9d;
+}
+/*Buttons*/
+.nhsGhostButton {
+  border-radius: 20px;
+  font-size: 13px;
+  background-color: transparent;
+  border: 1px solid white;
+  font-weightL bolder;
+}
+.nhsGhostButton:focus {
+  background-color: transparent;
+  color: white;
+}
+.nhsGhostButton:hover {
+  background-color: white;
+  color: black;
+}

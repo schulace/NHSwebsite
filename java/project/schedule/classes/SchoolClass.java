@@ -1,6 +1,8 @@
 package project.schedule.classes;
 
-import project.schedule.LetterDay;
+import java.util.Arrays;
+
+import project.user.Teacher;
 
 public class SchoolClass
 {
@@ -9,7 +11,7 @@ public class SchoolClass
 	private LetterDay[] days;
 	private int block;
 	
-	public SchoolClass(String name, Subject subject, LetterDay[] days, int block)
+	public SchoolClass(String name, Subject subject, LetterDay[] days, int block, Teacher teacher)
 	{
 		this.setName(name);
 		this.setSubject(subject);
@@ -55,5 +57,34 @@ public class SchoolClass
 	public void setBlock(int block)
 	{
 		this.block = block;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "[name=" + name + ", subject=" + subject + "]";
+	}
+
+	public boolean equals(SchoolClass obj)
+	{
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		SchoolClass other = (SchoolClass) obj;
+		if (block != other.block)
+			return false;
+		if (!Arrays.equals(days, other.days))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (subject != other.subject)
+			return false;
+		return true;
 	}
 }
